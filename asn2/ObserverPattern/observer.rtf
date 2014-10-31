@@ -1,0 +1,27 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf190
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 #2 Buisiness Scenario: Public Online eCommerce Bidding Solution\
+\
+As online bidding sites and eCommerce sites are getting more and more popular, older large monolithic designs do not work efficiently and there are several improvements that can be made.\
+\
+Our solution consists of several one to many dependencies that detect when an object changes its state so that the children can be warned and refreshed right away. The underlying engine of the system is this encapsulated and placed in an observer hierarchy.\
+\
+##2 Observer Design Pattern\
+\
+i) The design pattern that we are going to use for our scenario is the observer design patter.\
+\
+ii) Due to the sheer size of the Subject in this case (price of object for sale) and multiple candidates succeeding from the subject (bidders)  , requiring a form of inheritance is an extremely bad design because any type of bidders bid is a candidate for the object and because multiple inheritance isn\'92t always used, the subjects already will have a superclass and overwhelm the system. Thus we use the Observer patterns amazing quality for the subject is the core that prompts the observer and the observer is the variable for abstraction which calls back to the subject.\
+\
+\
+##3\
+\
+UML Diagram- see attached jpg, Adapted from the general Observer pattern UML Source:{\field{\*\fldinst{HYPERLINK "http://huiyu.tistory.com/m/post/20"}}{\fldrslt http://huiyu.tistory.com/m/post/20}}\
+\
+\
+##4\
+\
+in an online auction, the amount of bidders is theoretically infinite. The system needs to be able to not only have a massive theoretic capacity but keep track of the highest bids in a way the least taxing to the system. In this observer pattern, all the bidders or subjects are kept in a list and are automatically notified in case of any changes by calling their methods.}
