@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		542DC2F51A043DF7007397C6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 542DC2F41A043DF7007397C6 /* main.cpp */; };
-		542DC2FD1A043E0D007397C6 /* DiscoveryClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 542DC2FB1A043E0D007397C6 /* DiscoveryClient.cpp */; };
-		542DC3001A043E2A007397C6 /* SearchEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 542DC2FE1A043E2A007397C6 /* SearchEngine.cpp */; };
+		548E5AF41A060745000984C7 /* DiscoveryClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 548E5AED1A060745000984C7 /* DiscoveryClient.cpp */; };
+		548E5AF51A060745000984C7 /* ItemProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 548E5AEF1A060745000984C7 /* ItemProxy.cpp */; };
+		548E5AF61A060745000984C7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 548E5AF11A060745000984C7 /* main.cpp */; };
+		548E5AF71A060745000984C7 /* SearchEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 548E5AF21A060745000984C7 /* SearchEngine.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,12 +27,13 @@
 
 /* Begin PBXFileReference section */
 		542DC2F11A043DF7007397C6 /* ProxyFile */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ProxyFile; sourceTree = BUILT_PRODUCTS_DIR; };
-		542DC2F41A043DF7007397C6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		542DC2FB1A043E0D007397C6 /* DiscoveryClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiscoveryClient.cpp; sourceTree = "<group>"; };
-		542DC2FC1A043E0D007397C6 /* DiscoveryClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveryClient.h; sourceTree = "<group>"; };
-		542DC2FE1A043E2A007397C6 /* SearchEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SearchEngine.cpp; sourceTree = "<group>"; };
-		542DC2FF1A043E2A007397C6 /* SearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEngine.h; sourceTree = "<group>"; };
-		548E5AEC1A05FF25000984C7 /* ItemProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemProxy.h; sourceTree = "<group>"; };
+		548E5AED1A060745000984C7 /* DiscoveryClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DiscoveryClient.cpp; path = src/DiscoveryClient.cpp; sourceTree = SOURCE_ROOT; };
+		548E5AEE1A060745000984C7 /* DiscoveryClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiscoveryClient.h; path = src/DiscoveryClient.h; sourceTree = SOURCE_ROOT; };
+		548E5AEF1A060745000984C7 /* ItemProxy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ItemProxy.cpp; path = src/ItemProxy.cpp; sourceTree = SOURCE_ROOT; };
+		548E5AF01A060745000984C7 /* ItemProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemProxy.h; path = src/ItemProxy.h; sourceTree = SOURCE_ROOT; };
+		548E5AF11A060745000984C7 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
+		548E5AF21A060745000984C7 /* SearchEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SearchEngine.cpp; path = src/SearchEngine.cpp; sourceTree = SOURCE_ROOT; };
+		548E5AF31A060745000984C7 /* SearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchEngine.h; path = src/SearchEngine.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,12 +66,13 @@
 		542DC2F31A043DF7007397C6 /* ProxyFile */ = {
 			isa = PBXGroup;
 			children = (
-				548E5AEC1A05FF25000984C7 /* ItemProxy.h */,
-				542DC2F41A043DF7007397C6 /* main.cpp */,
-				542DC2FE1A043E2A007397C6 /* SearchEngine.cpp */,
-				542DC2FF1A043E2A007397C6 /* SearchEngine.h */,
-				542DC2FB1A043E0D007397C6 /* DiscoveryClient.cpp */,
-				542DC2FC1A043E0D007397C6 /* DiscoveryClient.h */,
+				548E5AED1A060745000984C7 /* DiscoveryClient.cpp */,
+				548E5AEE1A060745000984C7 /* DiscoveryClient.h */,
+				548E5AEF1A060745000984C7 /* ItemProxy.cpp */,
+				548E5AF01A060745000984C7 /* ItemProxy.h */,
+				548E5AF11A060745000984C7 /* main.cpp */,
+				548E5AF21A060745000984C7 /* SearchEngine.cpp */,
+				548E5AF31A060745000984C7 /* SearchEngine.h */,
 			);
 			path = ProxyFile;
 			sourceTree = "<group>";
@@ -130,9 +133,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				542DC2F51A043DF7007397C6 /* main.cpp in Sources */,
-				542DC3001A043E2A007397C6 /* SearchEngine.cpp in Sources */,
-				542DC2FD1A043E0D007397C6 /* DiscoveryClient.cpp in Sources */,
+				548E5AF41A060745000984C7 /* DiscoveryClient.cpp in Sources */,
+				548E5AF71A060745000984C7 /* SearchEngine.cpp in Sources */,
+				548E5AF51A060745000984C7 /* ItemProxy.cpp in Sources */,
+				548E5AF61A060745000984C7 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
