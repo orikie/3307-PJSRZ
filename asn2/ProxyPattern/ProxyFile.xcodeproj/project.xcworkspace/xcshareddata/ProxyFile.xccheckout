@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>2CE9A037-17F1-4494-B4A2-0D049E77D557</string>
+	<string>A14584C2-F484-4245-AAF9-631F367F0358</string>
 	<key>IDESourceControlProjectName</key>
-	<string>ProxyPattern</string>
+	<string>ProxyFile</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>A3A9B81046C32AE69BC3463A75575539D18C42D2</key>
-		<string>https://github.com/linjoey/CS3307.git</string>
+		<key>6C9F1AEEB38899A2D4DAF329BEF9BB5A4B5C2BF8</key>
+		<string>https://github.com/linjoey/3307-PJSRZ.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>asn2/ProxyPattern/ProxyPattern.xcodeproj</string>
+	<string>asn2/ProxyFile/ProxyFile.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>A3A9B81046C32AE69BC3463A75575539D18C42D2</key>
+		<key>6C9F1AEEB38899A2D4DAF329BEF9BB5A4B5C2BF8</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/linjoey/CS3307.git</string>
+	<string>https://github.com/linjoey/3307-PJSRZ.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>A3A9B81046C32AE69BC3463A75575539D18C42D2</string>
+	<string>6C9F1AEEB38899A2D4DAF329BEF9BB5A4B5C2BF8</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>A3A9B81046C32AE69BC3463A75575539D18C42D2</string>
+			<string>6C9F1AEEB38899A2D4DAF329BEF9BB5A4B5C2BF8</string>
 			<key>IDESourceControlWCCName</key>
-			<string>CS3307</string>
+			<string>3307-PJSRZ</string>
 		</dict>
 	</array>
 </dict>

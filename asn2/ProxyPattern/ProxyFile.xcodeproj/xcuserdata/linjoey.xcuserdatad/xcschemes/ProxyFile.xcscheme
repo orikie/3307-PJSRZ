@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5465282A1A0349D100C8D9B1"
-               BuildableName = "ProxyPattern"
-               BlueprintName = "ProxyPattern"
-               ReferencedContainer = "container:ProxyPattern.xcodeproj">
+               BlueprintIdentifier = "542DC2F01A043DF7007397C6"
+               BuildableName = "ProxyFile"
+               BlueprintName = "ProxyFile"
+               ReferencedContainer = "container:ProxyFile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5465282A1A0349D100C8D9B1"
-            BuildableName = "ProxyPattern"
-            BlueprintName = "ProxyPattern"
-            ReferencedContainer = "container:ProxyPattern.xcodeproj">
+            BlueprintIdentifier = "542DC2F01A043DF7007397C6"
+            BuildableName = "ProxyFile"
+            BlueprintName = "ProxyFile"
+            ReferencedContainer = "container:ProxyFile.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,10 +51,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5465282A1A0349D100C8D9B1"
-            BuildableName = "ProxyPattern"
-            BlueprintName = "ProxyPattern"
-            ReferencedContainer = "container:ProxyPattern.xcodeproj">
+            BlueprintIdentifier = "542DC2F01A043DF7007397C6"
+            BuildableName = "ProxyFile"
+            BlueprintName = "ProxyFile"
+            ReferencedContainer = "container:ProxyFile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -69,10 +69,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5465282A1A0349D100C8D9B1"
-            BuildableName = "ProxyPattern"
-            BlueprintName = "ProxyPattern"
-            ReferencedContainer = "container:ProxyPattern.xcodeproj">
+            BlueprintIdentifier = "542DC2F01A043DF7007397C6"
+            BuildableName = "ProxyFile"
+            BlueprintName = "ProxyFile"
+            ReferencedContainer = "container:ProxyFile.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>ProxyPattern.xcscheme</key>
+		<key>ProxyFile.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5465282A1A0349D100C8D9B1</key>
+		<key>542DC2F01A043DF7007397C6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
