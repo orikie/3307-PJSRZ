@@ -24,7 +24,34 @@ A `DiscoveryClient` can be in the form of a desktop, web, or a mobile applicatio
 This proxy design solves the e-discovery problem of the need to access files remotely and manage system memory and network traffic appropriately; we implement `ItemProxy` as both a remote and virtual proxy. `ItemProxy` acts as a remote proxy in the sense that locally, clients can see files on a different address space while having full access to them. It acts as a virtual proxy in the sense that expensive objects (e.g. large files, or huge result sets) are created, or transferred over the network on demand. Some implications include: the ability for multiple users to access the central archive repository; and another, the ability to access the files virtually from any computer device without high cost of network usage and congestion.   
 
 ## 5 Skeleton C++ Code
+
+ProxyPattern/src
+
 ## 6 Explanation of Code
+
+## 7 Execution Trace
+
+DiscoveryClient:	Successfully received results: 7
+DiscoveryClient:	Displaying Proxy Results:
+DiscoveryClient:	id: 0 System File
+DiscoveryClient:	id: 1 Email File
+DiscoveryClient:	id: 2 Image File
+DiscoveryClient:	id: 3 System File
+DiscoveryClient:	id: 4 Image File
+DiscoveryClient:	id: 5 Email File
+DiscoveryClient:	id: 6 System File
+DiscoveryClient:	Requesting full restore of item 2
+2:		Requesting original image file from proxy...
+Opening original Image File: 2
+DiscoveryClient:	Requesting full restore of item 3
+3:		Requesting original system file from proxy...
+
+## 8 Lessons Learnt
+1. The proper use and implementation of the proxy pattern
+2. Sometimes it's not sufficient for a system to just work, but we must also need to consider performance and resource management requirements 
+3. We can use design patterns, such as the proxy pattern, to better abstract away specific details where not needed to simplify the system. In our scenario, the proxy item acted as an abstraction away from the resource intensive item. The search client, upon receiving the search results, was only concerned with the general, abstract, details in its result set. 
+
+
 
 
 

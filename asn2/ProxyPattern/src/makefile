@@ -8,7 +8,7 @@ CC=g++
 OFLAGS=-std=c++11 -c 
 
 all: main.o DiscoveryClient.o ItemProxy.o SearchEngine.o
-	$(CC) main.o DiscoveryClient.o ItemProxy.o SearchEngine.o -o eDiscvoery.out
+	$(CC) main.o DiscoveryClient.o ItemProxy.o SearchEngine.o -o eDiscovery.out
 
 main.o: main.cpp
 	$(CC) $(OFLAGS) main.cpp
