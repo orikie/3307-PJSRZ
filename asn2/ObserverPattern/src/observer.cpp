@@ -28,11 +28,9 @@ class Subject {
 
 class Bidder {
     Subject *model;
-    int denom;
   public:
-    Bidder(Subject *mod, int div) {
+    Bidder(Subject *mod) {
         model = mod;
-        denom = div;
         //JOIN IN TO THE SUBJECT (THE BIDDING WAR)
         cout << "Observer: ADD NEW BIDDER\n";
         model->attach(this);
@@ -41,9 +39,6 @@ class Bidder {
   protected:
     Subject *getSubject() {
         return model;
-    }
-    int getDivisor() {
-        return denom;
     }
 };
 
@@ -54,9 +49,9 @@ void Subject::notify() {
     views[i]->update();
 }
 
-class DivBidder: public Bidder {
+class SpBidder: public Bidder {
   public:
-    DivBidder(Subject *mod, int div): Bidder(mod, div){}
+    SpBidder(Subject *mod): Bidder(mod){}
     void update() {
         ///GET CURRENT BID INFO
         cout << "Observer: GATHERING NEW BID INFO\n";
@@ -69,8 +64,8 @@ class DivBidder: public Bidder {
 
 int main() {
   Subject subj;
-  DivBidder divObs1(&subj, 4); // 7. Client configures the number and
-  DivBidder divObs2(&subj, 3); //    type of Bidders
+  SpBidder divObs1(&subj); // 7. Client configures the number and
+  SpBidder divObs2(&subj); //    type of Bidders
   subj.bid(14);
   subj.bid(7);
 }
