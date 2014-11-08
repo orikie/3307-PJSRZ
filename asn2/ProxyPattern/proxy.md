@@ -29,8 +29,21 @@ ProxyPattern/src
 
 ## 6 Explanation of Code
 
-## 7 Execution Trace
+The DiscoveryClient Class connects to a SearchEngine via `DiscoveryClient::connectToServer()`. Realistically, this would be implemented over the network. Once the SearchEngine has authenticated the client connection, the client can make queries using the call `searchQuery()`. The returned result set from the SearchEngine is in the form of `ItemProxy`s. This list of proxies hold no real data and is cached in the DiscoveryClient, represented by `ipResultsCache_`. `ipResultsCache_` is a set of proxy items that may represent generic system file types, images, or an enterprise mail. Here, the `vector<ItemProxy *>` container holds only the base class and by implementing a "is-a" relationship among the file types, we can use polymorphism to create derived classes using the same container. 
 
+The DiscoveryClient can then display the result cache, using `displayResults()`,to its user. Again, this would only display the essential meta-data of each result such as file names, email recipients, or file abstracts, etc. In our example, the proxy items only contain two properties: `int id_` and `string desc_` to identify the original files. 
+
+Once a user decides to explicitly open a particular file from the result set, the client can make a call to `openOriginal()`. This explicit call delegates the "open" call to the proxy item. Because the proxy item only represent a placeholder, it's responsible for retrieving the full contents of the original file. Due to differing location and retrieval methods of each file type, all the file types implement their own `openOriginal()` method. 
+
+
+## 7 Execution Trace
+```
+DiscoveryClient:	Starting Discovery System
+DiscoveryClient:	Initiating case # 234
+DiscoveryClient:	Active case: Proxy PA Ltd vs. Observer PD Corp. 
+SearchEngine:		Starting SearchEngine
+DiscoveryClient:	Connected to SearchEngine
+SearchEngine:		Processing query: All files regarding patent XY from 2000 to 2014
 DiscoveryClient:	Successfully received results: 7
 DiscoveryClient:	Displaying Proxy Results:
 DiscoveryClient:	id: 0 System File
@@ -45,6 +58,8 @@ DiscoveryClient:	Requesting full restore of item 2
 Opening original Image File: 2
 DiscoveryClient:	Requesting full restore of item 3
 3:		Requesting original system file from proxy...
+Opening original System File: 3
+```
 
 ## 8 Lessons Learnt
 1. The proper use and implementation of the proxy pattern
