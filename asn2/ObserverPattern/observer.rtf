@@ -24,4 +24,11 @@ UML Diagram- see attached jpg, Adapted from the general Observer pattern UML Sou
 \
 ##4\
 \
-in an online auction, the amount of bidders is theoretically infinite. The system needs to be able to not only have a massive theoretic capacity but keep track of the highest bids in a way the least taxing to the system. In this observer pattern, all the bidders or subjects are kept in a list and are automatically notified in case of any changes by calling their methods.}
+In an online auction, the amount of bidders is theoretically infinite. The system needs to be able to not only have a massive theoretic capacity but keep track of the highest bids in a way the least taxing to the system. In this observer pattern, all the bidders or subjects are kept in a list and are automatically notified in case of any changes by calling their methods. Also this allows for items to communicate eachother without depending on one another.}
+\
+\
+##8\
+\
+1) We learned the importance of an observer pattern when we have multiple objects communicating with one-another but we do not want them to become dependant on one another.
+2) The scalability of the observer pattern, adding additional observers to a system is reasonabily easy to do due to their independent nature to the subject. But this causes problems in that observers are not aware of each other so an update command might cause a long winded chain of redunant updates.
+3) Choosing an appropiate design pattern is not always straight forward because there comes instances where multiple design patterns will be appear to be suited for the job but the user must weigh the pros and cons of each pattern. This requires a thorough abstract understanding of the project at hand to make an appriopiate decision.
