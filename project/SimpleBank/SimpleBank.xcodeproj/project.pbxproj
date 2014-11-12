@@ -1,0 +1,272 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3EE6EEB119D10DFE00879E10 /* BankAccount.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEA219D10DFD00879E10 /* BankAccount.cpp */; };
+		3EE6EEB219D10DFE00879E10 /* BankClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEA419D10DFD00879E10 /* BankClient.cpp */; };
+		3EE6EEB319D10DFE00879E10 /* ClientDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEA619D10DFD00879E10 /* ClientDB.cpp */; };
+		3EE6EEB419D10DFE00879E10 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEA819D10DFD00879E10 /* Logger.cpp */; };
+		3EE6EEB519D10DFE00879E10 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEAA19D10DFD00879E10 /* main.cpp */; };
+		3EE6EEB619D10DFE00879E10 /* SimpleBank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEAB19D10DFD00879E10 /* SimpleBank.cpp */; };
+		3EE6EEB719D10DFE00879E10 /* User.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEAD19D10DFD00879E10 /* User.cpp */; };
+		3EE6EEB819D10DFE00879E10 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEAF19D10DFD00879E10 /* Utils.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3E2EEB4319C7CE4C000E7C90 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3E2EEB4519C7CE4C000E7C90 /* SimpleBank */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SimpleBank; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EE6EEA219D10DFD00879E10 /* BankAccount.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BankAccount.cpp; path = src/BankAccount.cpp; sourceTree = SOURCE_ROOT; };
+		3EE6EEA319D10DFD00879E10 /* BankAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BankAccount.h; path = src/BankAccount.h; sourceTree = SOURCE_ROOT; };
+		3EE6EEA419D10DFD00879E10 /* BankClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BankClient.cpp; path = src/BankClient.cpp; sourceTree = SOURCE_ROOT; };
+		3EE6EEA519D10DFD00879E10 /* BankClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BankClient.h; path = src/BankClient.h; sourceTree = SOURCE_ROOT; };
+		3EE6EEA619D10DFD00879E10 /* ClientDB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClientDB.cpp; path = src/ClientDB.cpp; sourceTree = SOURCE_ROOT; };
+		3EE6EEA719D10DFD00879E10 /* ClientDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClientDB.h; path = src/ClientDB.h; sourceTree = SOURCE_ROOT; };
+		3EE6EEA819D10DFD00879E10 /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Logger.cpp; path = src/Logger.cpp; sourceTree = SOURCE_ROOT; };
+		3EE6EEA919D10DFD00879E10 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logger.h; path = src/Logger.h; sourceTree = SOURCE_ROOT; };
+		3EE6EEAA19D10DFD00879E10 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
+		3EE6EEAB19D10DFD00879E10 /* SimpleBank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SimpleBank.cpp; path = src/SimpleBank.cpp; sourceTree = SOURCE_ROOT; };
+		3EE6EEAC19D10DFD00879E10 /* SimpleBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleBank.h; path = src/SimpleBank.h; sourceTree = SOURCE_ROOT; };
+		3EE6EEAD19D10DFD00879E10 /* User.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = User.cpp; path = src/User.cpp; sourceTree = SOURCE_ROOT; };
+		3EE6EEAE19D10DFD00879E10 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = src/User.h; sourceTree = SOURCE_ROOT; };
+		3EE6EEAF19D10DFD00879E10 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = src/Utils.cpp; sourceTree = SOURCE_ROOT; };
+		3EE6EEB019D10DFE00879E10 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = src/Utils.h; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3E2EEB4219C7CE4C000E7C90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3E2EEB3C19C7CE4C000E7C90 = {
+			isa = PBXGroup;
+			children = (
+				3E2EEB4719C7CE4C000E7C90 /* SimpleBank */,
+				3E2EEB4619C7CE4C000E7C90 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3E2EEB4619C7CE4C000E7C90 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E2EEB4519C7CE4C000E7C90 /* SimpleBank */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3E2EEB4719C7CE4C000E7C90 /* SimpleBank */ = {
+			isa = PBXGroup;
+			children = (
+				3EE6EEA219D10DFD00879E10 /* BankAccount.cpp */,
+				3EE6EEA319D10DFD00879E10 /* BankAccount.h */,
+				3EE6EEA419D10DFD00879E10 /* BankClient.cpp */,
+				3EE6EEA519D10DFD00879E10 /* BankClient.h */,
+				3EE6EEA619D10DFD00879E10 /* ClientDB.cpp */,
+				3EE6EEA719D10DFD00879E10 /* ClientDB.h */,
+				3EE6EEA819D10DFD00879E10 /* Logger.cpp */,
+				3EE6EEA919D10DFD00879E10 /* Logger.h */,
+				3EE6EEAA19D10DFD00879E10 /* main.cpp */,
+				3EE6EEAB19D10DFD00879E10 /* SimpleBank.cpp */,
+				3EE6EEAC19D10DFD00879E10 /* SimpleBank.h */,
+				3EE6EEAD19D10DFD00879E10 /* User.cpp */,
+				3EE6EEAE19D10DFD00879E10 /* User.h */,
+				3EE6EEAF19D10DFD00879E10 /* Utils.cpp */,
+				3EE6EEB019D10DFE00879E10 /* Utils.h */,
+			);
+			path = SimpleBank;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3E2EEB4419C7CE4C000E7C90 /* SimpleBank */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E2EEB4E19C7CE4C000E7C90 /* Build configuration list for PBXNativeTarget "SimpleBank" */;
+			buildPhases = (
+				3E2EEB4119C7CE4C000E7C90 /* Sources */,
+				3E2EEB4219C7CE4C000E7C90 /* Frameworks */,
+				3E2EEB4319C7CE4C000E7C90 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimpleBank;
+			productName = SimpleBank;
+			productReference = 3E2EEB4519C7CE4C000E7C90 /* SimpleBank */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3E2EEB3D19C7CE4C000E7C90 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
+			buildConfigurationList = 3E2EEB4019C7CE4C000E7C90 /* Build configuration list for PBXProject "SimpleBank" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3E2EEB3C19C7CE4C000E7C90;
+			productRefGroup = 3E2EEB4619C7CE4C000E7C90 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3E2EEB4419C7CE4C000E7C90 /* SimpleBank */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3E2EEB4119C7CE4C000E7C90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EE6EEB319D10DFE00879E10 /* ClientDB.cpp in Sources */,
+				3EE6EEB619D10DFE00879E10 /* SimpleBank.cpp in Sources */,
+				3EE6EEB219D10DFE00879E10 /* BankClient.cpp in Sources */,
+				3EE6EEB819D10DFE00879E10 /* Utils.cpp in Sources */,
+				3EE6EEB119D10DFE00879E10 /* BankAccount.cpp in Sources */,
+				3EE6EEB719D10DFE00879E10 /* User.cpp in Sources */,
+				3EE6EEB519D10DFE00879E10 /* main.cpp in Sources */,
+				3EE6EEB419D10DFE00879E10 /* Logger.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3E2EEB4C19C7CE4C000E7C90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3E2EEB4D19C7CE4C000E7C90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3E2EEB4F19C7CE4C000E7C90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3E2EEB5019C7CE4C000E7C90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3E2EEB4019C7CE4C000E7C90 /* Build configuration list for PBXProject "SimpleBank" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E2EEB4C19C7CE4C000E7C90 /* Debug */,
+				3E2EEB4D19C7CE4C000E7C90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E2EEB4E19C7CE4C000E7C90 /* Build configuration list for PBXNativeTarget "SimpleBank" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E2EEB4F19C7CE4C000E7C90 /* Debug */,
+				3E2EEB5019C7CE4C000E7C90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3E2EEB3D19C7CE4C000E7C90 /* Project object */;
+}
