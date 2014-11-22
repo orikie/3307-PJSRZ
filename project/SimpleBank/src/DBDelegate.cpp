@@ -6,7 +6,7 @@ const std::string DBDelegate::DB_NAME{"bank_del.db"};
 //  USER TABLE
 //  |  ID  |  USERID  |  PASSWORD_HASH  |  USER_TYPE  |
 const string DBDelegate::CREATE_USER_TABLE =
-"CREATE TABLE users(uid INTEGER PRIMARY KEY, username TEXT UNIQUE, password_hash TEXT, user_type INTEGER);";
+"CREATE TABLE users(uid INTEGER PRIMARY KEY, username TEXT UNIQUE, password_hash TEXT, user_type INTEGER, credit_limit TEXT);";
 
 //  ACCOUNTS TABLE
 //  |  ID  |  OWNER_ID  |  BALANCE  |  ACTIVATED  |
@@ -20,6 +20,9 @@ const string DBDelegate::DROP_ALL =
 
 const string DBDelegate::CREATE_NEW_ACCOUNT =
 "INSERT INTO account (owner_id, balance, activated) values(%d,%d,%d)";
+
+const string DBDelegate::CREATE_TRANSACTIONS_TABLE =
+"CREATE TABLE transactions (tid INTEGER PRIMARY KEY, customer_id INTEGER, amount TEXT, date TEXT);";
 
 
 //not used atm
@@ -56,6 +59,7 @@ void DBDelegate::InitTables()
     //RunQuery(q, createTables_cb, NULL);
     RunQuery(CREATE_USER_TABLE);
     RunQuery(CREATE_ACCOUNT_TABLE);
+    RunQuery(CREATE_TRANSACTIONS_TABLE);
     
 }
 
@@ -92,8 +96,8 @@ void DBDelegate::createDefaultUsers()
 string DBDelegate::BuildNewUserQuery(string uid, string password_real, SB::User::UserType uType)
 {
     ostringstream os;
-    os << "INSERT INTO users (username,password_hash,user_type) VALUES(\"" << uid << "\",\"";
-    os << Utils::HashPassword(password_real)<< "\"," <<(int)uType << ");";
+    os << "INSERT INTO users (username,password_hash,user_type,credit_limit) VALUES(\"" << uid << "\",\"";
+    os << Utils::HashPassword(password_real)<< "\"," <<(int)uType << ",\"2000\");";
     
     return os.str();
 

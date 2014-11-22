@@ -40,7 +40,7 @@ void BankClient::welcomeScreen()
     //printf("2\tHelp\n");
     printf("2\tQuit\n");
     printf(">");
-    int res = getIntFromUser(3);
+    int res = Utils::getIntFromUser(3);
     
     if (res == 1) {
         if (!login()) {
@@ -82,7 +82,7 @@ void BankClient::clientMenu()
     cout << "4\tChange Password\n";
     cout << "5\tLogout\n>";
     
-    int res = getIntFromUser(5);
+    int res = Utils::getIntFromUser(5);
     switch (res) {
         case 1:
             accessSavings();
@@ -109,12 +109,12 @@ void BankClient::changePassword()
 {
     log("Changing password");
     cout << "Enter new Password: \n>";
-    string s = getWordFromUser();
+    string s = Utils::getWordFromUser();
     Client c = getcurrClient();
     c.changePassword(s);
     bankServer_.updateClient(c.getID(), c);
     cout << "Udpated password\n";
-    waitForContinue();
+    Utils::waitForContinue();
 }
 
 void BankClient::printClientAccountBalances()
@@ -134,7 +134,7 @@ void BankClient::transferFunds()
     cout << "2\tTransfer from Checking to Savings\n";
     cout << "3\tExit\n>";
     
-    int res = getIntFromUser(3);
+    int res = Utils::getIntFromUser(3);
     switch (res) {
         case 1:
             savingsToChecking();
@@ -152,7 +152,7 @@ void BankClient::checkingToSavings()
 {
     Client c = getcurrClient();
     cout << "Enter funds amount to transfer: ";
-    string amt = getWordFromUser();
+    string amt = Utils::getWordFromUser();
     double amtd = stod(amt);
     if (amtd > 0) {
         log("Transferring " + amt + " from checking to savings.");
@@ -186,7 +186,7 @@ void BankClient::checkingToSavings()
     }
 
 wait:
-    waitForContinue();
+    Utils::waitForContinue();
 
 }
 
@@ -195,7 +195,7 @@ void BankClient::savingsToChecking()
     
     Client c = getcurrClient();
     cout << "Enter funds amount to transfer: ";
-    string amt = getWordFromUser();
+    string amt = Utils::getWordFromUser();
     double amtd = stod(amt);
     if (amtd > 0) {
         log("Transferring " + amt + " from savings to checking.");
@@ -229,7 +229,7 @@ void BankClient::savingsToChecking()
         cout << "Error. Transfer amount must be positive";
     }
 wait:
-    waitForContinue();
+    Utils::waitForContinue();
 }
 
 void BankClient::refreshCache()
@@ -257,7 +257,7 @@ void BankClient::accessSavings()
         else
         {
             cout << "Your do not have a savings account. Would you like to open one now? (y/n)\n>";
-            string o = getWordFromUser();
+            string o = Utils::getWordFromUser();
             if ((o=="y") || (o=="Y")) {
                 c.activateSaving();
                 
@@ -281,7 +281,7 @@ void BankClient::accessSavings()
         }
         
     }
-    waitForContinue();
+    Utils::waitForContinue();
 }
 
 void BankClient::accessChecking()
@@ -298,7 +298,7 @@ void BankClient::accessChecking()
         else
         {
             cout << "Your do not have a checking account. Would you like to open one now? (y/n)\n>";
-            string o = getWordFromUser();
+            string o = Utils::getWordFromUser();
             if ((o == "y") || (o == "Y")) {
                 c.activateChecking();
                 
@@ -326,7 +326,7 @@ void BankClient::accessChecking()
         
     }
     
-    waitForContinue();
+    Utils::waitForContinue();
 }
 
 void BankClient::accountAction(bool isSaving)
@@ -338,7 +338,7 @@ void BankClient::accountAction(bool isSaving)
     cout << "2\tDeposit\n";
     cout << "3\tExit\n>";
     
-    int res = getIntFromUser(3);
+    int res = Utils::getIntFromUser(3);
     
     switch (res) {
         case 1:
@@ -360,7 +360,7 @@ void BankClient::withdraw(bool isSaving)
     string uid = userCache_.getID();
     
     cout << "Enter amount to withdraw:";
-    string amt = getWordFromUser();
+    string amt = Utils::getWordFromUser();
     double amtd = stod(amt);
     
     if (amtd < 0) {
@@ -376,7 +376,7 @@ void BankClient::withdraw(bool isSaving)
             double amtf = c.getCheckingBalance() - amtd;
             if (amtf < 1000) {
                 cout << "Warning: Continuing withdraw will leave a balance of less than $1000. A $2 fee will be leived. Continue? (y/n)\n>";
-                string s = getWordFromUser();
+                string s = Utils::getWordFromUser();
                 if (s == "n") {
                     return;
                 }
@@ -411,7 +411,7 @@ void BankClient::withdraw(bool isSaving)
         cout << "Error. Cannnot withdraw negative values\n";
     }
     
-    waitForContinue();
+    Utils::waitForContinue();
     
 }
 
@@ -422,7 +422,7 @@ void BankClient::deposit(bool isSaving)
     string uid = userCache_.getID();
     
     cout << "Enter amount to deposit:";
-    string amt = getWordFromUser();
+    string amt = Utils::getWordFromUser();
     double amtd = stod(amt);
     if (amtd > 0) {
         log("Depositing "+ amt+" to " + accType);
@@ -451,7 +451,7 @@ void BankClient::deposit(bool isSaving)
         cout << "Error. Cannnot deposit negative values\n";
     }
     
-    waitForContinue();
+    Utils::waitForContinue();
     
 }
 
@@ -469,10 +469,10 @@ bool BankClient::login()
     
     while (!success) {
         cout << "\nUser ID: ";
-        string u = getWordFromUser();
+        string u = Utils::getWordFromUser();
         
         cout << "password:";
-        string p = getWordFromUser();
+        string p = Utils::getWordFromUser();
         
         success = this->bankServer_.logon(u, p);
         log("Attempting to login as " + u);
@@ -513,7 +513,7 @@ void BankClient::mntMenu()
     printf("1\tSet Trace Setting\n");
     printf("2\tLogout\n");
     cout << ">";
-    int s = getIntFromUser(2);
+    int s = Utils::getIntFromUser(2);
     
     switch (s) {
         case 1:
@@ -541,7 +541,7 @@ void BankClient::setTraceSetting()
     cout << "2\t OFF\n";
     cout << "3\t EXIT\n>";
     
-    int res = getIntFromUser(3);
+    int res = Utils::getIntFromUser(3);
     
     if (res <=2) {
         string set = (res == 1) ? "ON" : "OFF";
@@ -566,7 +566,7 @@ void BankClient::setTraceSetting()
     string logStr ("Logging set to: " + logginSetting + "\n");
     log(logStr);
     cout << logStr;
-    waitForContinue();
+    Utils::waitForContinue();
     
 }
 
@@ -591,7 +591,7 @@ void BankClient::mgrMenu()
     printf("7\tLogout\n");
     
     cout << "\n>";
-    int res = getIntFromUser(7);
+    int res = Utils::getIntFromUser(7);
     
     switch (res) {
         case 1:
@@ -619,7 +619,7 @@ void BankClient::mgrMenu()
             break;
     }
     
-    waitForContinue();
+    Utils::waitForContinue();
     mgrMenu();
 }
 
@@ -636,7 +636,7 @@ void BankClient::bankStats()
 void BankClient::openNewUserAccount()
 {
     cout << "Enter new userid: ";
-    string s = getWordFromUser();
+    string s = Utils::getWordFromUser();
     
     log("Creating new client account:" + s);
     bankServer_.newUser(s, Client::UserType::CLIENT);
@@ -652,7 +652,7 @@ void BankClient::openNewUserAccount()
 void BankClient::closeUserAccount()
 {
     cout << "Enter userid to close:";
-    string s = getWordFromUser();
+    string s = Utils::getWordFromUser();
     if (bankServer_.userExist(s)) {
         Client c = bankServer_.getClient(s);
         
@@ -677,7 +677,7 @@ void BankClient::auditUser()
 {
     cout << "\nEnter the userid to audit: >";
 
-    string u = getWordFromUser();
+    string u = Utils::getWordFromUser();
     bool found = auditUser(u);
     log("Auditing account info for " + u);
     if (!found) {
@@ -711,11 +711,6 @@ void BankClient::listAllInfo()
     cout << "---------------------------------\n";
 }
 
-void BankClient::waitForContinue()
-{
-    cout << "\n\nEnter a key to continue..." << endl;
-    getWordFromUser();
-}
 
 
 void BankClient::mainMenuInfo()
@@ -731,37 +726,6 @@ void BankClient::mainMenuInfo()
     }
 }
 
-string BankClient::getWordFromUser()
-{
-    string s {""};
-    cin >> s;
-    return s;
-}
-
-int BankClient::getIntFromUser(const int lim)
-{
-    int num = -1;
-    
-    bool success = false;
-    
-    do {
-        cin >> num;
-        
-        success = !cin.fail();
-        
-        if (!success || num <= 0 || num > lim) {
-            cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            cout << "\nBad input: please enter options 1 - " << lim << "\n>";
-        }
-        else
-        {
-            break;
-        }
-    } while (1);
-    
-    return num;
-}
 
 
 void BankClient::clearScreen()

@@ -75,6 +75,9 @@ SB::SavingAccount::~SavingAccount(){}
 SB::CheckingAccount::CheckingAccount(double a): BankAccount(a){}
 SB::CheckingAccount::~CheckingAccount(){}
 
-SB::CreditAccount::CreditAccount(){}
+SB::CreditAccount::CreditAccount(){
+    balance_ = 0;
+    activated_ = true;
+}
 SB::CreditAccount::CreditAccount(double a): BankAccount(a){}
 SB::CreditAccount::~CreditAccount(){};

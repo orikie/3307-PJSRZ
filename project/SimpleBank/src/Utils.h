@@ -10,6 +10,7 @@
 #include <sstream>
 #include <vector>
 #include <cstring>
+#include <iostream>
 
 using namespace std;
 class Utils
@@ -19,6 +20,9 @@ public:
     static vector<string> ExplodeString(string, string);
     
     static string DateString();
+    static int getIntFromUser(const int lim);
+    static string getWordFromUser();
+    static void waitForContinue();
 };
 
 #endif /* defined(__SimpleBank__Utils__) */

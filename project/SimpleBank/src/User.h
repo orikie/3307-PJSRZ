@@ -100,6 +100,7 @@ namespace SB {
     private:
         BankAccount saving_;
         BankAccount checking_;
+        CreditAccount cc_;
     };
     
     //MANAGER

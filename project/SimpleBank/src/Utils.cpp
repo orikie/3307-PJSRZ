@@ -51,3 +51,42 @@ string Utils::DateString()
     return s;
 }
 
+string Utils::getWordFromUser()
+{
+    string s {""};
+    cin >> s;
+    return s;
+}
+
+int Utils::getIntFromUser(const int lim)
+{
+    int num = -1;
+    
+    bool success = false;
+    
+    do {
+        cin >> num;
+        
+        success = !cin.fail();
+        
+        if (!success || num <= 0 || num > lim) {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << "\nBad input: please enter options 1 - " << lim << "\n>";
+        }
+        else
+        {
+            break;
+        }
+    } while (1);
+    
+    return num;
+}
+
+void Utils::waitForContinue()
+{
+    cout << "\n\nEnter a key to continue..." << endl;
+    Utils::getWordFromUser();
+}
+
+

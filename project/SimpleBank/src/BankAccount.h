@@ -61,8 +61,14 @@ namespace SB
         CreditAccount();
         CreditAccount(double);
         ~CreditAccount();
+        
+        bool isFrozen(){return activated_;}
+        void setFrozen(bool b){activated_ = b;}
+        
+        void setLimit(double lim){creditLimit_ = lim;}
+        double getLimit(){return creditLimit_;}
     private:
-        int creditLimit_;
+        double creditLimit_;
     };
 }
 

@@ -32,6 +32,7 @@ public:
     static const string CREATE_ACCOUNT_TABLE;
     static const string CREATE_NEW_USER;
     static const string CREATE_NEW_ACCOUNT;
+    static const string CREATE_TRANSACTIONS_TABLE;
     
     DBDelegate();
     ~DBDelegate();

@@ -60,7 +60,7 @@ namespace SB{
         void logout();
         void mainMenuInfo();
         void menuline();
-        void waitForContinue();
+        
         void log(const string & s){logger_.logTrace(s);}
         void logError(const string & s) {logger_.logErr(s);}
         //util
@@ -68,8 +68,7 @@ namespace SB{
         Client getcurrClient(){return bankServer_.getClient(userCache_.getID());}
         
         void changePassword();
-        int getIntFromUser(const int lim);
-        string getWordFromUser();
+
         
         User userCache_;
         BankAccount activeAccountCache_;

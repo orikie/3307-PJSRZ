@@ -61,8 +61,6 @@ bool SimpleBank::logon(string uid, string pass)
             this->loggedOn_ = true;
             this->loggedOnUser_ = ClientDB::makeUser(uid, (Client::UserType)de.utype);
             
-            //find delegate db user id
-            int * uidp;
             return true;
         }
     }
