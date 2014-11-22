@@ -15,6 +15,8 @@
 		3EE6EEB619D10DFE00879E10 /* SimpleBank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEAB19D10DFD00879E10 /* SimpleBank.cpp */; };
 		3EE6EEB719D10DFE00879E10 /* User.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEAD19D10DFD00879E10 /* User.cpp */; };
 		3EE6EEB819D10DFE00879E10 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEAF19D10DFD00879E10 /* Utils.cpp */; };
+		541205671A16E128000655EA /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 541205651A16E128000655EA /* sqlite3.c */; };
+		54EAF5191A1F199000824A97 /* DBDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54EAF5171A1F199000824A97 /* DBDelegate.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +48,10 @@
 		3EE6EEAE19D10DFD00879E10 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = src/User.h; sourceTree = SOURCE_ROOT; };
 		3EE6EEAF19D10DFD00879E10 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = src/Utils.cpp; sourceTree = SOURCE_ROOT; };
 		3EE6EEB019D10DFE00879E10 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = src/Utils.h; sourceTree = SOURCE_ROOT; };
+		541205651A16E128000655EA /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = src/sqlite3.c; sourceTree = SOURCE_ROOT; };
+		541205661A16E128000655EA /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = src/sqlite3.h; sourceTree = SOURCE_ROOT; };
+		54EAF5171A1F199000824A97 /* DBDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DBDelegate.cpp; path = src/DBDelegate.cpp; sourceTree = SOURCE_ROOT; };
+		54EAF5181A1F199000824A97 /* DBDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBDelegate.h; path = src/DBDelegate.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,15 +84,15 @@
 		3E2EEB4719C7CE4C000E7C90 /* SimpleBank */ = {
 			isa = PBXGroup;
 			children = (
+				3EE6EEAA19D10DFD00879E10 /* main.cpp */,
+				54EAF5161A1F190F00824A97 /* DataAccess */,
+				54EAF5151A1F15D400824A97 /* vendor */,
 				3EE6EEA219D10DFD00879E10 /* BankAccount.cpp */,
 				3EE6EEA319D10DFD00879E10 /* BankAccount.h */,
 				3EE6EEA419D10DFD00879E10 /* BankClient.cpp */,
 				3EE6EEA519D10DFD00879E10 /* BankClient.h */,
-				3EE6EEA619D10DFD00879E10 /* ClientDB.cpp */,
-				3EE6EEA719D10DFD00879E10 /* ClientDB.h */,
 				3EE6EEA819D10DFD00879E10 /* Logger.cpp */,
 				3EE6EEA919D10DFD00879E10 /* Logger.h */,
-				3EE6EEAA19D10DFD00879E10 /* main.cpp */,
 				3EE6EEAB19D10DFD00879E10 /* SimpleBank.cpp */,
 				3EE6EEAC19D10DFD00879E10 /* SimpleBank.h */,
 				3EE6EEAD19D10DFD00879E10 /* User.cpp */,
@@ -95,6 +101,26 @@
 				3EE6EEB019D10DFE00879E10 /* Utils.h */,
 			);
 			path = SimpleBank;
+			sourceTree = "<group>";
+		};
+		54EAF5151A1F15D400824A97 /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				541205651A16E128000655EA /* sqlite3.c */,
+				541205661A16E128000655EA /* sqlite3.h */,
+			);
+			name = vendor;
+			sourceTree = "<group>";
+		};
+		54EAF5161A1F190F00824A97 /* DataAccess */ = {
+			isa = PBXGroup;
+			children = (
+				3EE6EEA619D10DFD00879E10 /* ClientDB.cpp */,
+				3EE6EEA719D10DFD00879E10 /* ClientDB.h */,
+				54EAF5171A1F199000824A97 /* DBDelegate.cpp */,
+				54EAF5181A1F199000824A97 /* DBDelegate.h */,
+			);
+			name = DataAccess;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,12 +174,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EE6EEB319D10DFE00879E10 /* ClientDB.cpp in Sources */,
+				541205671A16E128000655EA /* sqlite3.c in Sources */,
 				3EE6EEB619D10DFE00879E10 /* SimpleBank.cpp in Sources */,
 				3EE6EEB219D10DFE00879E10 /* BankClient.cpp in Sources */,
 				3EE6EEB819D10DFE00879E10 /* Utils.cpp in Sources */,
 				3EE6EEB119D10DFE00879E10 /* BankAccount.cpp in Sources */,
 				3EE6EEB719D10DFE00879E10 /* User.cpp in Sources */,
 				3EE6EEB519D10DFE00879E10 /* main.cpp in Sources */,
+				54EAF5191A1F199000824A97 /* DBDelegate.cpp in Sources */,
 				3EE6EEB419D10DFE00879E10 /* Logger.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

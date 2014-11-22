@@ -69,22 +69,12 @@ void SB::BankAccount::activateAccount(const bool & open)
     balance_ = 0;
 }
 
-SB::SavingAccount::SavingAccount(double a): BankAccount(a)
-{
+SB::SavingAccount::SavingAccount(double a): BankAccount(a){}
+SB::SavingAccount::~SavingAccount(){}
 
-}
+SB::CheckingAccount::CheckingAccount(double a): BankAccount(a){}
+SB::CheckingAccount::~CheckingAccount(){}
 
-SB::SavingAccount::~SavingAccount()
-{
-
-}
-
-SB::CheckingAccount::CheckingAccount(double a): BankAccount(a)
-{
-
-}
-
-SB::CheckingAccount::~CheckingAccount()
-{
-
-}
+SB::CreditAccount::CreditAccount(){}
+SB::CreditAccount::CreditAccount(double a): BankAccount(a){}
+SB::CreditAccount::~CreditAccount(){};

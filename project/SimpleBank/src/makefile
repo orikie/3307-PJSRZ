@@ -7,11 +7,17 @@
 CC=g++ 
 OFLAGS=-std=c++11 -c 
 
-all: main.o User.o Logger.o ClientDB.o BankAccount.o Utils.o SimpleBank.o BankClient.o
-	$(CC) main.o User.o Logger.o ClientDB.o BankAccount.o Utils.o SimpleBank.o BankClient.o -o SimpleBank.exe
+all: main.o DBDelegate.o  User.o Logger.o ClientDB.o BankAccount.o Utils.o SimpleBank.o BankClient.o sqlite3.o
+	$(CC) main.o DBDelegate.o User.o Logger.o ClientDB.o BankAccount.o Utils.o SimpleBank.o BankClient.o sqlite3.o -o SimpleBank.exe
 
 main.o: Main.cpp
 	$(CC) $(OFLAGS) Main.cpp
+
+sqlite3.o:
+	gcc -c sqlite3.c
+
+DBDelegate.o: DBDelegate.cpp
+	$(CC) $(OFLAGS) DBDelegate.cpp 
 
 User.o: User.cpp
 	$(CC) $(OFLAGS) User.cpp
@@ -40,4 +46,5 @@ clean:
 	rm -f trace.txt
 reset:
 	rm clientinfo.data
+	rm bank_del.db
 	make clean

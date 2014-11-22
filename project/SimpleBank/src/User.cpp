@@ -15,6 +15,7 @@ SB::User::User()
 {
     init("3307");
     //this->utype = UserType::MGR;
+    del_uid = -1;
     
 }
 

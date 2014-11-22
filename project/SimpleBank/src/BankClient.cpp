@@ -160,8 +160,10 @@ void BankClient::checkingToSavings()
         double cRem = -1;
         
         if (c.withdrawChecking(amtd, cRem)) {
+            bankServer_.UpdateAccountBalance(userCache_.del_uid, AccountType::Checking, cRem);
             if (c.isSavingOpened()) {
                 c.depositSaving(amtd, sRem);
+                bankServer_.UpdateAccountBalance(userCache_.del_uid, AccountType::Savings, sRem);
             }
             else
             {
@@ -201,8 +203,11 @@ void BankClient::savingsToChecking()
         double cRem = -1;
         
         if (c.withdrawSaving(amtd, sRem)) {
+            bankServer_.UpdateAccountBalance(userCache_.del_uid, AccountType::Savings, sRem);
+            
             if (c.isCheckingOpened()) {
                 c.depositChecking(amtd, cRem);
+                bankServer_.UpdateAccountBalance(userCache_.del_uid, AccountType::Checking, cRem);
             }
             else
             {
@@ -232,6 +237,12 @@ void BankClient::refreshCache()
     userCache_ = bankServer_.getUser(userCache_.getID());
 }
 
+void BankClient::refreshCache(int del_id_c)
+{
+    userCache_ = bankServer_.getUser(userCache_.getID());
+    userCache_.del_uid = del_id_c;
+}
+
 void BankClient::accessSavings()
 {
     log("Accessing Savings Account");
@@ -249,8 +260,13 @@ void BankClient::accessSavings()
             string o = getWordFromUser();
             if ((o=="y") || (o=="Y")) {
                 c.activateSaving();
+                
+                //Update del db
+                bankServer_.OpenAccountDel(userCache_.del_uid, SB::AccountType::Savings);
+                //
+                
                 bankServer_.updateClient(userCache_.getID(), c);
-                refreshCache();
+                refreshCache(userCache_.del_uid);
                 
                 cout << "Created Checing Account";
                 //waitForContinue();
@@ -285,10 +301,18 @@ void BankClient::accessChecking()
             string o = getWordFromUser();
             if ((o == "y") || (o == "Y")) {
                 c.activateChecking();
-                bankServer_.updateClient(userCache_.getID(), c);
-                refreshCache();
                 
-                cout << "Created Checking Account";
+                //Update del db
+                bankServer_.OpenAccountDel(userCache_.del_uid, SB::AccountType::Checking);
+                //Automatic Credit account
+                bankServer_.OpenAccountDel(userCache_.del_uid, SB::AccountType::Credit);
+                //
+                
+                bankServer_.updateClient(userCache_.getID(), c);
+                refreshCache(userCache_.del_uid);
+                
+                cout << "Created Checking Account!\n";
+                cout << "You've qualified for Credit. Created Credit Card Account!";
                 //waitForContinue();
                 
                 accessChecking();
@@ -368,6 +392,10 @@ void BankClient::withdraw(bool isSaving)
         if (success) {
             log("Withdrawing " + amt + " from " + accType);
             cout << "New Balance: $" << remaining;
+            
+            //Update del db
+            int type = isSaving ? 0 : 1;
+            bankServer_.UpdateAccountBalance(userCache_.del_uid, type, remaining);
         }
         else
         {
@@ -375,7 +403,7 @@ void BankClient::withdraw(bool isSaving)
         }
         
         bankServer_.updateClient(uid, c);
-        refreshCache();
+        refreshCache(userCache_.del_uid);
         
     }
     else
@@ -405,10 +433,17 @@ void BankClient::deposit(bool isSaving)
         if (success) {
             log("Depositing " + amt + " to " + accType);
             cout << "New Balance: $" << remaining;
+            
+            //Update del db
+            int type = isSaving ? 0 : 1;
+            bankServer_.UpdateAccountBalance(userCache_.del_uid, type, remaining);
         }
         
+        
+
         bankServer_.updateClient(uid, c);
-        refreshCache();
+        refreshCache(userCache_.del_uid);
+
         
     }
     else
@@ -457,6 +492,10 @@ bool BankClient::login()
         
         User loggedUser = bankServer_.getLoggedUser();
         
+        int * uidp;
+        bankServer_.GetLoggedUID(u, &uidp);
+        bankServer_.SetCurrDelID(*uidp);
+        delete uidp;
     }
     
     userCache_ = this->bankServer_.getLoggedUser();
@@ -604,6 +643,10 @@ void BankClient::openNewUserAccount()
     
     bankServer_.save();
     cout << "Created new user: " << s << endl;
+    
+    //db delegate
+    bankServer_.newUserDelegate(s, bankServer_.DEFAULT_PASSWORD, Client::UserType::CLIENT);
+    
 }
 
 void BankClient::closeUserAccount()
@@ -684,6 +727,7 @@ void BankClient::mainMenuInfo()
         string utype = User::usertypeToString(userCache_.getUserType());
         
         cout << "\nWelcome " << uid << "!\nYour role: " << utype << "\n"<< date << "\n\n";
+        cout <<"Delegate db id: " << userCache_.del_uid << endl;
     }
 }
 

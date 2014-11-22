@@ -15,9 +15,11 @@ using namespace std;
 
 namespace SB {
     //BASE
+
     class User
     {
     public:
+        
         enum UserType
         {
             CLIENT = 0, //CLIENT
@@ -31,6 +33,7 @@ namespace SB {
             PRI_2,
             PRI_3
         };
+        
         
         User();
         ~User();
@@ -46,6 +49,8 @@ namespace SB {
         bool isNewUser() {return newUser_; }
         
         static string usertypeToString(UserType);
+        
+        int del_uid;
         
     protected:
         PRI privilege_;

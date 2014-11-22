@@ -10,6 +10,7 @@
 #include "ClientDB.h"
 #include "User.h"
 #include "Logger.h"
+#include "DBDelegate.h"
 
 using namespace std;
 
@@ -24,14 +25,16 @@ namespace SB {
     class SimpleBank
     {
     public:
+        static const string DEFAULT_PASSWORD;
+        
         SimpleBank();
         ~SimpleBank();
-        
         
         bool logon(string, string);
         void logout();
         
         void newUser(string, Client::UserType);
+        void newUserDelegate(string uid, string password, Client::UserType utype);
         void deleteUser(const string &);
         bool userExist(const string & uid) {return clientdb_.userExists(uid);}
         
@@ -62,16 +65,23 @@ namespace SB {
         //bool isLoggingOn() {return logger_.IsON;}
         //void setLoggingOn(bool s){logger_.setON(s);}
         
-        
+        void GetLoggedUID(string uname, int ** uid);
+        void SetCurrDelID(int uid){loggedOnUser_.del_uid = uid;};
+        int GetCurrDelID(){return loggedOnUser_.del_uid;}
+        void OpenAccountDel(int del_id, AccountType at);
+        void UpdateAccountBalance(int uid, int atype, double newBalance);
     private:
         User loggedOnUser_;
+        //UserIdentity * uids_;
         ClientDB clientdb_;
+        DBDelegate dbdel_;
         bool loggedOn_;
         double cashReserve_;
         //Logger logger_;
         
         //void log(const string& m) {logger_.logTrace(m);}
         //void logError(const string& m) {logger_.logErr(m);}
+        
         
     };
 

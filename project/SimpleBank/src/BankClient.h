@@ -16,6 +16,7 @@ namespace SB{
     class BankClient
     {
     public:
+        
         BankClient();
         ~BankClient();
         
@@ -31,6 +32,7 @@ namespace SB{
         void accessSavings();
         void accessChecking();
         void refreshCache();
+        void refreshCache(int del_id_c);
         void accountAction(bool);
         void withdraw(bool);
         void deposit(bool);

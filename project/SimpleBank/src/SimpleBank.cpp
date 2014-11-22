@@ -6,6 +6,8 @@
 
 #include "SimpleBank.h"
 
+const string SimpleBank::DEFAULT_PASSWORD = "password";
+
 SimpleBank::SimpleBank()
 {
     //this->loggedOnUser_ = User{"Default"};
@@ -14,23 +16,31 @@ SimpleBank::SimpleBank()
     this->clientdb_.loadFromFile(totalCash);
     
     if (!userExist("3307")) {
-        clientdb_.addUser("3307", "password", User::UserType::MGR);
+        clientdb_.addUser("3307", DEFAULT_PASSWORD, User::UserType::MGR);
         save();
     }
     
     if (!userExist("mnt")) {
-        clientdb_.addUser("mnt", "password", Client::UserType::MNT);
+        clientdb_.addUser("mnt", DEFAULT_PASSWORD, Client::UserType::MNT);
         save();
     }
 
     this->loggedOn_ = false;
     this->cashReserve_ = totalCash;
     //logger_.setAppName("Bank Server:");
+    
+    dbdel_.InitTables();
+    //uids_ = NULL;
 }
 
 SimpleBank::~SimpleBank()
 {
     //delete this->clientdb_;
+    /*
+    if (uids_ != NULL) {
+        delete uids_;
+    }
+     */
 }
 
 bool SimpleBank::isLoggedOn()
@@ -50,10 +60,18 @@ bool SimpleBank::logon(string uid, string pass)
         {
             this->loggedOn_ = true;
             this->loggedOnUser_ = ClientDB::makeUser(uid, (Client::UserType)de.utype);
+            
+            //find delegate db user id
+            int * uidp;
             return true;
         }
     }
     return this->loggedOn_;
+}
+
+void SimpleBank::GetLoggedUID(string uname, int **uid)
+{
+    dbdel_.GetUID(uname, uid);
 }
 
 void SimpleBank::changePassword(const string & newPass)
@@ -146,4 +164,19 @@ Client SimpleBank::getClient(const string & uid)
     Client c;
     clientdb_.getClient(uid, c);
     return c;
+}
+
+void SimpleBank::newUserDelegate(string uid, string password, Client::UserType utype)
+{
+    dbdel_.NewUser(uid, password, utype);
+}
+
+void SimpleBank::OpenAccountDel(int del_id, SB::AccountType at)
+{
+    dbdel_.OpenAccount(del_id,(int)at);
+}
+
+void SimpleBank::UpdateAccountBalance(int uid, int atype, double newBalance)
+{
+    dbdel_.UpdateAccountBalance(uid, atype, newBalance);
 }

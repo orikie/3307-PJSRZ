@@ -9,6 +9,13 @@
 
 namespace SB
 {
+    enum AccountType
+    {
+        Savings = 0,
+        Checking,
+        Credit
+    };
+    
     class BankAccount
     {
     public:
@@ -25,7 +32,7 @@ namespace SB
         void activateAccount(const bool &);
         bool isAccountActivated() {return activated_;}
         
-    private:
+    protected:
         double balance_;
         bool activated_;
     };
@@ -47,7 +54,16 @@ namespace SB
         ~CheckingAccount();
         
     };
-
+    
+    class CreditAccount: public BankAccount
+    {
+    public:
+        CreditAccount();
+        CreditAccount(double);
+        ~CreditAccount();
+    private:
+        int creditLimit_;
+    };
 }
 
 
