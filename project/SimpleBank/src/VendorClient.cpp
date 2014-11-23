@@ -96,8 +96,6 @@ void VendorClient::logout()
 
 void VendorClient::mainScreen()
 {
-
-    
     int uid;
     string uname;
     
@@ -121,8 +119,13 @@ void VendorClient::mainScreen()
         int res = Utils::getIntFromUser(2);
         if (res == 1) {
             viewSpecial();
+        }else if (res ==2)
+        {
+            return;
         }
     }
+    
+    mainScreen();
     
 }
 
@@ -130,18 +133,17 @@ void VendorClient::mainScreen()
 void VendorClient::viewSpecial()
 {
     
-    int ranItemIndex = rand() % vendor_.ItemList.size();
+    int ranItemIndex = rand() % vendor_.Inventory.size();
     
     int randomPrice = rand() % 100;
     if (randomPrice == 0) randomPrice = 100;
     
     cout << "\n[Special Item for sale!]\n";
-    printf("Item Name: %s \t Price: $%d\n", vendor_.ItemList[ranItemIndex].c_str(),randomPrice);
+    string item = vendor_.Inventory[ranItemIndex];
+    printf("Item Name: %s \t Price: $%d\n", item.c_str(),randomPrice);
     cout << "Continue with purchase? [y\\n]\n>";
     string res = Utils::getWordFromUser();
     if (res == "y" || res == "Y") {
-        cout << "purchase";
+        vendor_.purchaseItem(item, randomPrice);
     }
-    
-    
 }

@@ -57,29 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "src/VendorClient.cpp"
-            timestampString = "438404934.408519"
+            filePath = "src/BankClient.cpp"
+            timestampString = "438412508.927242"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "VendorClient::mainScreen()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "src/DBDelegate.cpp"
-            timestampString = "438409460.716058"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "DBDelegate::getuid_cb(void *arg, int argc, char **argv, char **azColName)"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "BankClient::accessSavings()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

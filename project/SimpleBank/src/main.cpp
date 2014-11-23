@@ -9,9 +9,9 @@ int main(int argc, const char * argv[])
 {
     
     BankClient c;c.start();
-    DBDelegate d;
-    
+    //DBDelegate d;
+    //d.OpenAccount(3, 0);
     return 0;
 
-}
+} 
 

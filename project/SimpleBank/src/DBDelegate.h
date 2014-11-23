@@ -45,7 +45,7 @@ public:
     void log(string s){log_.logTrace(s);}
     
     
-    void NewUser(string uid, string password_real, SB::User::UserType utype);
+    
     void InitTables();
     void ResetTables();
     
@@ -55,9 +55,11 @@ public:
     int GetUID(string uname);
     string GetPasswordHash(string uname);
     bool IsUserCreditValid(string uname);
-    void OpenAccount(int del_id, int type);
+    bool OpenAccount(int del_id, int type);
+    bool NewUser(string uid, string password_real, SB::User::UserType utype);
     void UpdateAccountBalance(int uid, int atype, double newBalance);
     bool NewTransaction(int customer_id, string desc, double amt, string date);
+    double GetAccountBalance(int uid, int type);
     
     string QueryTextFieldSingle(string q);
     int QueryIntFieldSingle(string q);

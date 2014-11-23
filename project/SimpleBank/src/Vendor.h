@@ -21,11 +21,11 @@ public:
     
     bool logon(string uname, string pass);
     void logout();
-    static vector<string> ItemList;
+    static vector<string> Inventory;
     bool IsUserCreditValid(string uname);
     
     bool getLoggedUserData(int & id, string & uname);
-    void purchaseItem(string desc, int price);
+    void purchaseItem(string desc, double price);
 private:
     DBDelegate bank_db_;
     int loggedUID_;

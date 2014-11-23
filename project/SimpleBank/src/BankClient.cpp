@@ -268,7 +268,7 @@ void BankClient::accessSavings()
                 bankServer_.updateClient(userCache_.getID(), c);
                 refreshCache(userCache_.del_uid);
                 
-                cout << "Created Checing Account";
+                cout << "Created Savings Account";
                 //waitForContinue();
                 
                 accessSavings();

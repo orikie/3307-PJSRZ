@@ -8,7 +8,7 @@
 
 #include "Vendor.h"
 
-vector<string> Vendor::ItemList = {
+vector<string> Vendor::Inventory = {
 "CHIPS", "GRANOLA BARS", "CANDY", "POPCORN", "COOKIES", "CRACKERS","RAISONS", "PEANUTS",
 "MILK","COFFEE","BEER","WINE","JUICE","TEA","WATER","HOT COCA",
 "PASTA","CHILI","TOMATO SAUCE","RICE","BEANS","CHICKEN BROTH","TUNA","SALMON",
@@ -56,10 +56,12 @@ bool Vendor::IsUserCreditValid(string uname)
     return bank_db_.IsUserCreditValid(uname);
 }
 
-void Vendor::purchaseItem(string desc, int price)
+void Vendor::purchaseItem(string desc, double price)
 {
     if (loggedOn_) {
-        //
+        bank_db_.NewTransaction(loggedUID_, desc, price, Utils::DateString());
+        double cc_bal = bank_db_.GetAccountBalance(loggedUID_, 2); //2 == credit
+        cc_bal += price;
+        bank_db_.UpdateAccountBalance(loggedUID_, 2, cc_bal);
     }
-    
 }

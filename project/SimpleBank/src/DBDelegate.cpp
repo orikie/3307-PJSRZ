@@ -18,11 +18,11 @@ const string DBDelegate::CREATE_ACCOUNT_TABLE =
 const string DBDelegate::DROP_ALL =
 "DROP TABLE users; DROP TABLE account; DROP TABLE transactions;";
 
-const string DBDelegate::INSERT_NEW_ACCOUNT =
-"INSERT INTO account (owner_id, balance, activated) values(%d,%d,%d)";
-
 const string DBDelegate::CREATE_TRANSACTIONS_TABLE =
 "CREATE TABLE transactions (tid INTEGER PRIMARY KEY, customer_id INTEGER, amount TEXT, description TEXT, date TEXT);";
+
+const string DBDelegate::INSERT_NEW_ACCOUNT =
+"INSERT INTO accounts (owner_id, balance, type, activated) values(?,?,?,?);";
 
 const string DBDelegate::INSERT_NEW_USER =
 "INSERT INTO users (username,password_hash,user_type) VALUES(?, ?, ?);";
@@ -121,11 +121,31 @@ string DBDelegate::BuildNewUserQuery(string uid, string password_real, SB::User:
 
 }
 
-void DBDelegate::NewUser(string uid, string password_real, SB::User::UserType utype)
+bool DBDelegate::NewUser(string uid, string password_real, SB::User::UserType utype)
 {
-    string q = BuildNewUserQuery(uid, password_real, utype);
-    //cout << q;
-    RunQuery(q);
+    int res = -1;
+    bool suc = false;
+    if (connected_) {
+        sqlite3_stmt * stm;
+        
+        res = sqlite3_prepare_v2(dbconn_, INSERT_NEW_USER.c_str(),(unsigned int)(INSERT_NEW_USER.length() + 1), &stm, NULL);
+        if (SQLITE_OK == res) {
+            
+            
+            int r1 = sqlite3_bind_text(stm, 1, uid.c_str(), -1, SQLITE_STATIC);
+            int r2 = sqlite3_bind_text(stm, 2, Utils::HashPassword(password_real).c_str(), -1, SQLITE_STATIC);
+            int r3 = sqlite3_bind_int(stm, 3, (int)utype);
+            
+            if ((r1!=SQLITE_OK)||(r2!=SQLITE_OK)||(r3!=SQLITE_OK)) {
+                log("Error inserting transaction record");
+            }else
+            {
+                suc = RunQuery(stm);
+            }
+        }
+        
+    }
+    return suc;
 }
 
 
@@ -154,12 +174,40 @@ void DBDelegate::GetUID(string uname, int **uid)
     }
 }
 
-void DBDelegate::OpenAccount(int del_id, int type)
+double DBDelegate::GetAccountBalance(int uid, int type)
+{
+    string q = "select balance from accounts where owner_id = " + to_string(uid) + " and type = " + to_string(type) + ";";
+    return stod(QueryTextFieldSingle(q));
+}
+
+bool DBDelegate::OpenAccount(int del_id, int type)
 {
     //string q = "insert into accounts (owner_id,balance,type,activated) values(" + to_string(del_id) + ",\"0\","+to_string(type)+",1);";
     //RunQuery(q);
     
-    
+    int res = -1;
+    bool suc = false;
+    if (connected_) {
+        sqlite3_stmt * stm;
+        
+        res = sqlite3_prepare_v2(dbconn_, INSERT_NEW_ACCOUNT.c_str(),(unsigned int)(INSERT_NEW_ACCOUNT.length() + 1), &stm, NULL);
+        if (SQLITE_OK == res) {
+            
+            int r1 = sqlite3_bind_int(stm, 1, del_id);//user id
+            int r2 = sqlite3_bind_text(stm, 2, "0", -1, SQLITE_STATIC);//initial balance
+            int r3 = sqlite3_bind_int(stm, 3, (int)type); //Credit type
+            int r4 = sqlite3_bind_int(stm, 4, 1); //initially activated
+            
+            if ((r1!=SQLITE_OK)||(r2!=SQLITE_OK)||(r3!=SQLITE_OK)) {
+                log("Error inserting transaction record");
+            }else
+            {
+                suc = RunQuery(stm);
+            }
+        }
+        
+    }
+    return suc;
 }
 
 void DBDelegate::UpdateAccountBalance(int uid, int atype, double newBalance)
@@ -242,7 +290,7 @@ bool DBDelegate::NewTransaction(int customer_id, string desc, double amt, string
             int r3 = sqlite3_bind_text(stm, 3, desc.c_str(), -1, SQLITE_STATIC);
             int r4 = sqlite3_bind_text(stm, 4, date.c_str(), -1, SQLITE_STATIC);
             
-            if ((r1!=SQLITE_OK)&&(r2!=SQLITE_OK)&&(r3!=SQLITE_OK)&&(r4!=SQLITE_OK)) {
+            if ((r1!=SQLITE_OK)||(r2!=SQLITE_OK)||(r3!=SQLITE_OK)||(r4!=SQLITE_OK)) {
                 log("Error inserting transaction record");
             }else
             {
