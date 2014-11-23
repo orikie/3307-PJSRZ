@@ -140,8 +140,8 @@ void VendorClient::viewSpecial()
     
     cout << "\n[Special Item for sale!]\n";
     string item = vendor_.Inventory[ranItemIndex];
-    printf("Item Name: %s \t Price: $%d\n", item.c_str(),randomPrice);
-    cout << "Continue with purchase? [y\\n]\n>";
+    printf("Item Name:\t%s \nPrice:\t$%d\n", item.c_str(),randomPrice);
+    cout << "\nContinue with purchase? [y\\n]\n>";
     string res = Utils::getWordFromUser();
     if (res == "y" || res == "Y") {
         vendor_.purchaseItem(item, randomPrice);

@@ -39,7 +39,7 @@ namespace SB{
         void transferFunds();
         void savingsToChecking();
         void checkingToSavings();
-        
+        void viewCreditPurchases();
         void printClientAccountBalances();
         
         //Manager user menu

@@ -178,3 +178,8 @@ void SimpleBank::UpdateAccountBalance(int uid, int atype, double newBalance)
 {
     dbdel_.UpdateAccountBalance(uid, atype, newBalance);
 }
+
+vector<db_transaction_record> SimpleBank::GetTransactionRecords(int uid)
+{
+    return dbdel_.GetTransactionRecords(uid);
+}

@@ -70,6 +70,7 @@ namespace SB {
         int GetCurrDelID(){return loggedOnUser_.del_uid;}
         void OpenAccountDel(int del_id, AccountType at);
         void UpdateAccountBalance(int uid, int atype, double newBalance);
+        vector<db_transaction_record> GetTransactionRecords(int uid);
     private:
         User loggedOnUser_;
         //UserIdentity * uids_;

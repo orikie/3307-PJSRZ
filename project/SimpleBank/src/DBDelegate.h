@@ -5,6 +5,8 @@
 
 #include <sstream>
 #include <stdio.h>
+#include <vector>
+
 #include "sqlite3.h"
 #include "User.h"
 #include "Logger.h"
@@ -12,16 +14,33 @@
 
 using namespace std;
 
-struct UserIdentity{
-    int uid;
-    int savingsID;
-    int checkingID;
-    
-    //string username;
-    //double savingBalance;
-    //double checkingBalance;
-    
+struct db_user_record
+{
+    int u_id;
+    std::string username;
+    std::string password_hash;
+    int user_type;
+    double creditLimit;
 };
+
+struct db_account_record
+{
+    int a_id;
+    int owner_id;
+    double balance;
+    int type;
+    bool activated;
+};
+
+struct db_transaction_record
+{
+    int t_id;
+    int customer_id;
+    double amount;
+    std::string description;
+    string date;
+};
+
 
 class DBDelegate
 {
@@ -59,6 +78,7 @@ public:
     bool NewUser(string uid, string password_real, SB::User::UserType utype);
     void UpdateAccountBalance(int uid, int atype, double newBalance);
     bool NewTransaction(int customer_id, string desc, double amt, string date);
+    vector<db_transaction_record> GetTransactionRecords(int customer_id);
     double GetAccountBalance(int uid, int type);
     
     string QueryTextFieldSingle(string q);

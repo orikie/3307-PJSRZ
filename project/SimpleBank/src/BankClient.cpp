@@ -80,9 +80,10 @@ void BankClient::clientMenu()
     cout << "2\tAccess Checking Account\n";
     cout << "3\tTransfer funds to\\from account\n";
     cout << "4\tChange Password\n";
-    cout << "5\tLogout\n>";
+    cout << "5\tView Credit Purchases\n";
+    cout << "6\tLogout\n>";
     
-    int res = Utils::getIntFromUser(5);
+    int res = Utils::getIntFromUser(6);
     switch (res) {
         case 1:
             accessSavings();
@@ -95,7 +96,11 @@ void BankClient::clientMenu()
             break;
         case 4:
             changePassword();
+            break;
         case 5:
+            viewCreditPurchases();
+            break;
+        case 6:
             logout();
             return;
         default:
@@ -103,6 +108,35 @@ void BankClient::clientMenu()
     }
     
     clientMenu();
+}
+
+void BankClient::viewCreditPurchases()
+{
+    cout << "\n[Credit Purchase History]\n" + Utils::DateString() + "\n";
+    string dash (57, '-');
+    double total = 0.0;
+    if (!bankServer_.getClient(userCache_.getID()).isCheckingOpened()) {
+        cout << "Warning: You do you have a credit account.\nOpen a checking account to obtain one.\n";
+    }
+    else
+    {
+        vector<db_transaction_record> t_records = bankServer_.GetTransactionRecords(userCache_.del_uid);
+        if (t_records.size() > 0) {
+            printf("%-30s%-20s%-15s\n", "Date","Item Description","Price");
+            auto it = t_records.begin();
+            while (it != t_records.end()) {
+                db_transaction_record dtr = *it++;
+                total += dtr.amount;
+                printf("%-30s%-20s$%-.2f\n", dtr.date.c_str(),dtr.description.c_str(),dtr.amount);
+            }
+            
+            cout << dash;
+            printf("\n%-50s$%-.2f","Total:", total);
+            
+        }
+    }
+    
+    Utils::waitForContinue();
 }
 
 void BankClient::changePassword()
