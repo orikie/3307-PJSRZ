@@ -23,6 +23,7 @@ public:
     static int getIntFromUser(const int lim);
     static string getWordFromUser();
     static void waitForContinue();
+    static void menuline();
 };
 
 #endif /* defined(__SimpleBank__Utils__) */

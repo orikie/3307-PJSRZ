@@ -89,4 +89,9 @@ void Utils::waitForContinue()
     Utils::getWordFromUser();
 }
 
+void Utils::menuline()
+{
+    string dash (10, '-');
+    cout << dash.c_str() << "menu" << dash.c_str()<< "\n";
+}
 

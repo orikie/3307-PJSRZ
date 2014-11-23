@@ -41,10 +41,10 @@ BankClient.o: BankClient.cpp
 	$(CC) $(OFLAGS) BankClient.cpp
 
 clean:
-	rm *.o
+	rm -f  *.o
 	rm -f SimpleBank.exe
 	rm -f trace.txt
 reset:
-	rm clientinfo.data
-	rm bank_del.db
+	rm -f clientinfo.data
+	rm -f bank_del.db
 	make clean

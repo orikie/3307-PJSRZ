@@ -16,22 +16,24 @@ const string DBDelegate::CREATE_ACCOUNT_TABLE =
 //Activated{True = 1, False =0}
 
 const string DBDelegate::DROP_ALL =
-"DROP TABLE users; DROP TABLE account;";
+"DROP TABLE users; DROP TABLE account; DROP TABLE transactions;";
 
-const string DBDelegate::CREATE_NEW_ACCOUNT =
+const string DBDelegate::INSERT_NEW_ACCOUNT =
 "INSERT INTO account (owner_id, balance, activated) values(%d,%d,%d)";
 
 const string DBDelegate::CREATE_TRANSACTIONS_TABLE =
-"CREATE TABLE transactions (tid INTEGER PRIMARY KEY, customer_id INTEGER, amount TEXT, date TEXT);";
+"CREATE TABLE transactions (tid INTEGER PRIMARY KEY, customer_id INTEGER, amount TEXT, description TEXT, date TEXT);";
 
+const string DBDelegate::INSERT_NEW_USER =
+"INSERT INTO users (username,password_hash,user_type) VALUES(?, ?, ?);";
 
-//not used atm
-const string DBDelegate::CREATE_NEW_USER =
-"INSERT INTO users (username,password_hash,user_type) VALUES(\"%\", \"%s\", %d);";
+const string DBDelegate::INSERT_NEW_TRANSACTION =
+"INSERT INTO transactions (customer_id, amount, description, date) values(?,?,?,?);";
+
 
 DBDelegate::DBDelegate()
 {
-    connected_ =  (sqlite3_open(DB_NAME.c_str(), &dbconn_)== SQLITE_OK)? true : false;
+    connected_ = sqliteopen(DB_NAME);
 }
 
 DBDelegate::~DBDelegate()
@@ -41,6 +43,16 @@ DBDelegate::~DBDelegate()
     }
 }
 
+DBDelegate::DBDelegate(string dbname)
+{
+    connected_ = sqliteopen(dbname);
+}
+
+bool DBDelegate::sqliteopen(string name)
+{
+    connected_ =  (sqlite3_open(DB_NAME.c_str(), &dbconn_)== SQLITE_OK)? true : false;
+    return connected_;
+}
 
 int DBDelegate::createTables_cb(void *arg, int argc, char **argv, char **azColName)
 {
@@ -61,11 +73,13 @@ void DBDelegate::InitTables()
     RunQuery(CREATE_ACCOUNT_TABLE);
     RunQuery(CREATE_TRANSACTIONS_TABLE);
     
+    tablesInitialized_  = true;
 }
 
 void DBDelegate::ResetTables()
 {
     RunQuery(DROP_ALL);
+    tablesInitialized_ = false;
 }
 
 void DBDelegate::RunQuery(string q)
@@ -88,10 +102,14 @@ void DBDelegate::RunQuery(string q, sqlite3_callback cb, void * cb_arg)
     }
 }
 
-void DBDelegate::createDefaultUsers()
+bool DBDelegate::RunQuery(sqlite3_stmt * stm)
 {
-
+    int res = sqlite3_step(stm);
+    sqlite3_finalize(stm);
+    return res == SQLITE_DONE ? true : false;
+    
 }
+
 
 string DBDelegate::BuildNewUserQuery(string uid, string password_real, SB::User::UserType uType)
 {
@@ -110,19 +128,6 @@ void DBDelegate::NewUser(string uid, string password_real, SB::User::UserType ut
     RunQuery(q);
 }
 
-int DBDelegate::userIdentity_cb(void *arg, int argc, char **argv, char **azColName)
-{
-    UserIdentity ** u = (UserIdentity **)arg;
-    *u = new UserIdentity{1,2,3};
-    return 0;
-}
-
-void DBDelegate::GetUserIdentity(string uname, UserIdentity **uid)
-{
-    string q = "SELECT id FROM users WHERE ";
-    RunQuery(q, userIdentity_cb, uid);
-    
-}
 
 int DBDelegate::getuid_cb(void *arg, int argc, char **argv, char **azColName)
 {
@@ -138,7 +143,7 @@ int DBDelegate::getuid_cb(void *arg, int argc, char **argv, char **azColName)
 
 void DBDelegate::GetUID(string uname, int **uid)
 {
-    string q = "select DISTINCT uid from users where username = \"" + uname + "\";";
+    string q = "select DISTINCT uid from users where username = " + uname + ";";
     *uid = new int(-1);
     int * temp_p = *uid;
     RunQuery(q, getuid_cb, uid);
@@ -151,8 +156,10 @@ void DBDelegate::GetUID(string uname, int **uid)
 
 void DBDelegate::OpenAccount(int del_id, int type)
 {
-    string q = "insert into accounts (owner_id,balance,type,activated) values(" + to_string(del_id) + ",\"0\","+to_string(type)+",1);";
-    RunQuery(q);
+    //string q = "insert into accounts (owner_id,balance,type,activated) values(" + to_string(del_id) + ",\"0\","+to_string(type)+",1);";
+    //RunQuery(q);
+    
+    
 }
 
 void DBDelegate::UpdateAccountBalance(int uid, int atype, double newBalance)
@@ -161,3 +168,109 @@ void DBDelegate::UpdateAccountBalance(int uid, int atype, double newBalance)
     //cout << q;
     RunQuery(q);
 }
+
+string DBDelegate::GetPasswordHash(string uname)
+{
+    string q = "select password_hash from users where username = \"" + uname + "\";";
+    return QueryTextFieldSingle(q);
+}
+
+int DBDelegate::GetUID(string uname)
+{
+    string q = "select DISTINCT uid from users where username = \"" + uname + "\";";
+    return QueryIntFieldSingle(q);
+}
+
+string DBDelegate::QueryTextFieldSingle(string q)
+{
+    string rets = "";
+    sqlite3_stmt * stm;
+    int ret = SQLITE_OK;
+    if (connected_) {
+        ret = sqlite3_prepare_v2(dbconn_, q.c_str(), (unsigned int)(q.size() + 1), &stm, NULL);
+        if (ret == SQLITE_OK) {
+            ret = sqlite3_step(stm);
+            if (ret == SQLITE_ROW) {
+                const unsigned char * p = sqlite3_column_text(stm, 0);
+                rets = string((char *)p);
+            }
+        }
+    }
+    
+    sqlite3_finalize(stm);
+    return rets;
+}
+
+int DBDelegate::QueryIntFieldSingle(string q)
+{
+    int rets = -1;
+    sqlite3_stmt * stm;
+    int ret = SQLITE_OK;
+    if (connected_) {
+        ret = sqlite3_prepare_v2(dbconn_, q.c_str(), (unsigned int)(q.size() + 1), &stm, NULL);
+        if (ret == SQLITE_OK) {
+            ret = sqlite3_step(stm);
+            if (ret == SQLITE_ROW) {
+                rets = sqlite3_column_int(stm, 0);
+            }
+        }
+    }
+    
+    sqlite3_finalize(stm);
+    return rets;
+
+}
+
+bool DBDelegate::IsUserCreditValid(string uname)
+{
+    string q = "select activated from accounts inner join users on users.uid = accounts.owner_id and type = 2 and username  = \"" + uname + "\";";
+    return QueryIntFieldSingle(q) == 1 ? true: false;
+}
+
+bool DBDelegate::NewTransaction(int customer_id, string desc, double amt, string date)
+{
+    int res = -1;
+    bool suc = false;
+    if (connected_) {
+        sqlite3_stmt * stm;
+        
+        res = sqlite3_prepare_v2(dbconn_, INSERT_NEW_TRANSACTION.c_str(),(unsigned int)(INSERT_NEW_TRANSACTION.length() + 1), &stm, NULL);
+        if (SQLITE_OK == res) {
+            
+            int r1 = sqlite3_bind_int(stm, 1, customer_id);
+            int r2 = sqlite3_bind_text(stm, 2, to_string(amt).c_str(), -1, SQLITE_STATIC);
+            int r3 = sqlite3_bind_text(stm, 3, desc.c_str(), -1, SQLITE_STATIC);
+            int r4 = sqlite3_bind_text(stm, 4, date.c_str(), -1, SQLITE_STATIC);
+            
+            if ((r1!=SQLITE_OK)&&(r2!=SQLITE_OK)&&(r3!=SQLITE_OK)&&(r4!=SQLITE_OK)) {
+                log("Error inserting transaction record");
+            }else
+            {
+                suc = RunQuery(stm);
+            }
+        }
+        
+    }
+    return suc;
+
+}
+
+//int DBDelegate::getPassword_cb(void *arg, int argc, char **argv, char **azColName)
+//{
+//    if (argc > 0) {
+//        string ** s = (string **)arg;
+//        *s = new string(argv[0]);
+//    }
+//    
+//    return 0;
+//
+//}
+
+
+
+
+
+
+
+
+

@@ -59,7 +59,6 @@ namespace SB{
         bool login();
         void logout();
         void mainMenuInfo();
-        void menuline();
         
         void log(const string & s){logger_.logTrace(s);}
         void logError(const string & s) {logger_.logErr(s);}

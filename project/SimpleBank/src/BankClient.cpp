@@ -35,12 +35,12 @@ void BankClient::welcomeScreen()
     string welcome = "Welcome to SimpleBank main console portal!\n Please select an option to continue.\n\n";
     
     cout << welcome;
-    menuline();
+    Utils::menuline();
     printf("1\tLogin\n");
     //printf("2\tHelp\n");
     printf("2\tQuit\n");
     printf(">");
-    int res = Utils::getIntFromUser(3);
+    int res = Utils::getIntFromUser(2);
     
     if (res == 1) {
         if (!login()) {
@@ -75,7 +75,7 @@ void BankClient::welcomeScreen()
 void BankClient::clientMenu()
 {
     mainMenuInfo();
-    menuline();
+    Utils::menuline();
     cout << "1\tAccess Savings Account\n";
     cout << "2\tAccess Checking Account\n";
     cout << "3\tTransfer funds to\\from account\n";
@@ -129,7 +129,7 @@ void BankClient::transferFunds()
     cout << "Account fund transfer\n";
     Client c = getcurrClient();
     printClientAccountBalances();
-    menuline();
+    Utils::menuline();
     cout << "1\tTransfer from Savings to Checking\n";
     cout << "2\tTransfer from Checking to Savings\n";
     cout << "3\tExit\n>";
@@ -333,7 +333,7 @@ void BankClient::accountAction(bool isSaving)
 {
     //isSaving = true: access for Savings account
     //isSAving = false: access for Checking account
-    menuline();
+    Utils::menuline();
     cout << "1\tWithdraw\n";
     cout << "2\tDeposit\n";
     cout << "3\tExit\n>";
@@ -492,10 +492,8 @@ bool BankClient::login()
         
         User loggedUser = bankServer_.getLoggedUser();
         
-        int * uidp;
-        bankServer_.GetLoggedUID(u, &uidp);
-        bankServer_.SetCurrDelID(*uidp);
-        delete uidp;
+        bankServer_.SetCurrDelID(bankServer_.GetLoggedUID(u));
+
     }
     
     userCache_ = this->bankServer_.getLoggedUser();
@@ -508,7 +506,7 @@ bool BankClient::login()
 void BankClient::mntMenu()
 {
     mainMenuInfo();
-    menuline();
+    Utils::menuline();
     
     printf("1\tSet Trace Setting\n");
     printf("2\tLogout\n");
@@ -571,16 +569,10 @@ void BankClient::setTraceSetting()
 }
 
 
-void BankClient::menuline()
-{
-    string dash (10, '-');
-    cout << dash.c_str() << "menu" << dash.c_str()<< "\n";
-}
-
 void BankClient::mgrMenu()
 {
     mainMenuInfo();
-    menuline();
+    Utils::menuline();
     
     printf("1\tAudit Single User\n");
     printf("2\tList All User Account info\n");

@@ -67,9 +67,9 @@ bool SimpleBank::logon(string uid, string pass)
     return this->loggedOn_;
 }
 
-void SimpleBank::GetLoggedUID(string uname, int **uid)
+int SimpleBank::GetLoggedUID(string uname)
 {
-    dbdel_.GetUID(uname, uid);
+    return dbdel_.GetUID(uname);
 }
 
 void SimpleBank::changePassword(const string & newPass)

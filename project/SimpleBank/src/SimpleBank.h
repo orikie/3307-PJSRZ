@@ -64,8 +64,8 @@ namespace SB {
         
         //bool isLoggingOn() {return logger_.IsON;}
         //void setLoggingOn(bool s){logger_.setON(s);}
-        
-        void GetLoggedUID(string uname, int ** uid);
+    
+        int GetLoggedUID(string uname);
         void SetCurrDelID(int uid){loggedOnUser_.del_uid = uid;};
         int GetCurrDelID(){return loggedOnUser_.del_uid;}
         void OpenAccountDel(int del_id, AccountType at);
