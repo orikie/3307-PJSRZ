@@ -7,11 +7,25 @@
 CC=g++ 
 OFLAGS=-std=c++11 -c 
 
-all: main.o DBDelegate.o  User.o Logger.o ClientDB.o BankAccount.o Utils.o SimpleBank.o BankClient.o sqlite3.o
+all: bank vendor
+
+bank: main.o DBDelegate.o  User.o Logger.o ClientDB.o BankAccount.o Utils.o SimpleBank.o BankClient.o sqlite3.o
 	$(CC) main.o DBDelegate.o User.o Logger.o ClientDB.o BankAccount.o Utils.o SimpleBank.o BankClient.o sqlite3.o -o SimpleBank.exe
 
-main.o: Main.cpp
-	$(CC) $(OFLAGS) Main.cpp
+vendor: v_main.o DBDelegate.o Logger.o Utils.o sqlite3.o Vendor.o VendorClient.o 
+	$(CC) v_main.o DBDelegate.o Logger.o Utils.o sqlite3.o vendor.o VendorClient.o -o vendor.exe
+
+Vendor.o: Vendor.cpp
+	$(CC) $(OFLAGS) Vendor.cpp
+
+VendorClient.o: VendorClient.cpp
+	$(CC) $(OFLAGS) VendorClient.cpp
+
+main.o: main.cpp
+	$(CC) $(OFLAGS) main.cpp
+
+v_main.o: v_main.cpp
+	$(CC) $(OFLAGS) v_main.cpp
 
 sqlite3.o:
 	gcc -c sqlite3.c
