@@ -4,7 +4,7 @@
 
 /*CONFIGURATIONS*/
 #define DEFAULT_MANAGER "3307"
-#define DEFAULT_MAINTENANCE "mgr"
+#define DEFAULT_MAINTENANCE "mnt"
 #define DEFAULT_PASSWORD "pass"
 #define DEFAULT_CREDIT_LIMIT 2000
 #define FAILED_PAYMENT_LOG_NAME "FailedCreditPayments.txt"

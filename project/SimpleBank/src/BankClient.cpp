@@ -508,9 +508,8 @@ void BankClient::deposit(bool isSaving)
         
         if (bankServer_.payCreditOverDues(userCache_.del_uid)) {
             cout << "\n\nYou have paid your credit card's outstanding balance!\nCredit is now unfrozen\n";
+            cout << "\nNew Balance:\t$" << bankServer_.GetAccountBalance(userCache_.del_uid, ACCOUNT_TYPE_CHECKING);
         }
-        
-        cout << "New Balance:\t$" << bankServer_.GetAccountBalance(userCache_.del_uid, ACCOUNT_TYPE_CHECKING);
     }
     else
     {
@@ -649,7 +648,7 @@ void BankClient::mgrMenu()
     printf("8\tLogout\n");
     
     cout << "\n>";
-    int res = Utils::getIntFromUser(7);
+    int res = Utils::getIntFromUser(8);
     
     switch (res) {
         case 1:
