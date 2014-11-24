@@ -233,6 +233,30 @@ void SimpleBank::TriggerEndOfMonth()
             c_logger.logTrace("Freezing credit account for: " + uname);
         }
     }
-    
+}
 
+
+bool SimpleBank::payCreditOverDues(int uid)
+{
+    if (!dbdel_.IsUserCreditValid(loggedOnUser_.getID()) && dbdel_.GetAccountBalance(uid, ACCOUNT_TYPE_CREDIT) > 0) {
+        db_account_record checking_r = dbdel_.GetCheckingRecordForUser(uid);
+        db_credit_record credit_r = dbdel_.GetCreditRecordForUser(uid);
+        
+        double checking_bal = checking_r.balance;
+        double credit_bal = credit_r.balance;
+        
+        if (checking_bal >= credit_bal) {
+            
+            Client c = getClient(loggedOnUser_.getID());
+            double cRem;
+            c.withdrawChecking(credit_bal, cRem);
+            updateClient(loggedOnUser_.getID(), c);
+            
+            UpdateAccountBalanceDel(uid, ACCOUNT_TYPE_CHECKING, cRem);
+            UpdateAccountBalanceDel(uid, ACCOUNT_TYPE_CREDIT, 0);
+            dbdel_.SetAccountActivated(uid, true);
+            return true;
+        }
+    }
+    return false;
 }

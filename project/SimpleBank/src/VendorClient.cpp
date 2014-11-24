@@ -84,9 +84,7 @@ bool VendorClient::login()
         
         log("Succesfully logged in as " + u);
     }
-    
     return true;
-
 }
 
 void VendorClient::logout()
@@ -106,7 +104,7 @@ void VendorClient::mainScreen()
 
     if (!vendor_.IsUserCreditValid(uname)) {
         
-        cout << "Your Credit Card is not valid or frozen!\nPlease contact your bank for assistance.\n";
+        cout << "Your Credit Card is not valid or is frozen!\nPlease contact your bank for assistance.\n";
         Utils::waitForContinue();
         return;
     }
@@ -126,7 +124,6 @@ void VendorClient::mainScreen()
     }
     
     mainScreen();
-    
 }
 
 

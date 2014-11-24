@@ -64,8 +64,8 @@ namespace SB {
         void UpdateAccountBalanceDel(int uid, int atype, double newBalance);
         vector<db_transaction_record> GetTransactionRecords(int uid);
         double GetAccountBalance(int uid, int type);
-        
         void TriggerEndOfMonth();
+        bool payCreditOverDues(int uid);
     private:
         User loggedOnUser_;
         //UserIdentity * uids_;

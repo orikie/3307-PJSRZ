@@ -503,12 +503,14 @@ void BankClient::deposit(bool isSaving)
             bankServer_.UpdateAccountBalanceDel(userCache_.del_uid, type, remaining);
         }
         
-        
-
         bankServer_.updateClient(uid, c);
         refreshCache(userCache_.del_uid);
-
         
+        if (bankServer_.payCreditOverDues(userCache_.del_uid)) {
+            cout << "\n\nYou have paid your credit card's outstanding balance!\nCredit is now unfrozen\n";
+        }
+        
+        cout << "New Balance:\t$" << bankServer_.GetAccountBalance(userCache_.del_uid, ACCOUNT_TYPE_CHECKING);
     }
     else
     {
@@ -516,7 +518,6 @@ void BankClient::deposit(bool isSaving)
     }
     
     Utils::waitForContinue();
-    
 }
 
 void BankClient::logout()
