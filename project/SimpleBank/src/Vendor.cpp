@@ -62,6 +62,6 @@ void Vendor::purchaseItem(string desc, double price)
         bank_db_.NewTransaction(loggedUID_, desc, price, Utils::DateString());
         double cc_bal = bank_db_.GetAccountBalance(loggedUID_, 2); //2 == credit
         cc_bal += price;
-        bank_db_.UpdateAccountBalance(loggedUID_, 2, cc_bal);
+        bank_db_.UpdateAccountBalanceDel(loggedUID_, 2, cc_bal);
     }
 }

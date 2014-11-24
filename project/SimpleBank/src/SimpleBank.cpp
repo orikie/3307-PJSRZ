@@ -12,6 +12,7 @@ SimpleBank::SimpleBank()
     //this->clientdb_ = ClientDB();
     double totalCash;
     this->clientdb_.loadFromFile(totalCash);
+    dbdel_.InitTables();
     
     if (!userExist(DEFAULT_MANAGER)) {
         clientdb_.addUser(DEFAULT_MANAGER, DEFAULT_PASSWORD, User::UserType::MGR);
@@ -27,21 +28,9 @@ SimpleBank::SimpleBank()
 
     this->loggedOn_ = false;
     this->cashReserve_ = totalCash;
-    //logger_.setAppName("Bank Server:");
-    
-    dbdel_.InitTables();
-    //uids_ = NULL;
 }
 
-SimpleBank::~SimpleBank()
-{
-    //delete this->clientdb_;
-    /*
-    if (uids_ != NULL) {
-        delete uids_;
-    }
-     */
-}
+SimpleBank::~SimpleBank(){}
 
 bool SimpleBank::isLoggedOn()
 {
@@ -174,9 +163,9 @@ void SimpleBank::OpenAccountDel(int del_id, SB::AccountType at)
     dbdel_.OpenAccount(del_id,(int)at);
 }
 
-void SimpleBank::UpdateAccountBalance(int uid, int atype, double newBalance)
+void SimpleBank::UpdateAccountBalanceDel(int uid, int atype, double newBalance)
 {
-    dbdel_.UpdateAccountBalance(uid, atype, newBalance);
+    dbdel_.UpdateAccountBalanceDel(uid, atype, newBalance);
 }
 
 vector<db_transaction_record> SimpleBank::GetTransactionRecords(int uid)
@@ -191,5 +180,59 @@ double SimpleBank::GetAccountBalance(int uid, int type)
 
 void SimpleBank::TriggerEndOfMonth()
 {
+    Logger c_logger("FailedCreditPayments.txt");
+    c_logger.setAppName("SYS");
     
+    vector<db_user_record_s> uids_to_process = dbdel_.GetEnabledCreditCustomers();
+    auto it = uids_to_process.begin();
+    while (it!=uids_to_process.end()) {
+        db_user_record_s urs = *it++;
+        int id = urs.u_id;
+        string uname = urs.username;
+        
+        db_account_record checking_r = dbdel_.GetCheckingRecordForUser(id);
+        db_credit_record credit_r = dbdel_.GetCreditRecordForUser(id);
+        
+        double checking_bal = checking_r.balance;
+        double credit_bal = credit_r.balance;
+        
+        double obligate_amt;
+        if (credit_r.credit_option == PAY_MIN_10) {
+            obligate_amt = credit_bal * 0.10;
+            
+        }
+        else if (credit_r.credit_option == PAY_FULL)
+        {
+            obligate_amt = credit_bal;
+        }
+        
+        if (checking_bal >= obligate_amt) {
+            //Enough money
+            
+            Client c = getClient(uname);
+            double cRem;
+            c.withdrawChecking(obligate_amt, cRem);
+            updateClient(uname, c);
+            
+            UpdateAccountBalanceDel(id, ACCOUNT_TYPE_CHECKING, cRem);
+            
+            double newCreditBal = credit_bal - obligate_amt;
+            
+            if (credit_r.credit_option == PAY_MIN_10) {
+                newCreditBal *= 1.02;
+            }
+            
+            UpdateAccountBalanceDel(id, ACCOUNT_TYPE_CREDIT, newCreditBal);
+            //Update to hide transactions
+        }
+        else
+        {
+            //Not enough money, freeze credit account
+            dbdel_.SetAccountActivated(id, false);
+            c_logger.logTrace("User: " + to_string(id) + " " + uname + " failed to pay credit balance of $" + to_string(credit_bal));
+            c_logger.logTrace("Freezing credit account for: " + uname);
+        }
+    }
+    
+
 }

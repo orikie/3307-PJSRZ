@@ -163,6 +163,7 @@ void BankClient::viewCreditPurchases()
                 cout << "\nWarning! You do not have sufficient checking balance to support your credit spendings!\n";
             }
         }
+        
     }
     
     Utils::waitForContinue();
@@ -223,10 +224,10 @@ void BankClient::checkingToSavings()
         double cRem = -1;
         
         if (c.withdrawChecking(amtd, cRem)) {
-            bankServer_.UpdateAccountBalance(userCache_.del_uid, AccountType::Checking, cRem);
+            bankServer_.UpdateAccountBalanceDel(userCache_.del_uid, AccountType::Checking, cRem);
             if (c.isSavingOpened()) {
                 c.depositSaving(amtd, sRem);
-                bankServer_.UpdateAccountBalance(userCache_.del_uid, AccountType::Savings, sRem);
+                bankServer_.UpdateAccountBalanceDel(userCache_.del_uid, AccountType::Savings, sRem);
             }
             else
             {
@@ -266,11 +267,11 @@ void BankClient::savingsToChecking()
         double cRem = -1;
         
         if (c.withdrawSaving(amtd, sRem)) {
-            bankServer_.UpdateAccountBalance(userCache_.del_uid, AccountType::Savings, sRem);
+            bankServer_.UpdateAccountBalanceDel(userCache_.del_uid, AccountType::Savings, sRem);
             
             if (c.isCheckingOpened()) {
                 c.depositChecking(amtd, cRem);
-                bankServer_.UpdateAccountBalance(userCache_.del_uid, AccountType::Checking, cRem);
+                bankServer_.UpdateAccountBalanceDel(userCache_.del_uid, AccountType::Checking, cRem);
             }
             else
             {
@@ -458,7 +459,7 @@ void BankClient::withdraw(bool isSaving)
             
             //Update del db
             int type = isSaving ? 0 : 1;
-            bankServer_.UpdateAccountBalance(userCache_.del_uid, type, remaining);
+            bankServer_.UpdateAccountBalanceDel(userCache_.del_uid, type, remaining);
         }
         else
         {
@@ -499,7 +500,7 @@ void BankClient::deposit(bool isSaving)
             
             //Update del db
             int type = isSaving ? 0 : 1;
-            bankServer_.UpdateAccountBalance(userCache_.del_uid, type, remaining);
+            bankServer_.UpdateAccountBalanceDel(userCache_.del_uid, type, remaining);
         }
         
         
@@ -642,7 +643,7 @@ void BankClient::mgrMenu()
     printf("3\tOpen New Client Account\n");
     printf("4\tClose Existing User Account\n");
     printf("5\tBank Stats\n");
-    //printf("6\tChange Passworn\n");
+    printf("6\t*Trigger End of Month Event\n");
     printf("7\tLogout\n");
     
     cout << "\n>";
@@ -665,7 +666,8 @@ void BankClient::mgrMenu()
             bankStats();
             break;
         case 6:
-            changePassword();
+            triggerEndofMonth();
+            break;
         case 7:
             logout();
             return;
@@ -679,12 +681,23 @@ void BankClient::mgrMenu()
 }
 
 
+
 void BankClient::bankStats()
 {
     log("Viewing bank statistics");
     cout << "Bank Statistics\n";
     cout << "Cash Reserve: " << bankServer_.getCashReserve();
     cout << "\nTotal Clients: " << bankServer_.getTotalUsers() << "\n";
+
+}
+
+void BankClient::triggerEndofMonth()
+{
+
+    cout << "[Processing End of Month Credit Payments...]\n";
+
+    bankServer_.TriggerEndOfMonth();
+        
 
 }
 

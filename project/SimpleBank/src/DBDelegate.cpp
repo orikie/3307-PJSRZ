@@ -140,7 +140,7 @@ bool DBDelegate::NewUser(string uid, string password_real, SB::User::UserType ut
             int r2 = sqlite3_bind_text(stm, 2, Utils::HashPassword(password_real).c_str(), -1, SQLITE_STATIC);
             int r3 = sqlite3_bind_int(stm, 3, (int)utype);
             int r4 = sqlite3_bind_int(stm, 4, DEFAULT_CREDIT_LIMIT);
-            int r5 = sqlite3_bind_int(stm, 5, PAY_MIN_10);
+            int r5 = sqlite3_bind_int(stm, 5, PAY_FULL);
             if ((r1!=SQLITE_OK)||(r2!=SQLITE_OK)||(r3!=SQLITE_OK)||(r4!=SQLITE_OK)||(r5!=SQLITE_OK)) {
                 log("Error inserting transaction record");
             }
@@ -213,7 +213,7 @@ bool DBDelegate::OpenAccount(int del_id, int type)
     return suc;
 }
 
-void DBDelegate::UpdateAccountBalance(int uid, int atype, double newBalance)
+void DBDelegate::UpdateAccountBalanceDel(int uid, int atype, double newBalance)
 {
     string q = "update accounts set balance = "+ to_string(newBalance) + " where owner_id = " +to_string(uid) + " and type = " + to_string(atype) + ";";
     //cout << q;
@@ -340,22 +340,148 @@ vector<db_transaction_record> DBDelegate::GetTransactionRecords(int customer_id)
     return db_recs;
 }
 
-//int DBDelegate::getPassword_cb(void *arg, int argc, char **argv, char **azColName)
-//{
-//    if (argc > 0) {
-//        string ** s = (string **)arg;
-//        *s = new string(argv[0]);
-//    }
-//    
-//    return 0;
-//
-//}
+vector<db_user_record_s> DBDelegate::GetEnabledCreditCustomers()
+{
+    string q = "select uid, username from users inner join accounts on accounts.owner_id = users.uid and type = 2 and activated = 1;";
+    vector<db_user_record_s> uid_v;
+    int res = -1;
+    if (connected_) {
+        sqlite3_stmt * stm;
+        
+        res = sqlite3_prepare_v2(dbconn_, q.c_str(), (unsigned int)(q.length() + 1), &stm, NULL);
+        if (SQLITE_OK == res) {
+            res = sqlite3_step(stm);
+            while (res== SQLITE_ROW) {
+                int id = sqlite3_column_int(stm, 0);
+                const unsigned char * username = sqlite3_column_text(stm, 1);
+                
+                db_user_record_s rs = {
+                    id,
+                    string((char*)username)
+                };
+                
+                uid_v.push_back(rs);
+                res = sqlite3_step(stm);
+            }
+        }
+        sqlite3_finalize(stm);
+    }
+    return uid_v;
+}
 
+vector<db_account_pkg1> DBDelegate::GetAccountsInfoForUser(int uid)
+{
+    string q = "select aid,type, balance, credit_option from accounts inner join users on users.uid = accounts.owner_id where owner_id = " + to_string(uid) + ";";
+    
+    vector<db_account_pkg1> db_recs;
+    int res = -1;
+    
+    if (connected_) {
+        sqlite3_stmt * stm;
+        
+        res = sqlite3_prepare_v2(dbconn_, q.c_str(),(unsigned int)(q.length() + 1), &stm, NULL);
+        if (SQLITE_OK == res) {
+            res = sqlite3_step(stm);
+            while (res == SQLITE_ROW) {
+                
+                int aid = sqlite3_column_int(stm, 0);
+                int type = sqlite3_column_int(stm, 1);
+                const unsigned char * balance = sqlite3_column_text(stm, 2);
+                int credit_option = sqlite3_column_int(stm, 3);
 
+                db_account_pkg1 record = {
+                    aid,
+                    type,
+                    stod((char *)balance),
+                    credit_option
+                };
+                
+                db_recs.push_back(record);
+                res = sqlite3_step(stm);
+            }
+        }
+        sqlite3_finalize(stm);
+    }
+    return db_recs;
+}
 
+db_account_record DBDelegate::GetCheckingRecordForUser(int uid)
+{
+    string q = "select * from accounts where type = 1 and owner_id = " + to_string(uid) + ";";
+    int res = -1;
+    db_account_record r;
+    if (connected_) {
+        sqlite3_stmt * stm;
+        
+        res = sqlite3_prepare_v2(dbconn_, q.c_str(),(unsigned int)(q.length() + 1), &stm, NULL);
+        if (SQLITE_OK == res) {
+            res = sqlite3_step(stm);
+            if (SQLITE_ROW == res || SQLITE_OK == res) {
+                int aid = sqlite3_column_int(stm, 0);
+                int owner_id = sqlite3_column_int(stm, 1);
+                const unsigned char * balance = sqlite3_column_text(stm, 2);
+                int type = sqlite3_column_int(stm, 3);
+                int activated = sqlite3_column_int(stm, 4);
+                
+                r = {
+                    aid,
+                    owner_id,
+                    stod((char *)balance),
+                    type,
+                    activated == 1 ? true : false
+                };
+            }
+        }
+        sqlite3_finalize(stm);
+    }
+    return r;
+}
 
+db_credit_record DBDelegate::GetCreditRecordForUser(int uid)
+{
+    string q = "select aid, balance, activated, credit_limit, credit_option from accounts inner join users on users.uid = accounts.owner_id and type = 2 and uid = " +to_string(uid)+";";
+    
+    int res = -1;
+    db_credit_record r;
+    if (connected_) {
+        sqlite3_stmt * stm;
+        
+        res = sqlite3_prepare_v2(dbconn_, q.c_str(),(unsigned int)(q.length() + 1), &stm, NULL);
+        if (SQLITE_OK == res) {
+            res = sqlite3_step(stm);
+            if (SQLITE_OK == res || SQLITE_ROW == res) {
+                
+                int aid = sqlite3_column_int(stm, 0);
+                const unsigned char * balance = sqlite3_column_text(stm, 1);
+                int activated = sqlite3_column_int(stm, 2);
+                const unsigned char * credit_limit = sqlite3_column_text(stm, 3);
+                int credit_option = sqlite3_column_int(stm, 4);
+                
+                r = {
+                    aid,
+                    stod((char *)balance),
+                    activated == 1 ? true : false,
+                    stod((char *)credit_limit),
+                    credit_option == 1? true : false,
+                };
+            }
+        }
+        sqlite3_finalize(stm);
+    }
+    return r;
+}
 
+void DBDelegate::FreezeCreditForUser(int uid)
+{
+    string q = "update accounts set activated = " + string(NO) + " where type = 2 and owner_id = " + to_string(uid)+ ";";
+    RunQuery(q);
+}
 
-
+void DBDelegate::SetAccountActivated(int uid, bool act)
+{
+    string act_s = act == true ? "1" : "0";
+    string q = "update accounts set activated = " + act_s + " where type = 2 and owner_id = " + to_string(uid)+ ";";
+    RunQuery(q);
+}
 
 

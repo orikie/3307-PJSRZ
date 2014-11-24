@@ -61,7 +61,7 @@ namespace SB {
         void SetCurrDelID(int uid){loggedOnUser_.del_uid = uid;};
         int GetCurrDelID(){return loggedOnUser_.del_uid;}
         void OpenAccountDel(int del_id, AccountType at);
-        void UpdateAccountBalance(int uid, int atype, double newBalance);
+        void UpdateAccountBalanceDel(int uid, int atype, double newBalance);
         vector<db_transaction_record> GetTransactionRecords(int uid);
         double GetAccountBalance(int uid, int type);
         
@@ -77,8 +77,6 @@ namespace SB {
         
         //void log(const string& m) {logger_.logTrace(m);}
         //void logError(const string& m) {logger_.logErr(m);}
-        
-        
     };
 
 }

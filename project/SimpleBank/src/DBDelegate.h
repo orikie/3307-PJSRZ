@@ -23,6 +23,12 @@ struct db_user_record
     double creditLimit;
 };
 
+struct db_user_record_s
+{
+    int u_id;
+    string username;
+};
+
 struct db_account_record
 {
     int a_id;
@@ -41,6 +47,22 @@ struct db_transaction_record
     string date;
 };
 
+struct db_account_pkg1
+{
+    int aid;
+    int type;
+    double balance;
+    int credit_option;
+};
+
+struct db_credit_record
+{
+    int aid;
+    double balance;
+    bool activated;
+    double credit_limit;
+    int credit_option;
+};
 
 class DBDelegate
 {
@@ -61,9 +83,10 @@ public:
     void RunQuery(string q);
     void RunQuery(string q, sqlite3_callback cb, void * cb_arg);
     bool RunQuery(sqlite3_stmt * stm);
+    string QueryTextFieldSingle(string q);
+    int QueryIntFieldSingle(string q);
+
     void log(string s){log_.logTrace(s);}
-    
-    
     
     void InitTables();
     void ResetTables();
@@ -76,14 +99,16 @@ public:
     bool IsUserCreditValid(string uname);
     bool OpenAccount(int del_id, int type);
     bool NewUser(string uid, string password_real, SB::User::UserType utype);
-    void UpdateAccountBalance(int uid, int atype, double newBalance);
+    void UpdateAccountBalanceDel(int uid, int atype, double newBalance);
     bool NewTransaction(int customer_id, string desc, double amt, string date);
     vector<db_transaction_record> GetTransactionRecords(int customer_id);
     double GetAccountBalance(int uid, int type);
-    
-    string QueryTextFieldSingle(string q);
-    int QueryIntFieldSingle(string q);
-
+    vector<db_user_record_s> GetEnabledCreditCustomers();
+    vector<db_account_pkg1> GetAccountsInfoForUser(int uid);
+    db_account_record GetCheckingRecordForUser(int uid);
+    db_credit_record GetCreditRecordForUser(int uid);
+    void FreezeCreditForUser(int uid);
+    void SetAccountActivated(int uid, bool act);
     
 private:
     sqlite3 * dbconn_;
@@ -94,6 +119,7 @@ private:
     static int createTables_cb(void * arg, int argc, char**argv, char **azColName);
     //static int getPassword_cb(void * arg, int argc, char**argv, char **azColName);
     static int getuid_cb(void * arg, int argc, char**argv, char **azColName);
+    
     
 };
 

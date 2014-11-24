@@ -50,6 +50,7 @@ namespace SB{
         void openNewUserAccount();
         void closeUserAccount();
         void bankStats();
+        void triggerEndofMonth();
         
         //MNT user menu
         void mntMenu();
