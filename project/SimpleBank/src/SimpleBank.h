@@ -25,7 +25,7 @@ namespace SB {
     class SimpleBank
     {
     public:
-        static const string DEFAULT_PASSWORD;
+        //static const string DEFAULT_PASSWORD;
         
         SimpleBank();
         ~SimpleBank();
@@ -37,29 +37,21 @@ namespace SB {
         void newUserDelegate(string uid, string password, Client::UserType utype);
         void deleteUser(const string &);
         bool userExist(const string & uid) {return clientdb_.userExists(uid);}
-        
         void updateClient(const string &, Client);
-        
         User getUser(const string &);
         Client getClient(const string &);
         void openSavings(Client&);
         void openChecking(Client &);
-        
         void closeSavings(Client &);
         void closeChecking(Client &);
-        
         bool isLoggedOn();
         User getLoggedUser()    {return this->loggedOnUser_;}
-        
         void print();
         string exportInfo()     {return this->clientdb_.formatedExport();}
         DataEntry exportUser(const string& uid) {return clientdb_.getUserEntry(uid);}
-        
         void save()  {clientdb_.saveToFile();}
-        
         double getCashReserve() {return cashReserve_;}
         unsigned int getTotalUsers() {return clientdb_.getTotalUsers();}
-        
         void changePassword(const string &);
         
         //bool isLoggingOn() {return logger_.IsON;}
@@ -71,6 +63,9 @@ namespace SB {
         void OpenAccountDel(int del_id, AccountType at);
         void UpdateAccountBalance(int uid, int atype, double newBalance);
         vector<db_transaction_record> GetTransactionRecords(int uid);
+        double GetAccountBalance(int uid, int type);
+        
+        void TriggerEndOfMonth();
     private:
         User loggedOnUser_;
         //UserIdentity * uids_;

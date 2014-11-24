@@ -80,7 +80,7 @@ void BankClient::clientMenu()
     cout << "2\tAccess Checking Account\n";
     cout << "3\tTransfer funds to\\from account\n";
     cout << "4\tChange Password\n";
-    cout << "5\tView Credit Purchases\n";
+    cout << "5\tView Credit Report\n";
     cout << "6\tLogout\n>";
     
     int res = Utils::getIntFromUser(6);
@@ -110,19 +110,22 @@ void BankClient::clientMenu()
     clientMenu();
 }
 
+
 void BankClient::viewCreditPurchases()
 {
-    cout << "\n[Credit Purchase History]\n" + Utils::DateString() + "\n";
     string dash (57, '-');
+    
     double total = 0.0;
-    if (!bankServer_.getClient(userCache_.getID()).isCheckingOpened()) {
-        cout << "Warning: You do you have a credit account.\nOpen a checking account to obtain one.\n";
+    Client c = bankServer_.getClient(userCache_.getID());
+    if (!c.isCheckingOpened()) {
+        cout << "\n**Warning: You do you have a credit account.\nOpen a checking account to obtain one.\n";
     }
     else
     {
+        cout << "\n[Monthly Credit Purchase History]\n" << dash;
         vector<db_transaction_record> t_records = bankServer_.GetTransactionRecords(userCache_.del_uid);
         if (t_records.size() > 0) {
-            printf("%-30s%-20s%-15s\n", "Date","Item Description","Price");
+            printf("\n%-30s%-20s%-15s\n", "Date","Item","Price");
             auto it = t_records.begin();
             while (it != t_records.end()) {
                 db_transaction_record dtr = *it++;
@@ -131,8 +134,34 @@ void BankClient::viewCreditPurchases()
             }
             
             cout << dash;
-            printf("\n%-50s$%-.2f","Total:", total);
+            printf("\n%-50s$%-.2f\n","Total:", total);
             
+            
+            cout << "\n[CREDIT SUMMARY]\n" << dash;
+            double checkingBal = c.getCheckingBalance();
+            printf("\n%-30s$%-.2f\n", "Checking Balance", checkingBal);
+            
+            double creditBal = bankServer_.GetAccountBalance(userCache_.del_uid, AccountType::Credit);
+            printf("%-30s$%-.2f\n", "Unpaid Credit Balance", creditBal);
+            
+            int pc = -1;
+            if (checkingBal > 0) {
+                pc = (creditBal / checkingBal) * 100;
+            }
+            
+            string pcs = to_string(pc);
+            if (pc == -1) {
+                pcs = "N/A";
+            }
+            printf("%-30s%%%s\n", "Credit to Checking ratio", pcs.c_str());
+            
+            if (pc >= 75) {
+                cout << "\nWarning! Your credit spendings are at %" <<pc<<" of your checking balance!\n";
+            }
+            
+            if (checkingBal < creditBal) {
+                cout << "\nWarning! You do not have sufficient checking balance to support your credit spendings!\n";
+            }
         }
     }
     
@@ -290,7 +319,7 @@ void BankClient::accessSavings()
         }
         else
         {
-            cout << "Your do not have a savings account. Would you like to open one now? (y/n)\n>";
+            cout << "You do not have a savings account. Would you like to open one now? (y/n)\n>";
             string o = Utils::getWordFromUser();
             if ((o=="y") || (o=="Y")) {
                 c.activateSaving();
@@ -331,7 +360,7 @@ void BankClient::accessChecking()
         }
         else
         {
-            cout << "Your do not have a checking account. Would you like to open one now? (y/n)\n>";
+            cout << "You do not have a checking account. Would you like to open one now? (y/n)\n>";
             string o = Utils::getWordFromUser();
             if ((o == "y") || (o == "Y")) {
                 c.activateChecking();
@@ -505,7 +534,7 @@ bool BankClient::login()
         cout << "\nUser ID: ";
         string u = Utils::getWordFromUser();
         
-        cout << "password:";
+        cout << "PIN:";
         string p = Utils::getWordFromUser();
         
         success = this->bankServer_.logon(u, p);
@@ -671,7 +700,7 @@ void BankClient::openNewUserAccount()
     cout << "Created new user: " << s << endl;
     
     //db delegate
-    bankServer_.newUserDelegate(s, bankServer_.DEFAULT_PASSWORD, Client::UserType::CLIENT);
+    bankServer_.newUserDelegate(s, DEFAULT_PASSWORD, Client::UserType::CLIENT);
     
 }
 

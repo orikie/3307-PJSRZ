@@ -74,6 +74,7 @@
 		547271D81A2161B500E23E98 /* Vendor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vendor.h; path = src/Vendor.h; sourceTree = SOURCE_ROOT; };
 		547271D91A2161B500E23E98 /* VendorClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VendorClient.cpp; path = src/VendorClient.cpp; sourceTree = SOURCE_ROOT; };
 		547271DA1A2161B500E23E98 /* VendorClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VendorClient.h; path = src/VendorClient.h; sourceTree = SOURCE_ROOT; };
+		547C01521A22D4A8004D3AC9 /* CONFIG.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CONFIG.h; path = src/CONFIG.h; sourceTree = SOURCE_ROOT; };
 		54EAF5171A1F199000824A97 /* DBDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DBDelegate.cpp; path = src/DBDelegate.cpp; sourceTree = SOURCE_ROOT; };
 		54EAF5181A1F199000824A97 /* DBDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBDelegate.h; path = src/DBDelegate.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -118,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				3EE6EEAA19D10DFD00879E10 /* main.cpp */,
+				547C01521A22D4A8004D3AC9 /* CONFIG.h */,
 				54EAF5161A1F190F00824A97 /* DataAccess */,
 				54EAF5151A1F15D400824A97 /* sqlite */,
 				3EE6EEA219D10DFD00879E10 /* BankAccount.cpp */,

@@ -10,6 +10,7 @@
 #include <string>
 #include "BankAccount.h"
 #include "Utils.h"
+#include "CONFIG.h"
 
 using namespace std;
 
@@ -59,7 +60,7 @@ namespace SB {
     private:
         string id_;
         string pass_;
-        static const string DEFAULT_PASSWORD;
+        
         bool newUser_;
         
     };

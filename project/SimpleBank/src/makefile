@@ -58,7 +58,9 @@ clean:
 	rm -f  *.o
 	rm -f SimpleBank.exe
 	rm -f trace.txt
+	rm -f vendor.exe
 reset:
 	rm -f clientinfo.data
 	rm -f bank_del.db
 	make clean
+	

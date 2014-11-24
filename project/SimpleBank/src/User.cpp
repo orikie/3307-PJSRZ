@@ -6,8 +6,6 @@
 
 #include "User.h"
 
-const string SB::User::DEFAULT_PASSWORD("password");
-
 /**
  * USER
  */

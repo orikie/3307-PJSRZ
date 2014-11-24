@@ -85,8 +85,8 @@ int Utils::getIntFromUser(const int lim)
 
 void Utils::waitForContinue()
 {
-    cout << "\n\nEnter a key to continue..." << endl;
-    Utils::getWordFromUser();
+    cout << "\n\nEnter a key to continue...";
+    getWordFromUser();
 }
 
 void Utils::menuline()

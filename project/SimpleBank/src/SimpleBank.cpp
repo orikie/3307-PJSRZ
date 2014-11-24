@@ -6,8 +6,6 @@
 
 #include "SimpleBank.h"
 
-const string SimpleBank::DEFAULT_PASSWORD = "password";
-
 SimpleBank::SimpleBank()
 {
     //this->loggedOnUser_ = User{"Default"};
@@ -15,14 +13,16 @@ SimpleBank::SimpleBank()
     double totalCash;
     this->clientdb_.loadFromFile(totalCash);
     
-    if (!userExist("3307")) {
-        clientdb_.addUser("3307", DEFAULT_PASSWORD, User::UserType::MGR);
+    if (!userExist(DEFAULT_MANAGER)) {
+        clientdb_.addUser(DEFAULT_MANAGER, DEFAULT_PASSWORD, User::UserType::MGR);
         save();
+        dbdel_.NewUser(DEFAULT_MANAGER, DEFAULT_PASSWORD, User::UserType::MGR);
     }
     
-    if (!userExist("mnt")) {
-        clientdb_.addUser("mnt", DEFAULT_PASSWORD, Client::UserType::MNT);
+    if (!userExist(DEFAULT_MAINTENANCE)) {
+        clientdb_.addUser(DEFAULT_MAINTENANCE, DEFAULT_PASSWORD, Client::UserType::MNT);
         save();
+        dbdel_.NewUser(DEFAULT_MAINTENANCE, DEFAULT_PASSWORD, User::UserType::MNT);
     }
 
     this->loggedOn_ = false;
@@ -182,4 +182,14 @@ void SimpleBank::UpdateAccountBalance(int uid, int atype, double newBalance)
 vector<db_transaction_record> SimpleBank::GetTransactionRecords(int uid)
 {
     return dbdel_.GetTransactionRecords(uid);
+}
+
+double SimpleBank::GetAccountBalance(int uid, int type)
+{
+    return dbdel_.GetAccountBalance(uid, type);
+}
+
+void SimpleBank::TriggerEndOfMonth()
+{
+    
 }

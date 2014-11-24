@@ -106,7 +106,7 @@ void VendorClient::mainScreen()
 
     if (!vendor_.IsUserCreditValid(uname)) {
         
-        cout << "Your Credit Card is not valid!\n Please contact your bank for assistance.\n";
+        cout << "Your Credit Card is not valid!\nPlease contact your bank for assistance.\n";
         Utils::waitForContinue();
         return;
     }

@@ -6,7 +6,8 @@ const std::string DBDelegate::DB_NAME{"bank_del.db"};
 //  USER TABLE
 //  |  ID  |  USERID  |  PASSWORD_HASH  |  USER_TYPE  |
 const string DBDelegate::CREATE_USER_TABLE =
-"CREATE TABLE users(uid INTEGER PRIMARY KEY, username TEXT UNIQUE, password_hash TEXT, user_type INTEGER, credit_limit TEXT);";
+"CREATE TABLE users(uid INTEGER PRIMARY KEY, username TEXT UNIQUE, password_hash TEXT, user_type INTEGER, credit_limit TEXT, credit_option INTEGER);";
+//credit_option{0=pay minimum (10%), 1 = pay in full}
 
 //  ACCOUNTS TABLE
 //  |  ID  |  OWNER_ID  |  BALANCE  |  ACTIVATED  |
@@ -18,20 +19,21 @@ const string DBDelegate::CREATE_ACCOUNT_TABLE =
 //  TRANSACTIONS TABLE
 //  |  TID  |  CUSTOMER_ID  |  AMOUNT  |  DESCRIPTION  |  DATE  |
 const string DBDelegate::CREATE_TRANSACTIONS_TABLE =
-"CREATE TABLE transactions (tid INTEGER PRIMARY KEY, customer_id INTEGER, amount TEXT, description TEXT, date TEXT);";
+"CREATE TABLE transactions (tid INTEGER PRIMARY KEY, customer_id INTEGER, amount TEXT, description TEXT, date TEXT, hidden INTEGER);";
+//hidden: 0 = false, 1 = true. Hide after end of month event
+//
 
 const string DBDelegate::DROP_ALL =
 "DROP TABLE users; DROP TABLE account; DROP TABLE transactions;";
-
 
 const string DBDelegate::INSERT_NEW_ACCOUNT =
 "INSERT INTO accounts (owner_id, balance, type, activated) values(?,?,?,?);";
 
 const string DBDelegate::INSERT_NEW_USER =
-"INSERT INTO users (username,password_hash,user_type) VALUES(?, ?, ?);";
+"INSERT INTO users (username,password_hash,user_type, credit_limit, credit_option) VALUES(?,?,?,?,?);";
 
 const string DBDelegate::INSERT_NEW_TRANSACTION =
-"INSERT INTO transactions (customer_id, amount, description, date) values(?,?,?,?);";
+"INSERT INTO transactions (customer_id, amount, description, date, hidden) values(?,?,?,?,?);";
 
 
 DBDelegate::DBDelegate()
@@ -137,10 +139,12 @@ bool DBDelegate::NewUser(string uid, string password_real, SB::User::UserType ut
             int r1 = sqlite3_bind_text(stm, 1, uid.c_str(), -1, SQLITE_STATIC);
             int r2 = sqlite3_bind_text(stm, 2, Utils::HashPassword(password_real).c_str(), -1, SQLITE_STATIC);
             int r3 = sqlite3_bind_int(stm, 3, (int)utype);
-            
-            if ((r1!=SQLITE_OK)||(r2!=SQLITE_OK)||(r3!=SQLITE_OK)) {
+            int r4 = sqlite3_bind_int(stm, 4, DEFAULT_CREDIT_LIMIT);
+            int r5 = sqlite3_bind_int(stm, 5, PAY_MIN_10);
+            if ((r1!=SQLITE_OK)||(r2!=SQLITE_OK)||(r3!=SQLITE_OK)||(r4!=SQLITE_OK)||(r5!=SQLITE_OK)) {
                 log("Error inserting transaction record");
-            }else
+            }
+            else
             {
                 suc = RunQuery(stm);
             }
@@ -199,12 +203,12 @@ bool DBDelegate::OpenAccount(int del_id, int type)
             
             if ((r1!=SQLITE_OK)||(r2!=SQLITE_OK)||(r3!=SQLITE_OK)||(r4!=SQLITE_OK)) {
                 log("Error inserting transaction record");
-            }else
+            }
+            else
             {
                 suc = RunQuery(stm);
             }
         }
-        
     }
     return suc;
 }
@@ -243,7 +247,6 @@ string DBDelegate::QueryTextFieldSingle(string q)
             }
         }
     }
-    
     sqlite3_finalize(stm);
     return rets;
 }
@@ -265,7 +268,6 @@ int DBDelegate::QueryIntFieldSingle(string q)
     
     sqlite3_finalize(stm);
     return rets;
-
 }
 
 bool DBDelegate::IsUserCreditValid(string uname)
@@ -288,22 +290,23 @@ bool DBDelegate::NewTransaction(int customer_id, string desc, double amt, string
             int r2 = sqlite3_bind_text(stm, 2, to_string(amt).c_str(), -1, SQLITE_STATIC);
             int r3 = sqlite3_bind_text(stm, 3, desc.c_str(), -1, SQLITE_STATIC);
             int r4 = sqlite3_bind_text(stm, 4, date.c_str(), -1, SQLITE_STATIC);
+            int r5 = sqlite3_bind_int(stm, 5, HIDE_TRANSACTIONS_OFF);
             
-            if ((r1!=SQLITE_OK)||(r2!=SQLITE_OK)||(r3!=SQLITE_OK)||(r4!=SQLITE_OK)) {
+            if ((r1!=SQLITE_OK)||(r2!=SQLITE_OK)||(r3!=SQLITE_OK)||(r4!=SQLITE_OK)||(r5!=SQLITE_OK)) {
                 log("Error inserting transaction record");
-            }else
+            }
+            else
             {
                 suc = RunQuery(stm);
             }
         }
     }
     return suc;
-
 }
 
 vector<db_transaction_record> DBDelegate::GetTransactionRecords(int customer_id)
 {
-    string q = "select * from transactions where customer_id = " + to_string(customer_id) + ";";
+    string q = "select * from transactions where customer_id = " + to_string(customer_id) + " and hidden = 0;";
     vector<db_transaction_record> db_recs;
     int res = -1;
     
@@ -336,6 +339,7 @@ vector<db_transaction_record> DBDelegate::GetTransactionRecords(int customer_id)
     }
     return db_recs;
 }
+
 //int DBDelegate::getPassword_cb(void *arg, int argc, char **argv, char **azColName)
 //{
 //    if (argc > 0) {
