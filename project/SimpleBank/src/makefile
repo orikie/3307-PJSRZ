@@ -59,6 +59,7 @@ clean:
 	rm -f SimpleBank.exe
 	rm -f trace.txt
 	rm -f vendor.exe
+	rm -f FailedCreditPayments.txt
 reset:
 	rm -f clientinfo.data
 	rm -f bank_del.db
