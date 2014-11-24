@@ -180,7 +180,7 @@ double SimpleBank::GetAccountBalance(int uid, int type)
 
 void SimpleBank::TriggerEndOfMonth()
 {
-    Logger c_logger("FailedCreditPayments.txt");
+    Logger c_logger(FAILED_PAYMENT_LOG_NAME);
     c_logger.setAppName("SYS");
     
     vector<db_user_record_s> uids_to_process = dbdel_.GetEnabledCreditCustomers();

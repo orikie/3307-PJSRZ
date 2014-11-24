@@ -51,6 +51,7 @@ namespace SB{
         void closeUserAccount();
         void bankStats();
         void triggerEndofMonth();
+        void viewFailedCreditPayments();
         
         //MNT user menu
         void mntMenu();

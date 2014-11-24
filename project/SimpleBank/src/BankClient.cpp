@@ -644,8 +644,9 @@ void BankClient::mgrMenu()
     printf("3\tOpen New Client Account\n");
     printf("4\tClose Existing User Account\n");
     printf("5\tBank Stats\n");
-    printf("6\t*Trigger End of Month Event\n");
-    printf("7\tLogout\n");
+    printf("6\tTrigger End of Month Event\n");
+    printf("7\tView failed credit payments\n");
+    printf("8\tLogout\n");
     
     cout << "\n>";
     int res = Utils::getIntFromUser(7);
@@ -670,6 +671,9 @@ void BankClient::mgrMenu()
             triggerEndofMonth();
             break;
         case 7:
+            viewFailedCreditPayments();
+            break;
+        case 8:
             logout();
             return;
         default:
@@ -681,7 +685,13 @@ void BankClient::mgrMenu()
     mgrMenu();
 }
 
-
+void BankClient::viewFailedCreditPayments()
+{
+    cout << "[Customer Failed Credit Payments Log]\n";
+    Utils::printFileToConsole(FAILED_PAYMENT_LOG_NAME);
+    Utils::waitForContinue();
+    
+}
 
 void BankClient::bankStats()
 {
@@ -694,12 +704,8 @@ void BankClient::bankStats()
 
 void BankClient::triggerEndofMonth()
 {
-
     cout << "[Processing End of Month Credit Payments...]\n";
-
     bankServer_.TriggerEndOfMonth();
-        
-
 }
 
 void BankClient::openNewUserAccount()

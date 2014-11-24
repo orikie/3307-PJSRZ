@@ -7,6 +7,8 @@
 #define DEFAULT_MAINTENANCE "mgr"
 #define DEFAULT_PASSWORD "pass"
 #define DEFAULT_CREDIT_LIMIT 2000
+#define FAILED_PAYMENT_LOG_NAME "FailedCreditPayments.txt"
+#define LOG_FILENAME "trace.txt"
 
 /*SYSTEM CONSTANTS, DO NOT MODIFY*/
 #define PAY_MIN_10 0

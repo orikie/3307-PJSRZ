@@ -11,6 +11,7 @@
 #include <vector>
 #include <cstring>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 class Utils
@@ -24,6 +25,7 @@ public:
     static string getWordFromUser();
     static void waitForContinue();
     static void menuline();
+    static void printFileToConsole(const string & fname);
 };
 
 #endif /* defined(__SimpleBank__Utils__) */

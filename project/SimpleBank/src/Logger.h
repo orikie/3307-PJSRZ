@@ -10,8 +10,7 @@
 #include <iostream>
 #include <fstream>
 #include "Utils.h"
-
-
+#include "CONFIG.h"
 
 using namespace std;
 class Logger

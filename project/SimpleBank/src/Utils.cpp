@@ -84,3 +84,14 @@ void Utils::menuline()
     cout << dash.c_str() << "menu" << dash.c_str()<< "\n";
 }
 
+void Utils::printFileToConsole(const string &fname)
+{
+    ifstream fileIn;
+    fileIn.open(fname,ifstream::in);
+    while (fileIn.good()) {
+        string s;
+        getline(fileIn, s);
+        if (s.length()>0) cout << s << endl;
+    }
+}
+

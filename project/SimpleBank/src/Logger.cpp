@@ -8,7 +8,7 @@
 
 Logger::Logger()
 {
-    init("trace.txt");
+    init(LOG_FILENAME);
 }
 
 Logger::Logger(const string& f)
