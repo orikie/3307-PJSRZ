@@ -109,6 +109,7 @@ public:
     db_credit_record GetCreditRecordForUser(int uid);
     void FreezeCreditForUser(int uid);
     void SetAccountActivated(int uid, bool act);
+    void ChangePassword(string uid, string pass_real);
     
 private:
     sqlite3 * dbconn_;

@@ -174,10 +174,19 @@ void BankClient::changePassword()
     log("Changing password");
     cout << "Enter new Password: \n>";
     string s = Utils::getWordFromUser();
-    Client c = getcurrClient();
-    c.changePassword(s);
-    bankServer_.updateClient(c.getID(), c);
-    cout << "Udpated password\n";
+    
+    if (s.length() > 0) {
+        Client c = getcurrClient();
+        c.changePassword(s);
+        bankServer_.updateClient(c.getID(), c);
+        cout << "Udpated password\n";
+        bankServer_.ChangePasswordDel(userCache_.getID(), s);
+    }
+    else
+    {
+        cout << "Error: password length must be atleast 1.\n";
+    }
+    
     Utils::waitForContinue();
 }
 

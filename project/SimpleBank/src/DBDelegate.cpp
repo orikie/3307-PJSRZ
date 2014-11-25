@@ -484,4 +484,10 @@ void DBDelegate::SetAccountActivated(int uid, bool act)
     RunQuery(q);
 }
 
+void DBDelegate::ChangePassword(string uid, string pass_real)
+{
+    string q = "update users set password_hash = \"" + Utils::HashPassword(pass_real) + "\" where username = \"" + uid + "\";";
+    RunQuery(q);
+}
+
 

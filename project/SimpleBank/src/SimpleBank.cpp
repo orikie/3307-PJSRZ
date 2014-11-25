@@ -263,3 +263,8 @@ bool SimpleBank::payCreditOverDues(int uid)
     }
     return false;
 }
+
+void SimpleBank::ChangePasswordDel(string uid, string pass_real)
+{
+    dbdel_.ChangePassword(uid, pass_real);
+}

@@ -66,6 +66,7 @@ namespace SB {
         double GetAccountBalance(int uid, int type);
         void TriggerEndOfMonth();
         bool payCreditOverDues(int uid);
+        void ChangePasswordDel(string uid, string pass_real);
     private:
         User loggedOnUser_;
         //UserIdentity * uids_;
