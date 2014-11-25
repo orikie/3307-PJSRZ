@@ -112,13 +112,14 @@ void VendorClient::mainScreen()
     {
         cout << "\nYou have a valid credit card from SimpleBank!\n\n";
         printf("1\tBuy today's special!\n");
-        printf("2\tQuit\n");
+        printf("2\tLogout\n");
         printf(">");
         int res = Utils::getIntFromUser(2);
         if (res == 1) {
             viewSpecial();
         }else if (res ==2)
         {
+            vendor_.logout();
             return;
         }
     }
