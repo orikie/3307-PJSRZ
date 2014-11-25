@@ -95,3 +95,9 @@ void Utils::printFileToConsole(const string &fname)
     }
 }
 
+int Utils::GetRandomInt(int max)
+{
+    srand(time(nullptr));
+    return rand() % max;
+}
+

@@ -129,10 +129,9 @@ void VendorClient::mainScreen()
 
 void VendorClient::viewSpecial()
 {
+    int ranItemIndex = Utils::GetRandomInt(vendor_.Inventory.size());
     
-    int ranItemIndex = rand() % vendor_.Inventory.size();
-    
-    int randomPrice = rand() % 100;
+    int randomPrice = Utils::GetRandomInt(100);
     if (randomPrice == 0) randomPrice = 100;
     
     cout << "\n[Special Item for sale!]\n";

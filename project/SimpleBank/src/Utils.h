@@ -26,6 +26,7 @@ public:
     static void waitForContinue();
     static void menuline();
     static void printFileToConsole(const string & fname);
+    static int GetRandomInt(int max);
 };
 
 #endif /* defined(__SimpleBank__Utils__) */

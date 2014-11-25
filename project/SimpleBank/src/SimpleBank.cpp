@@ -206,6 +206,7 @@ void SimpleBank::TriggerEndOfMonth()
             obligate_amt = credit_bal;
         }
         
+        cout << "Processing user: " << uname<< ", credit balance: "<< obligate_amt <<"\n";
         if (checking_bal >= obligate_amt) {
             //Enough money
             
@@ -224,9 +225,11 @@ void SimpleBank::TriggerEndOfMonth()
             
             UpdateAccountBalanceDel(id, ACCOUNT_TYPE_CREDIT, newCreditBal);
             //Update to hide transactions
+            cout << "Processed user: " << uname << " successfully.\n";
         }
         else
         {
+            cout << "Failed to process user: " << uname << " due to insufficient checking funds\n";
             //Not enough money, freeze credit account
             dbdel_.SetAccountActivated(id, false);
             c_logger.logTrace("User: " + to_string(id) + " " + uname + " failed to pay credit balance of $" + to_string(credit_bal));
