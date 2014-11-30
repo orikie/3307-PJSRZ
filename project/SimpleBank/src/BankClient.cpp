@@ -110,6 +110,7 @@ void BankClient::clientMenu()
 
 void BankClient::viewCreditPurchases()
 {
+    log("Viewing credit purchase history and report");
     string dash (57, '-');
     
     double total = 0.0;
@@ -487,6 +488,7 @@ void BankClient::withdraw(bool isSaving)
 
 void BankClient::deposit(bool isSaving)
 {
+    log("");
     string accType = isSaving ? "savings" : "checking";
     
     string uid = userCache_.getID();
@@ -711,7 +713,9 @@ void BankClient::bankStats()
 
 void BankClient::triggerEndofMonth()
 {
-    cout << "[Processing End of Month Credit Payments...]\n";
+    string msg = "[Processing End of Month Credit Payments...]\n";
+    cout << msg;
+    log(msg);
     bankServer_.TriggerEndOfMonth();
 }
 

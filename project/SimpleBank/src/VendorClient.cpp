@@ -24,11 +24,11 @@ VendorClient::~VendorClient(){}
 void VendorClient::start()
 {
     welcomeScreen();
+    log_.logTrace("Starting console vendor client");
 }
 
 void VendorClient::welcomeScreen()
 {
-    
     string welcome = "[Welcome to " +vendorName+ " self checkout!]\n\nYOUR EVERYDAY FOODS | CHECKOUT\n"+Utils::DateString()+"\n<Please select an option to continue>\n\n";
     
     cout << welcome;
@@ -57,6 +57,7 @@ void VendorClient::welcomeScreen()
 
 bool VendorClient::login()
 {
+    log_.logTrace("Authenticating user...");
     unsigned int retry = 0;
     bool success = false;
     
@@ -71,6 +72,7 @@ bool VendorClient::login()
         log("Attempting to login as " + u);
         
         if (!success) {
+            log_.logTrace("Login failed.");
             log("Login failed for user " + u + "Attempt: " + to_string(retry));
             ++ retry;
             cout << "Incorrect username or password.\n\n";
@@ -80,7 +82,7 @@ bool VendorClient::login()
             }
         }
         
-        log("Succesfully logged in as " + u);
+        log("Successfully logged in as " + u);
     }
     return true;
 }
@@ -88,6 +90,7 @@ bool VendorClient::login()
 void VendorClient::logout()
 {
     vendor_.logout();
+    log("Logging out vendor");
 }
 
 void VendorClient::mainScreen()
@@ -101,13 +104,15 @@ void VendorClient::mainScreen()
     
 
     if (!vendor_.IsUserCreditValid(uname)) {
-        
-        cout << "Your Credit Card is not valid or is frozen!\nPlease contact your bank for assistance.\n";
+        string msg = "Your Credit Card is not valid or is frozen!\nPlease contact your bank for assistance.\n";
+        cout << msg;
+        log(msg);
         Utils::waitForContinue();
         return;
     }
     else
     {
+        log_.logTrace("Credit card approved for user");
         cout << "\nYou have a valid credit card from SimpleBank!\n\n";
         printf("1\tBuy today's special!\n");
         printf("2\tLogout\n");
@@ -117,7 +122,7 @@ void VendorClient::mainScreen()
             viewSpecial();
         }else if (res ==2)
         {
-            vendor_.logout();
+            logout();
             return;
         }
     }
@@ -141,4 +146,5 @@ void VendorClient::viewSpecial()
     if (res == "y" || res == "Y") {
         vendor_.purchaseItem(item, randomPrice);
     }
+    log("Displaying special item");
 }

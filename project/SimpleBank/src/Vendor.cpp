@@ -13,6 +13,7 @@ vector<string> Vendor::Inventory = {
 
 Vendor::Vendor(){
     loggedOn_ = false;
+    log_.setAppName("VENDOR");
 }
 Vendor::~Vendor(){}
 
@@ -54,6 +55,7 @@ bool Vendor::IsUserCreditValid(string uname)
 
 void Vendor::purchaseItem(string desc, double price)
 {
+    log_.logTrace("Purchase for "+ desc+" approved: Notifying bank system database.");
     if (loggedOn_) {
         bank_db_.NewTransaction(loggedUID_, desc, price, Utils::DateString());
         double cc_bal = bank_db_.GetAccountBalance(loggedUID_, 2); //2 == credit

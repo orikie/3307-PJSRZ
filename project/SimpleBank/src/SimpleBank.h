@@ -74,7 +74,7 @@ namespace SB {
         DBDelegate dbdel_;
         bool loggedOn_;
         double cashReserve_;
-        //Logger logger_;
+        Logger logger_;
         
         //void log(const string& m) {logger_.logTrace(m);}
         //void logError(const string& m) {logger_.logErr(m);}

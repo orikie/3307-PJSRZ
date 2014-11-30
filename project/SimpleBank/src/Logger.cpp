@@ -34,7 +34,7 @@ void Logger::logTrace(const string & s)
     if(this->fileOut_.is_open() && loggerON_)
     {
         string log;
-        log += Utils::DateString() + "|" + currUserID + "|\t"+ s + "\n";
+        log += Utils::DateString() + "|" + appName_ + "|\t"+ s + "\n";
         this->fileOut_ << log;
     }
 }

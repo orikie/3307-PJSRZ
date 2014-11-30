@@ -32,11 +32,9 @@ private:
     void viewSpecial();
     
     void log(string l){log_.logTrace(l);}
-    
 
     Vendor vendor_;
     Logger log_;
-    
     
 };
 

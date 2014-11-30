@@ -28,6 +28,7 @@ SimpleBank::SimpleBank()
 
     this->loggedOn_ = false;
     this->cashReserve_ = totalCash;
+    logger_.setAppName("BANK SERVER");
 }
 
 SimpleBank::~SimpleBank(){}
@@ -180,6 +181,7 @@ double SimpleBank::GetAccountBalance(int uid, int type)
 
 void SimpleBank::TriggerEndOfMonth()
 {
+    logger_.logTrace("Triggering end of month event credit processing");
     Logger c_logger(FAILED_PAYMENT_LOG_NAME);
     c_logger.setAppName("SYS");
     
@@ -206,7 +208,10 @@ void SimpleBank::TriggerEndOfMonth()
             obligate_amt = credit_bal;
         }
         
-        cout << "Processing user: " << uname<< ", credit balance: "<< obligate_amt <<"\n";
+        string msg = "Processing user: " + string(uname) + ", credit balance: " + to_string(obligate_amt) + "\n";
+        cout << msg;
+        logger_.logTrace(msg);
+        
         if (checking_bal >= obligate_amt) {
             //Enough money
             
@@ -229,7 +234,10 @@ void SimpleBank::TriggerEndOfMonth()
         }
         else
         {
-            cout << "Failed to process user: " << uname << " due to insufficient checking funds\n";
+            string msg = "Failed to process user: " + string(uname) + " due to insufficient checking funds\n";
+            cout << msg;
+            logger_.logTrace(msg);
+            
             //Not enough money, freeze credit account
             dbdel_.SetAccountActivated(id, false);
             c_logger.logTrace("User: " + to_string(id) + " " + uname + " failed to pay credit balance of $" + to_string(credit_bal));

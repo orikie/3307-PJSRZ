@@ -35,7 +35,7 @@ private:
     int loggedUID_;
     string loggedUsername_;
     bool loggedOn_;
-    
+    Logger log_;
     
     
 };
