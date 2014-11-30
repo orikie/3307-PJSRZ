@@ -72,6 +72,12 @@ int Utils::getIntFromUser(const int lim)
     return num;
 }
 
+double Utils::getDoubleFromUser()
+{
+    //
+    return 0;
+}
+
 void Utils::waitForContinue()
 {
     cout << "\n\nEnter a key to continue...";
@@ -95,9 +101,38 @@ void Utils::printFileToConsole(const string &fname)
     }
 }
 
-int Utils::GetRandomInt(int max)
+unsigned int Utils::GetRandomInt(int max)
 {
     srand(time(nullptr));
     return rand() % max;
 }
+
+bool Utils::validCashInput(const char * s)
+{
+    unsigned int len = strlen(s);
+    bool valid = true;
+    int index = 1;
+    
+    while (*s) {
+        if (!isdigit(*s)) {
+            if (*s == '.') {
+                if (index == len - 2 || index == len - 1) {
+                    ++s;
+                    continue;
+                }else
+                {
+                    valid = false;
+                    break;
+                }
+            }
+            valid = false;
+            break;
+        }
+        ++s;
+        ++index;
+    }
+    
+    return valid;
+}
+
 

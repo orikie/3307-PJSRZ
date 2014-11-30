@@ -23,7 +23,6 @@ public:
     VendorClient(string name);
     ~VendorClient();
     
-    static const int PASSWORD_RETRY_LIM;
     void start();
     string vendorName;
     

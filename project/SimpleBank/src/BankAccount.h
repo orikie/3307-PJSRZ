@@ -22,13 +22,9 @@ namespace SB
         BankAccount();
         BankAccount(double);
         virtual ~BankAccount();
-        
-        
         virtual bool deposit(double, double &);
-        
         virtual bool withdraw(double, double &);
         double checkBalance();
-        
         void activateAccount(const bool &);
         bool isAccountActivated() {return activated_;}
         

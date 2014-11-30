@@ -23,10 +23,12 @@ public:
     static string DateString();
     static int getIntFromUser(const int lim);
     static string getWordFromUser();
+    static double getDoubleFromUser();
     static void waitForContinue();
     static void menuline();
     static void printFileToConsole(const string & fname);
-    static int GetRandomInt(int max);
+    static unsigned int GetRandomInt(int max);
+    static bool validCashInput(const char *);
 };
 
 #endif /* defined(__SimpleBank__Utils__) */

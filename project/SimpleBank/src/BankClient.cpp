@@ -10,9 +10,6 @@
 
 #include "BankClient.h"
 
-
-const unsigned int SB::BankClient::PASSWORD_RETRY_LIM = 3;
-
 BankClient::BankClient()
 {
     logger_.setAppName("SB_Console Client");
@@ -494,9 +491,11 @@ void BankClient::deposit(bool isSaving)
     
     string uid = userCache_.getID();
     
-    cout << "Enter amount to deposit:";
+    cout << "Enter amount to deposit:$";
     string amt = Utils::getWordFromUser();
+    
     double amtd = stod(amt);
+    
     if (amtd > 0) {
         log("Depositing "+ amt+" to " + accType);
         Client c = getcurrClient();

@@ -8,8 +8,6 @@
 
 #include "VendorClient.h"
 
-const int VendorClient::PASSWORD_RETRY_LIM = 3;
-
 VendorClient::VendorClient(){
     log_.setAppName("VENDOR");
     vendorName = "G8'S GROCER";
@@ -130,10 +128,10 @@ void VendorClient::mainScreen()
 
 void VendorClient::viewSpecial()
 {
-    int ranItemIndex = Utils::GetRandomInt(vendor_.Inventory.size());
+    unsigned int ranItemIndex = Utils::GetRandomInt((int)vendor_.Inventory.size());
     
-    int randomPrice = Utils::GetRandomInt(100);
-    if (randomPrice == 0) randomPrice = 100;
+    int randomPrice = Utils::GetRandomInt(MAX_RANDOM_PRICE);
+    if (randomPrice == 0) randomPrice = MAX_RANDOM_PRICE;
     
     cout << "\n[Special Item for sale!]\n";
     string item = vendor_.Inventory[ranItemIndex];

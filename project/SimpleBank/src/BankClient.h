@@ -23,7 +23,6 @@ namespace SB{
         void start();
         
     private:
-        static const unsigned int PASSWORD_RETRY_LIM;
         //Main screen pre-login
         void welcomeScreen();
         
@@ -69,7 +68,6 @@ namespace SB{
         Client getcurrClient(){return bankServer_.getClient(userCache_.getID());}
         
         void changePassword();
-
         
         User userCache_;
         BankAccount activeAccountCache_;
