@@ -1,5 +1,7 @@
 //
 //  Logger.h
+//  Simple logging class
+//  Uses default file name from config
 //
 //  Created: 2014-09-16
 //

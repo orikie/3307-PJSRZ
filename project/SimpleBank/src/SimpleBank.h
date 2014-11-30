@@ -1,5 +1,6 @@
 //
 //  SimpleBank.h
+//  Represents a banking server
 //
 //  Created: 2014-09-18
 //
@@ -25,7 +26,6 @@ namespace SB {
     class SimpleBank
     {
     public:
-        //static const string DEFAULT_PASSWORD;
         
         SimpleBank();
         ~SimpleBank();

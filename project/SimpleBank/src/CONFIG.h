@@ -1,13 +1,20 @@
 
+//  CONFIG + CONSTANTS file
+
 #ifndef SimpleBank_CONFIG_h
 #define SimpleBank_CONFIG_h
 
 /*CONFIGURATIONS*/
+//Default logins for the bank system
 #define DEFAULT_MANAGER         "3307"
 #define DEFAULT_MAINTENANCE     "mnt"
 #define DEFAULT_PASSWORD        "pass"
+
+//Credit Settings
 #define DEFAULT_CREDIT_LIMIT    2000
 #define FAILED_PAYMENT_LOG_NAME "FailedCreditPayments.txt"
+
+//Other settings
 #define LOG_FILENAME            "trace.txt"
 #define PASSWORD_RETRY_LIM      3
 

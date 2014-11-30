@@ -1,6 +1,8 @@
 //
 //  BankAccount.h
-//
+//  Represents bank accounts
+//  Three types: Credit, Checking, and Savings
+//  
 //  Created: 2014-09-16
 //
 

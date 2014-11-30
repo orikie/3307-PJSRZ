@@ -1,5 +1,6 @@
 //
 //  Utils.h
+//  Various utitliy functions
 //
 //  Created: 2014-09-18
 //

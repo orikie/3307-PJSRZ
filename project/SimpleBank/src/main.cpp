@@ -22,6 +22,7 @@
 //\  / /______\/ /
 //\/___________/
 
+//  main method to kick off console client
 #include "BankClient.h"
 int main(int argc, const char * argv[]){
     BankClient c;c.start();

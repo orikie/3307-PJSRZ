@@ -1,5 +1,9 @@
 //
 //  BankClient.h
+//  A console client that connects to the simple bank server
+//  Both managers and clients can login
+//  Menus differ depending on current user roles
+//  Passes appropriate calls to SimpleBank instance
 //
 //  Created: 2014-09-19
 //

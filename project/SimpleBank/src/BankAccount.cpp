@@ -4,11 +4,6 @@
 //  Created: 2014-09-16
 //
 
-/*
- *  
- *
- */
-
 
 #include "BankAccount.h"
 

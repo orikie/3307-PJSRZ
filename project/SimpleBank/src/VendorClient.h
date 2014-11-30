@@ -2,9 +2,6 @@
 //  VendorClient.h
 //  SimpleBank
 //
-//  Created by Joey Lin on 11/22/14.
-//
-//
 
 #ifndef __SimpleBank__VendorClient__
 #define __SimpleBank__VendorClient__

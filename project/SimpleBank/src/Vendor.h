@@ -1,8 +1,12 @@
 //
 //  Vendor.h
 //  SimpleBank
+//  Independent vendor system
+//  Has a inventory of items
+//  Allows a user to login and make purchases
+//  Purchases are recored in the shared db
 //
-//  Created by Joey Lin on 11/22/14.
+//  Date: 11/22/14.
 //
 //
 

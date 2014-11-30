@@ -3,7 +3,9 @@
 //
 //  Simple parser for client data
 //  User file storage for data persistence
-//
+//  Legacy dabatabase first used in asn 1
+//  Methods here are migrated to DBDelegate
+//  Author: Zhao Lin
 //  Created: 2014-09-16
 //
 
@@ -24,60 +26,57 @@ using namespace SB;
 
 namespace SB {
 
-    /*
-     * A record stored in file for each Client user
-     */
+    //  A record stored in file for each Client user
+    //  Reprsents a "row" in the csv file
     struct DataEntry{
         string uid;
         string pass;
         int utype; //enum UserType
         double savingsBalance;
         double checkingBalance;
-        
     };
     
-    /*
-     * Client DB simulates persistent data storage
-     * for user data info using a file
-     */
+    //  Client DB simulates persistent data storage
+    //  for user data info using a file
     class ClientDB
     {
     public:
+        //  Constuctor: Initialize empty vector storage for DataEntry
         ClientDB();
+        
+        //  Destructor: Release DataEntry vector from heap
         ~ClientDB();
         
-        //Default user file name
+        //  Default user file name
         const static string DB_FILE;
-        //Default delimiter
+        
+        //  Default delimiter for csv file
         const static string DB_DELIM;
         
-        
-        //Add a new user to memory storage
+        //  Add a new user to memory storage
         void addUser(const string uid, const string pass, Client::UserType);
         void addUser(User u);
         
+        //  Update user/ client info
         void updateUser(const string &, User);
         void updateClient(const string&, SB::Client);
         
-        //Remove a user from memory storage
+        //  Remove a user from memory storage
         void removeUser(const string&);
         
-        //Check if a userid exsists
+        //  Check if a userid exsists
         bool userExists(const string&);
         
-        //Get user's password hash
+        //  Get user's password hash
         string getUserPasswordHash(const string &);
         
-        //Get specified userid; Sets User reference; returns true if found
+        //  Get specified userid; Sets User reference; returns true if found
         bool getUser(string, User &);
-        
         bool getClient(string, Client&);
-        
         DataEntry getUserEntry(const string &);
         
         //Dump current users on file
         void print();
-        
         string formatedExport();
         
         //Save users in memory to file

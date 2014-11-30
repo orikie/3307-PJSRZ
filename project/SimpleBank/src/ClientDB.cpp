@@ -1,11 +1,6 @@
-//
-//  ClientDB.cpp
-//
-//  Created: 2014-09-16
-//
 
 #include "ClientDB.h"
-//PUBLIC
+
 const string SB::ClientDB::DB_FILE{"clientinfo.data"};
 const string SB::ClientDB::DB_DELIM{","};
 
@@ -22,7 +17,6 @@ string SB::ClientDB::getUserPasswordHash(const string & uid)
     {
         return de.pass;
     }
-    
     return "";
 }
 
@@ -68,15 +62,12 @@ void ClientDB::saveToFile()
 string ClientDB:: exportClientInfo()
 {
     ostringstream s;
-    
     auto it = this->userTableVec_->begin();
     while(it != this->userTableVec_->end())
     {
         
         DataEntry de = *it++;
         s << de.uid << DB_DELIM << de.pass << DB_DELIM << de.utype <<DB_DELIM << de.savingsBalance << DB_DELIM << de.checkingBalance<< "\n";
-        
-        
     }
     return s.str();
 }
@@ -84,12 +75,10 @@ string ClientDB:: exportClientInfo()
 string ClientDB::formatedExport()
 {
     ostringstream s;
-    
     auto it = this->userTableVec_->begin();
     while(it != this->userTableVec_->end())
     {
         DataEntry de = *it;
-        
         s << "User ID:\t" <<de.uid << "\n";
         s << "User Type:\t"  << SB::User::usertypeToString((SB::User::UserType)de.utype) << "\n";
         
@@ -160,7 +149,6 @@ void ClientDB::loadFromFile(double & totalCash)
     
     *this->userTableVec_ = newClientVec;
     this->dbfileIn_.close();
-    
 }
 
 bool ClientDB::getUser(string uid, User & u)
@@ -171,7 +159,6 @@ bool ClientDB::getUser(string uid, User & u)
     if (found) {
         u = ClientDB::makeUser(uid, (Client::UserType)de.utype);
     }
-    
     return found;
 }
 
@@ -179,8 +166,6 @@ bool ClientDB::getClient(string uid, SB::Client & c)
 {
 
     DataEntry de;
-    
-    
     bool found = find(uid, de);
     if (found) {
         c = Client(uid,de.pass,de.savingsBalance,de.checkingBalance);
@@ -236,7 +221,6 @@ void ClientDB::updateEntry(const string & uid, const string & pass, User::UserTy
     userTableVec_->push_back(de);
 }
 
-//PRIVATE
 vector<DataEntry>::iterator ClientDB::find(const string & id)
 {
     vector<DataEntry>::iterator itb = this->userTableVec_->begin();
@@ -269,8 +253,6 @@ bool ClientDB::find(const string & id, DataEntry & ret)
     return found;
 }
 
-
-//DESTRUCTOR
 ClientDB::~ClientDB()
 {
     delete this->userTableVec_;

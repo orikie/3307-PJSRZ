@@ -1,27 +1,16 @@
 
-
 #include "DBDelegate.h"
 
 const std::string DBDelegate::DB_NAME{"bank_del.db"};
-//  USER TABLE
-//  |  ID  |  USERID  |  PASSWORD_HASH  |  USER_TYPE  |
+
 const string DBDelegate::CREATE_USER_TABLE =
 "CREATE TABLE users(uid INTEGER PRIMARY KEY, username TEXT UNIQUE, password_hash TEXT, user_type INTEGER, credit_limit TEXT, credit_option INTEGER);";
-//credit_option{0=pay minimum (10%), 1 = pay in full}
 
-//  ACCOUNTS TABLE
-//  |  ID  |  OWNER_ID  |  BALANCE  |  ACTIVATED  |
 const string DBDelegate::CREATE_ACCOUNT_TABLE =
 "CREATE TABLE accounts(aid INTEGER PRIMARY KEY, owner_id INTEGER, balance TEXT,type INTEGER, activated INTEGER);";
-//type { Savings = 0, Checking = 1, Credit = 2}
-//Activated{True = 1, False =0}
 
-//  TRANSACTIONS TABLE
-//  |  TID  |  CUSTOMER_ID  |  AMOUNT  |  DESCRIPTION  |  DATE  |
 const string DBDelegate::CREATE_TRANSACTIONS_TABLE =
 "CREATE TABLE transactions (tid INTEGER PRIMARY KEY, customer_id INTEGER, amount TEXT, description TEXT, date TEXT, hidden INTEGER);";
-//hidden: 0 = false, 1 = true. Hide after end of month event
-//
 
 const string DBDelegate::DROP_ALL =
 "DROP TABLE users; DROP TABLE account; DROP TABLE transactions;";
@@ -59,25 +48,11 @@ bool DBDelegate::sqliteopen(string name)
     return connected_;
 }
 
-int DBDelegate::createTables_cb(void *arg, int argc, char **argv, char **azColName)
-{
-    if (argc >= 1) {
-        //RunQuery(CREATE_USER_TABLE);
-        //RunQuery(CREATE_ACCOUNT_TABLE);
-    }
-    
-    return 0;
-}
-
 void DBDelegate::InitTables()
 {
- 
-    //string q = "SELECT name FROM sqlite_master WHERE type='table' AND name='users';";
-    //RunQuery(q, createTables_cb, NULL);
     RunQuery(CREATE_USER_TABLE);
     RunQuery(CREATE_ACCOUNT_TABLE);
     RunQuery(CREATE_TRANSACTIONS_TABLE);
-    
     tablesInitialized_  = true;
 }
 
@@ -112,9 +87,7 @@ bool DBDelegate::RunQuery(sqlite3_stmt * stm)
     int res = sqlite3_step(stm);
     sqlite3_finalize(stm);
     return res == SQLITE_DONE ? true : false;
-    
 }
-
 
 string DBDelegate::BuildNewUserQuery(string uid, string password_real, SB::User::UserType uType)
 {
@@ -157,7 +130,6 @@ bool DBDelegate::NewUser(string uid, string password_real, SB::User::UserType ut
 int DBDelegate::getuid_cb(void *arg, int argc, char **argv, char **azColName)
 {
     if (argc >= 1) {
-        //cout << argv[0];
         int ** ip = (int **)arg;
         *ip = new int(stoi(argv[0]));
     }
@@ -170,8 +142,6 @@ void DBDelegate::GetUID(string uname, int **uid)
     *uid = new int(-1);
     int * temp_p = *uid;
     RunQuery(q, getuid_cb, uid);
-    //If results return cb would modify uid
-    //If found, release default -1
     if (**uid != -1) {
         delete temp_p;
     }
@@ -185,9 +155,6 @@ double DBDelegate::GetAccountBalance(int uid, int type)
 
 bool DBDelegate::OpenAccount(int del_id, int type)
 {
-    //string q = "insert into accounts (owner_id,balance,type,activated) values(" + to_string(del_id) + ",\"0\","+to_string(type)+",1);";
-    //RunQuery(q);
-    
     int res = -1;
     bool suc = false;
     if (connected_) {
@@ -196,10 +163,10 @@ bool DBDelegate::OpenAccount(int del_id, int type)
         res = sqlite3_prepare_v2(dbconn_, INSERT_NEW_ACCOUNT.c_str(),(unsigned int)(INSERT_NEW_ACCOUNT.length() + 1), &stm, NULL);
         if (SQLITE_OK == res) {
             
-            int r1 = sqlite3_bind_int(stm, 1, del_id);//user id
-            int r2 = sqlite3_bind_text(stm, 2, "0", -1, SQLITE_STATIC);//initial balance
-            int r3 = sqlite3_bind_int(stm, 3, (int)type); //Credit type
-            int r4 = sqlite3_bind_int(stm, 4, 1); //initially activated
+            int r1 = sqlite3_bind_int(stm, 1, del_id);                  //user id
+            int r2 = sqlite3_bind_text(stm, 2, "0", -1, SQLITE_STATIC); //initial balance
+            int r3 = sqlite3_bind_int(stm, 3, (int)type);               //Credit type
+            int r4 = sqlite3_bind_int(stm, 4, YES);                       //initially activated
             
             if ((r1!=SQLITE_OK)||(r2!=SQLITE_OK)||(r3!=SQLITE_OK)||(r4!=SQLITE_OK)) {
                 log("Error inserting transaction record");
