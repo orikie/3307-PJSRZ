@@ -4,12 +4,16 @@
 
 #include "Vendor.h"
 
-vector<string> Vendor::Inventory = {
+
+
+string inva[] = {
 "CHIPS", "GRANOLA BARS", "CANDY", "POPCORN", "COOKIES", "CRACKERS","RAISONS", "PEANUTS",
 "MILK","COFFEE","BEER","WINE","JUICE","TEA","WATER","HOT COCA",
 "PASTA","CHILI","TOMATO SAUCE","RICE","BEANS","CHICKEN BROTH","TUNA","SALMON",
 "CHICKEN","BEEF","PORK","BACON","SAUSAGE","TURKEY","BROCOLI","SPINACH",
 };
+
+vector<string> Vendor::Inventory(begin(inva),end(inva));
 
 Vendor::Vendor(){
     loggedOn_ = false;

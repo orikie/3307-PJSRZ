@@ -1,8 +1,6 @@
 
 #include "DBDelegate.h"
 
-const std::string DBDelegate::DB_NAME{"bank_del.db"};
-
 const string DBDelegate::CREATE_USER_TABLE =
 "CREATE TABLE users(uid INTEGER PRIMARY KEY, username TEXT UNIQUE, password_hash TEXT, user_type INTEGER, credit_limit TEXT, credit_option INTEGER);";
 
@@ -44,7 +42,7 @@ DBDelegate::DBDelegate(string dbname)
 
 bool DBDelegate::sqliteopen(string name)
 {
-    connected_ =  (sqlite3_open(DB_NAME.c_str(), &dbconn_)== SQLITE_OK)? true : false;
+    connected_ =  (sqlite3_open(DB_NAME, &dbconn_)== SQLITE_OK)? true : false;
     return connected_;
 }
 
@@ -389,14 +387,20 @@ db_account_record DBDelegate::GetCheckingRecordForUser(int uid)
                 const unsigned char * balance = sqlite3_column_text(stm, 2);
                 int type = sqlite3_column_int(stm, 3);
                 int activated = sqlite3_column_int(stm, 4);
-                
-                r = {
-                    aid,
-                    owner_id,
-                    stod((char *)balance),
-                    type,
-                    activated == 1 ? true : false
-                };
+//  ONLY IN C++11
+//                r = {
+//                    aid,
+//                    owner_id,
+//                    stod((char *)balance),
+//                    type,
+//                    activated == 1 ? true : false
+//                };
+//                
+                r.a_id = aid;
+                r.owner_id = owner_id;
+                r.balance = stod((char *)balance);
+                r.type = type;
+                r.activated = activated == 1 ? true : false;
             }
         }
         sqlite3_finalize(stm);
@@ -423,14 +427,21 @@ db_credit_record DBDelegate::GetCreditRecordForUser(int uid)
                 int activated = sqlite3_column_int(stm, 2);
                 const unsigned char * credit_limit = sqlite3_column_text(stm, 3);
                 int credit_option = sqlite3_column_int(stm, 4);
+
+                //only c++ 11
+//                r = {
+//                    aid,
+//                    stod((char *)balance),
+//                    activated == 1 ? true : false,
+//                    stod((char *)credit_limit),
+//                    credit_option == 1? true : false,
+//                };
                 
-                r = {
-                    aid,
-                    stod((char *)balance),
-                    activated == 1 ? true : false,
-                    stod((char *)credit_limit),
-                    credit_option == 1? true : false,
-                };
+                r.aid = aid;
+                r.balance = stod((char *)balance);
+                r.activated = activated == 1 ? true : false;
+                r.credit_limit = stod((char *)credit_limit);
+                r.credit_option = credit_option == 1? true : false;
             }
         }
         sqlite3_finalize(stm);
@@ -457,4 +468,15 @@ void DBDelegate::ChangePassword(string uid, string pass_real)
     RunQuery(q);
 }
 
+int DBDelegate::GetCreditOption(string uid)
+{
+    string q = "select credit_option from users where username = \"" + uid + "\";";
+    return QueryIntFieldSingle(q);
+}
+
+void DBDelegate::ChangeCreditOption(string uid, int val)
+{
+    string q = "update users set credit_option = " + to_string(val) + " where username = \"" + uid+ "\";";
+    RunQuery(q);
+}
 

@@ -47,7 +47,7 @@ string Utils::DateString()
 
 string Utils::getWordFromUser()
 {
-    string s {""};
+    string s = "";
     cin >> s;
     return s;
 }

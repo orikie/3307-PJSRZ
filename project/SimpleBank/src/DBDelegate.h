@@ -25,7 +25,7 @@
 using namespace std;
 
 //  USER TABLE
-//  |  ID  |  USERID  |  PASSWORD_HASH  |  USER_TYPE  |
+//  |  UID  |  USERNAME  |  PASSWORD_HASH  |  USER_TYPE  | CREDIT_LIMIT | CREDIT_OPTION
 
 //  TRANSACTIONS TABLE
 //  |  TID  |  CUSTOMER_ID  |  AMOUNT  |  DESCRIPTION  |  DATE  |
@@ -92,7 +92,6 @@ struct db_credit_record
 class DBDelegate
 {
 public:
-    static const string DB_NAME;                    //  Name of the shared database
     static const string DROP_ALL;                   //  Query: Drop all tables, reset
     static const string CREATE_USER_TABLE;          //  Query: Create users table
     static const string CREATE_ACCOUNT_TABLE;       //  Query: Create accounts table
@@ -174,6 +173,12 @@ public:
     
     //  Change user password
     void ChangePassword(string uid, string pass_real);
+    
+    //  Get Credit option for user
+    int GetCreditOption(string uid);
+    
+    //  Change Credit option for user
+    void ChangeCreditOption(string uid, int val);
     
 private:
     //  sqlite3 connection

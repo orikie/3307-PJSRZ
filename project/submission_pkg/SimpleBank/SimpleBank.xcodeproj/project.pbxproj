@@ -1,0 +1,421 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3EE6EEB119D10DFE00879E10 /* BankAccount.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEA219D10DFD00879E10 /* BankAccount.cpp */; };
+		3EE6EEB219D10DFE00879E10 /* BankClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEA419D10DFD00879E10 /* BankClient.cpp */; };
+		3EE6EEB319D10DFE00879E10 /* ClientDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEA619D10DFD00879E10 /* ClientDB.cpp */; };
+		3EE6EEB419D10DFE00879E10 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEA819D10DFD00879E10 /* Logger.cpp */; };
+		3EE6EEB519D10DFE00879E10 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEAA19D10DFD00879E10 /* main.cpp */; };
+		3EE6EEB619D10DFE00879E10 /* SimpleBank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEAB19D10DFD00879E10 /* SimpleBank.cpp */; };
+		3EE6EEB719D10DFE00879E10 /* User.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEAD19D10DFD00879E10 /* User.cpp */; };
+		3EE6EEB819D10DFE00879E10 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEAF19D10DFD00879E10 /* Utils.cpp */; };
+		541205671A16E128000655EA /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 541205651A16E128000655EA /* sqlite3.c */; };
+		547271DC1A2161B500E23E98 /* Vendor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 547271D71A2161B500E23E98 /* Vendor.cpp */; };
+		547271DD1A2161B500E23E98 /* VendorClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 547271D91A2161B500E23E98 /* VendorClient.cpp */; };
+		547271DE1A2161EC00E23E98 /* v_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 547271D61A2161B500E23E98 /* v_main.cpp */; };
+		547271DF1A2163EA00E23E98 /* DBDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54EAF5171A1F199000824A97 /* DBDelegate.cpp */; };
+		547271E01A2163F700E23E98 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 541205651A16E128000655EA /* sqlite3.c */; };
+		547271E11A2163FF00E23E98 /* Logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEA819D10DFD00879E10 /* Logger.cpp */; };
+		547271E21A2163FF00E23E98 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6EEAF19D10DFD00879E10 /* Utils.cpp */; };
+		547271E31A2172A100E23E98 /* Vendor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 547271D71A2161B500E23E98 /* Vendor.cpp */; };
+		547271E41A2172A100E23E98 /* VendorClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 547271D91A2161B500E23E98 /* VendorClient.cpp */; };
+		54EAF5191A1F199000824A97 /* DBDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54EAF5171A1F199000824A97 /* DBDelegate.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3E2EEB4319C7CE4C000E7C90 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		547271C11A2129C600E23E98 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3E2EEB4519C7CE4C000E7C90 /* SimpleBank */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SimpleBank; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EE6EEA219D10DFD00879E10 /* BankAccount.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BankAccount.cpp; path = src/BankAccount.cpp; sourceTree = SOURCE_ROOT; };
+		3EE6EEA319D10DFD00879E10 /* BankAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BankAccount.h; path = src/BankAccount.h; sourceTree = SOURCE_ROOT; };
+		3EE6EEA419D10DFD00879E10 /* BankClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BankClient.cpp; path = src/BankClient.cpp; sourceTree = SOURCE_ROOT; };
+		3EE6EEA519D10DFD00879E10 /* BankClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BankClient.h; path = src/BankClient.h; sourceTree = SOURCE_ROOT; };
+		3EE6EEA619D10DFD00879E10 /* ClientDB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClientDB.cpp; path = src/ClientDB.cpp; sourceTree = SOURCE_ROOT; };
+		3EE6EEA719D10DFD00879E10 /* ClientDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClientDB.h; path = src/ClientDB.h; sourceTree = SOURCE_ROOT; };
+		3EE6EEA819D10DFD00879E10 /* Logger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Logger.cpp; path = src/Logger.cpp; sourceTree = SOURCE_ROOT; };
+		3EE6EEA919D10DFD00879E10 /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Logger.h; path = src/Logger.h; sourceTree = SOURCE_ROOT; };
+		3EE6EEAA19D10DFD00879E10 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
+		3EE6EEAB19D10DFD00879E10 /* SimpleBank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SimpleBank.cpp; path = src/SimpleBank.cpp; sourceTree = SOURCE_ROOT; };
+		3EE6EEAC19D10DFD00879E10 /* SimpleBank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleBank.h; path = src/SimpleBank.h; sourceTree = SOURCE_ROOT; };
+		3EE6EEAD19D10DFD00879E10 /* User.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = User.cpp; path = src/User.cpp; sourceTree = SOURCE_ROOT; };
+		3EE6EEAE19D10DFD00879E10 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = src/User.h; sourceTree = SOURCE_ROOT; };
+		3EE6EEAF19D10DFD00879E10 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = src/Utils.cpp; sourceTree = SOURCE_ROOT; };
+		3EE6EEB019D10DFE00879E10 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = src/Utils.h; sourceTree = SOURCE_ROOT; };
+		541205651A16E128000655EA /* sqlite3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sqlite3.c; path = src/sqlite3.c; sourceTree = SOURCE_ROOT; };
+		541205661A16E128000655EA /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = src/sqlite3.h; sourceTree = SOURCE_ROOT; };
+		547271C31A2129C600E23E98 /* VendorSystem */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = VendorSystem; sourceTree = BUILT_PRODUCTS_DIR; };
+		547271D61A2161B500E23E98 /* v_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = v_main.cpp; path = src/v_main.cpp; sourceTree = SOURCE_ROOT; };
+		547271D71A2161B500E23E98 /* Vendor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vendor.cpp; path = src/Vendor.cpp; sourceTree = SOURCE_ROOT; };
+		547271D81A2161B500E23E98 /* Vendor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vendor.h; path = src/Vendor.h; sourceTree = SOURCE_ROOT; };
+		547271D91A2161B500E23E98 /* VendorClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VendorClient.cpp; path = src/VendorClient.cpp; sourceTree = SOURCE_ROOT; };
+		547271DA1A2161B500E23E98 /* VendorClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VendorClient.h; path = src/VendorClient.h; sourceTree = SOURCE_ROOT; };
+		547C01521A22D4A8004D3AC9 /* CONFIG.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CONFIG.h; path = src/CONFIG.h; sourceTree = SOURCE_ROOT; };
+		54EAF5171A1F199000824A97 /* DBDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DBDelegate.cpp; path = src/DBDelegate.cpp; sourceTree = SOURCE_ROOT; };
+		54EAF5181A1F199000824A97 /* DBDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBDelegate.h; path = src/DBDelegate.h; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3E2EEB4219C7CE4C000E7C90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		547271C01A2129C600E23E98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3E2EEB3C19C7CE4C000E7C90 = {
+			isa = PBXGroup;
+			children = (
+				3E2EEB4719C7CE4C000E7C90 /* SimpleBank */,
+				547271C41A2129C600E23E98 /* VendorSystem */,
+				3E2EEB4619C7CE4C000E7C90 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3E2EEB4619C7CE4C000E7C90 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E2EEB4519C7CE4C000E7C90 /* SimpleBank */,
+				547271C31A2129C600E23E98 /* VendorSystem */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3E2EEB4719C7CE4C000E7C90 /* SimpleBank */ = {
+			isa = PBXGroup;
+			children = (
+				3EE6EEAA19D10DFD00879E10 /* main.cpp */,
+				547C01521A22D4A8004D3AC9 /* CONFIG.h */,
+				54EAF5161A1F190F00824A97 /* DataAccess */,
+				54EAF5151A1F15D400824A97 /* sqlite */,
+				3EE6EEA219D10DFD00879E10 /* BankAccount.cpp */,
+				3EE6EEA319D10DFD00879E10 /* BankAccount.h */,
+				3EE6EEA419D10DFD00879E10 /* BankClient.cpp */,
+				3EE6EEA519D10DFD00879E10 /* BankClient.h */,
+				3EE6EEA819D10DFD00879E10 /* Logger.cpp */,
+				3EE6EEA919D10DFD00879E10 /* Logger.h */,
+				3EE6EEAB19D10DFD00879E10 /* SimpleBank.cpp */,
+				3EE6EEAC19D10DFD00879E10 /* SimpleBank.h */,
+				3EE6EEAD19D10DFD00879E10 /* User.cpp */,
+				3EE6EEAE19D10DFD00879E10 /* User.h */,
+				3EE6EEAF19D10DFD00879E10 /* Utils.cpp */,
+				3EE6EEB019D10DFE00879E10 /* Utils.h */,
+			);
+			path = SimpleBank;
+			sourceTree = "<group>";
+		};
+		547271C41A2129C600E23E98 /* VendorSystem */ = {
+			isa = PBXGroup;
+			children = (
+				547271D61A2161B500E23E98 /* v_main.cpp */,
+				547271D71A2161B500E23E98 /* Vendor.cpp */,
+				547271D81A2161B500E23E98 /* Vendor.h */,
+				547271D91A2161B500E23E98 /* VendorClient.cpp */,
+				547271DA1A2161B500E23E98 /* VendorClient.h */,
+			);
+			path = VendorSystem;
+			sourceTree = "<group>";
+		};
+		54EAF5151A1F15D400824A97 /* sqlite */ = {
+			isa = PBXGroup;
+			children = (
+				541205651A16E128000655EA /* sqlite3.c */,
+				541205661A16E128000655EA /* sqlite3.h */,
+			);
+			name = sqlite;
+			sourceTree = "<group>";
+		};
+		54EAF5161A1F190F00824A97 /* DataAccess */ = {
+			isa = PBXGroup;
+			children = (
+				3EE6EEA619D10DFD00879E10 /* ClientDB.cpp */,
+				3EE6EEA719D10DFD00879E10 /* ClientDB.h */,
+				54EAF5171A1F199000824A97 /* DBDelegate.cpp */,
+				54EAF5181A1F199000824A97 /* DBDelegate.h */,
+			);
+			name = DataAccess;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3E2EEB4419C7CE4C000E7C90 /* SimpleBank */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E2EEB4E19C7CE4C000E7C90 /* Build configuration list for PBXNativeTarget "SimpleBank" */;
+			buildPhases = (
+				3E2EEB4119C7CE4C000E7C90 /* Sources */,
+				3E2EEB4219C7CE4C000E7C90 /* Frameworks */,
+				3E2EEB4319C7CE4C000E7C90 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimpleBank;
+			productName = SimpleBank;
+			productReference = 3E2EEB4519C7CE4C000E7C90 /* SimpleBank */;
+			productType = "com.apple.product-type.tool";
+		};
+		547271C21A2129C600E23E98 /* VendorSystem */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 547271C91A2129C600E23E98 /* Build configuration list for PBXNativeTarget "VendorSystem" */;
+			buildPhases = (
+				547271BF1A2129C600E23E98 /* Sources */,
+				547271C01A2129C600E23E98 /* Frameworks */,
+				547271C11A2129C600E23E98 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VendorSystem;
+			productName = VendorSystem;
+			productReference = 547271C31A2129C600E23E98 /* VendorSystem */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3E2EEB3D19C7CE4C000E7C90 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				TargetAttributes = {
+					547271C21A2129C600E23E98 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = 3E2EEB4019C7CE4C000E7C90 /* Build configuration list for PBXProject "SimpleBank" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3E2EEB3C19C7CE4C000E7C90;
+			productRefGroup = 3E2EEB4619C7CE4C000E7C90 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3E2EEB4419C7CE4C000E7C90 /* SimpleBank */,
+				547271C21A2129C600E23E98 /* VendorSystem */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3E2EEB4119C7CE4C000E7C90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EE6EEB319D10DFE00879E10 /* ClientDB.cpp in Sources */,
+				547271DC1A2161B500E23E98 /* Vendor.cpp in Sources */,
+				541205671A16E128000655EA /* sqlite3.c in Sources */,
+				3EE6EEB619D10DFE00879E10 /* SimpleBank.cpp in Sources */,
+				3EE6EEB219D10DFE00879E10 /* BankClient.cpp in Sources */,
+				547271DD1A2161B500E23E98 /* VendorClient.cpp in Sources */,
+				3EE6EEB819D10DFE00879E10 /* Utils.cpp in Sources */,
+				3EE6EEB119D10DFE00879E10 /* BankAccount.cpp in Sources */,
+				3EE6EEB719D10DFE00879E10 /* User.cpp in Sources */,
+				3EE6EEB519D10DFE00879E10 /* main.cpp in Sources */,
+				54EAF5191A1F199000824A97 /* DBDelegate.cpp in Sources */,
+				3EE6EEB419D10DFE00879E10 /* Logger.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		547271BF1A2129C600E23E98 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				547271E31A2172A100E23E98 /* Vendor.cpp in Sources */,
+				547271E41A2172A100E23E98 /* VendorClient.cpp in Sources */,
+				547271E11A2163FF00E23E98 /* Logger.cpp in Sources */,
+				547271E21A2163FF00E23E98 /* Utils.cpp in Sources */,
+				547271E01A2163F700E23E98 /* sqlite3.c in Sources */,
+				547271DF1A2163EA00E23E98 /* DBDelegate.cpp in Sources */,
+				547271DE1A2161EC00E23E98 /* v_main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3E2EEB4C19C7CE4C000E7C90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3E2EEB4D19C7CE4C000E7C90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3E2EEB4F19C7CE4C000E7C90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3E2EEB5019C7CE4C000E7C90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		547271C71A2129C600E23E98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		547271C81A2129C600E23E98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3E2EEB4019C7CE4C000E7C90 /* Build configuration list for PBXProject "SimpleBank" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E2EEB4C19C7CE4C000E7C90 /* Debug */,
+				3E2EEB4D19C7CE4C000E7C90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E2EEB4E19C7CE4C000E7C90 /* Build configuration list for PBXNativeTarget "SimpleBank" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E2EEB4F19C7CE4C000E7C90 /* Debug */,
+				3E2EEB5019C7CE4C000E7C90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		547271C91A2129C600E23E98 /* Build configuration list for PBXNativeTarget "VendorSystem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				547271C71A2129C600E23E98 /* Debug */,
+				547271C81A2129C600E23E98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3E2EEB3D19C7CE4C000E7C90 /* Project object */;
+}

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Detailed report on module string-->
+<CCCC_Project>
+<module_summary>
+<lines_of_code value="0" level="0" />
+<lines_of_code_per_member_function value="******" level="0" />
+<McCabes_cyclomatic_complexity value="0" level="0" />
+<McCabes_cyclomatic_complexity_per_member_function value="******" level="0" />
+<lines_of_code value="0" level="0" />
+<lines_of_code_per_member_function value="********" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+<weighted_methods_per_class_unity value="0" level="0" />
+<weighted_methods_per_class_visibility value="0" level="0" />
+<depth_of_inheritance_tree value="0" level="0" />
+<number_of_children value="0" level="0" />
+<coupling_between_objects value="9" level="0" />
+<IF4 value="0" level="0" />
+<IF4_per_member_function value="********" level="0" />
+<IF4_visible value="0" level="0" />
+<IF4_visible_per_member_function value="********" level="0" />
+<IF4_concrete value="0" level="0" />
+<IF4_concrete_per_member_function value="********" level="0" />
+</module_summary>
+<module_detail>
+</module_detail>
+<procedural_detail>
+</procedural_detail>
+<structural_detail>
+<module>
+<name>string</name>
+<client_module>
+<name>BankClient</name>
+<visible>true</visible>
+<concrete>true</concrete>
+<extent>
+<description>pass by value</description>
+<source_reference file="BankClient.cpp" line="646" />
+</extent>
+<name>Client</name>
+<visible>true</visible>
+<concrete>false</concrete>
+<extent>
+<description>pass by reference</description>
+<source_reference file="User.cpp" line="88" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="User.cpp" line="94" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="User.cpp" line="94" />
+</extent>
+<name>ClientDB</name>
+<visible>true</visible>
+<concrete>true</concrete>
+<extent>
+<description>pass by reference</description>
+<source_reference file="ClientDB.cpp" line="17" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="ClientDB.cpp" line="34" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="ClientDB.cpp" line="34" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="ClientDB.cpp" line="47" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="ClientDB.cpp" line="54" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="ClientDB.cpp" line="166" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="ClientDB.cpp" line="178" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="ClientDB.cpp" line="192" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="ClientDB.cpp" line="202" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="ClientDB.cpp" line="221" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="ClientDB.cpp" line="227" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="ClientDB.cpp" line="233" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="ClientDB.cpp" line="233" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="ClientDB.cpp" line="240" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="ClientDB.cpp" line="250" />
+</extent>
+<name>Logger</name>
+<visible>true</visible>
+<concrete>false</concrete>
+<extent>
+<description>pass by reference</description>
+<source_reference file="Logger.cpp" line="14" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="Logger.cpp" line="19" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="Logger.cpp" line="32" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="Logger.cpp" line="42" />
+</extent>
+<name>Maintenance</name>
+<visible>true</visible>
+<concrete>false</concrete>
+<extent>
+<description>pass by reference</description>
+<source_reference file="User.cpp" line="154" />
+</extent>
+<name>Manager</name>
+<visible>true</visible>
+<concrete>false</concrete>
+<extent>
+<description>pass by reference</description>
+<source_reference file="User.cpp" line="168" />
+</extent>
+<name>SimpleBank</name>
+<visible>true</visible>
+<concrete>true</concrete>
+<extent>
+<description>pass by value</description>
+<source_reference file="SimpleBank.cpp" line="41" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="SimpleBank.cpp" line="41" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="SimpleBank.cpp" line="59" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="SimpleBank.cpp" line="65" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="SimpleBank.cpp" line="81" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="SimpleBank.cpp" line="124" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="SimpleBank.cpp" line="137" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="SimpleBank.cpp" line="144" />
+</extent>
+<name>User</name>
+<visible>true</visible>
+<concrete>true</concrete>
+<extent>
+<description>pass by reference</description>
+<source_reference file="User.cpp" line="26" />
+</extent>
+<extent>
+<description>pass by reference</description>
+<source_reference file="User.cpp" line="49" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="User.cpp" line="69" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="User.cpp" line="74" />
+</extent>
+<name>Utils</name>
+<visible>true</visible>
+<concrete>true</concrete>
+<extent>
+<description>pass by value</description>
+<source_reference file="Utils.cpp" line="9" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="Utils.cpp" line="17" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="Utils.cpp" line="17" />
+</extent>
+</client_module>
+<supplier_module>
+</supplier_module>
+</module>
+</structural_detail>
+</CCCC_Project>

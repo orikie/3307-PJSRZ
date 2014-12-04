@@ -1,8 +1,8 @@
 
 #include "ClientDB.h"
 
-const string SB::ClientDB::DB_FILE{"clientinfo.data"};
-const string SB::ClientDB::DB_DELIM{","};
+const string SB::ClientDB::DB_FILE("clientinfo.data");
+const string SB::ClientDB::DB_DELIM(",");
 
 SB::ClientDB::ClientDB()
 {
@@ -28,7 +28,7 @@ void ClientDB::addUser(SB::User u)
 void ClientDB::addUser(const string uid, const string pass, Client::UserType t)
 {
     if (!userExists(uid)) {
-        DataEntry de {uid, Utils::HashPassword(pass),(int)t,-1,-1};
+        DataEntry de = {uid, Utils::HashPassword(pass),(int)t,-1,-1};
         this->userTableVec_->push_back(de);
     }
     else
@@ -82,7 +82,7 @@ string ClientDB::formatedExport()
         s << "User ID:\t" <<de.uid << "\n";
         s << "User Type:\t"  << SB::User::usertypeToString((SB::User::UserType)de.utype) << "\n";
         
-        if (de.utype == Client::UserType::CLIENT) {
+        if (de.utype == Client::CLIENT) {
             if (de.savingsBalance < 0) {
                 s << "Savings:\t" << "NOT OPENED\n";
             }
@@ -189,15 +189,15 @@ User ClientDB::makeUser(const string & uid, const Client::UserType & t)
     User u;
     switch (t)
     {
-        case Client::UserType::MGR:
-            u = Manager{uid};
+        case Client::MGR:
+            u = Manager(uid);
             break;
-        case Client::UserType::MNT:
-            u = Maintenance{uid};
+        case Client::MNT:
+            u = Maintenance(uid);
             break;
-        case Client::UserType::CLIENT:
+        case Client::CLIENT:
         default:
-            u = Client{uid};
+            u = Client(uid);
             break;
     }
     return u;
@@ -212,12 +212,12 @@ void ClientDB::updateUser(const string & oldUser,SB::User newUser)
 void ClientDB::updateClient(const string & oldClient, SB::Client newClient)
 {
     removeUser(oldClient);
-    updateEntry(newClient.getID(), newClient.getPass(),SB::User::UserType::CLIENT, newClient.getSavingsBalance(), newClient.getCheckingBalance());
+    updateEntry(newClient.getID(), newClient.getPass(),Client::CLIENT, newClient.getSavingsBalance(), newClient.getCheckingBalance());
 }
 
 void ClientDB::updateEntry(const string & uid, const string & pass, User::UserType utype, const double & savings, const double & checking)
 {
-    DataEntry de {uid, pass, (int)utype, savings, checking};
+    DataEntry de = {uid, pass, (int)utype, savings, checking};
     userTableVec_->push_back(de);
 }
 

@@ -48,13 +48,13 @@ void BankClient::welcomeScreen()
             User::UserType ut = userCache_.getUserType();
             
             switch (ut) {
-                case User::UserType::CLIENT:
+                case Client::CLIENT:
                     clientMenu();
                     break;
-                case User::UserType::MGR:
+                case Client::MGR:
                     mgrMenu();
                     break;
-                case User::UserType::MNT:
+                case Client::MNT:
                     mntMenu();
                     break;
                 default:
@@ -78,7 +78,8 @@ void BankClient::clientMenu()
     cout << "3\tTransfer funds to\\from account\n";
     cout << "4\tChange Password\n";
     cout << "5\tView Credit Report\n";
-    cout << "6\tLogout\n>";
+    cout << "6\tChange Credit Paying Option\n";
+    cout << "7\tLogout\n>";
     
     int res = Utils::getIntFromUser(6);
     switch (res) {
@@ -98,6 +99,9 @@ void BankClient::clientMenu()
             viewCreditPurchases();
             break;
         case 6:
+            changeCreditOption();
+            break;
+        case 7:
             logout();
             return;
         default:
@@ -107,6 +111,34 @@ void BankClient::clientMenu()
     clientMenu();
 }
 
+void BankClient::changeCreditOption()
+{
+    int opt = bankServer_.GetCreditOption(userCache_.getID());
+    string opt_s = opt == PAY_FULL ? "Pay in Full" : "Pay minimum 10%, with 2% interest.\n";
+    cout << "Your current payment option: " << opt_s << "\n";
+    cout << "Modify your payment option: \n";
+    cout << "\t 1 Pay in full\n";
+    cout << "\t 2 Pay minium (10% + interest)\n";
+    cout << "\t 3 Return to menu\n";
+    cout << ">";
+    int res = Utils::getIntFromUser(3);
+    
+    if (res == 3) {
+        return;
+    }
+    
+    if (res == 1) {
+        bankServer_.ChangeCreditOption(userCache_.getID(), PAY_FULL);
+    }
+    
+    if (res == 2) {
+        bankServer_.ChangeCreditOption(userCache_.getID(), PAY_MIN_10);
+    }
+    
+    cout << "Your settings have been updated.\n";
+    Utils::waitForContinue();
+    
+}
 
 void BankClient::viewCreditPurchases()
 {
@@ -139,7 +171,7 @@ void BankClient::viewCreditPurchases()
             double checkingBal = c.getCheckingBalance();
             printf("\n%-30s$%-.2f\n", "Checking Balance", checkingBal);
             
-            double creditBal = bankServer_.GetAccountBalance(userCache_.del_uid, AccountType::Credit);
+            double creditBal = bankServer_.GetAccountBalance(userCache_.del_uid, SB::Credit);
             printf("%-30s$%-.2f\n", "Unpaid Credit Balance", creditBal);
             
             int pc = -1;
@@ -231,10 +263,10 @@ void BankClient::checkingToSavings()
         double cRem = -1;
         
         if (c.withdrawChecking(amtd, cRem)) {
-            bankServer_.UpdateAccountBalanceDel(userCache_.del_uid, AccountType::Checking, cRem);
+            bankServer_.UpdateAccountBalanceDel(userCache_.del_uid, SB::Checking, cRem);
             if (c.isSavingOpened()) {
                 c.depositSaving(amtd, sRem);
-                bankServer_.UpdateAccountBalanceDel(userCache_.del_uid, AccountType::Savings, sRem);
+                bankServer_.UpdateAccountBalanceDel(userCache_.del_uid, SB::Savings, sRem);
             }
             else
             {
@@ -274,11 +306,11 @@ void BankClient::savingsToChecking()
         double cRem = -1;
         
         if (c.withdrawSaving(amtd, sRem)) {
-            bankServer_.UpdateAccountBalanceDel(userCache_.del_uid, AccountType::Savings, sRem);
+            bankServer_.UpdateAccountBalanceDel(userCache_.del_uid, SB::Savings, sRem);
             
             if (c.isCheckingOpened()) {
                 c.depositChecking(amtd, cRem);
-                bankServer_.UpdateAccountBalanceDel(userCache_.del_uid, AccountType::Checking, cRem);
+                bankServer_.UpdateAccountBalanceDel(userCache_.del_uid, SB::Checking, cRem);
             }
             else
             {
@@ -317,7 +349,7 @@ void BankClient::refreshCache(int del_id_c)
 void BankClient::accessSavings()
 {
     log("Accessing Savings Account");
-    if (userCache_.getUserType() == User::UserType::CLIENT) {
+    if (userCache_.getUserType() == Client::CLIENT) {
         Client c = getcurrClient();
         if (c.isSavingOpened()) {
             cout << "\nSavings (balance): $" << c.getSavingsBalance() << "\n";
@@ -333,7 +365,7 @@ void BankClient::accessSavings()
                 c.activateSaving();
                 
                 //Update del db
-                bankServer_.OpenAccountDel(userCache_.del_uid, SB::AccountType::Savings);
+                bankServer_.OpenAccountDel(userCache_.del_uid, SB::Savings);
                 //
                 
                 bankServer_.updateClient(userCache_.getID(), c);
@@ -358,7 +390,7 @@ void BankClient::accessSavings()
 void BankClient::accessChecking()
 {
     log("Accessing Checking Account");
-    if (userCache_.getUserType() == User::UserType::CLIENT) {
+    if (userCache_.getUserType() == Client::CLIENT) {
         Client c = getcurrClient();
         if (c.isCheckingOpened()) {
             cout << "\nChecking (balance): $" << c.getCheckingBalance() << "\n";
@@ -374,9 +406,9 @@ void BankClient::accessChecking()
                 c.activateChecking();
                 
                 //Update del db
-                bankServer_.OpenAccountDel(userCache_.del_uid, SB::AccountType::Checking);
+                bankServer_.OpenAccountDel(userCache_.del_uid, SB::Checking);
                 //Automatic Credit account
-                bankServer_.OpenAccountDel(userCache_.del_uid, SB::AccountType::Credit);
+                bankServer_.OpenAccountDel(userCache_.del_uid, SB::Credit);
                 //
                 
                 bankServer_.updateClient(userCache_.getID(), c);
@@ -725,13 +757,13 @@ void BankClient::openNewUserAccount()
     string s = Utils::getWordFromUser();
     
     log("Creating new client account:" + s);
-    bankServer_.newUser(s, Client::UserType::CLIENT);
+    bankServer_.newUser(s, Client::CLIENT);
     
     bankServer_.save();
     cout << "Created new user: " << s << endl;
     
     //db delegate
-    bankServer_.newUserDelegate(s, DEFAULT_PASSWORD, Client::UserType::CLIENT);
+    bankServer_.newUserDelegate(s, DEFAULT_PASSWORD, Client::CLIENT);
     
 }
 

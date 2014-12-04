@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Detailed report on module DBDelegate-->
+<CCCC_Project>
+<module_summary>
+<lines_of_code value="364" level="0" />
+<lines_of_code_per_member_function value="******" level="0" />
+<McCabes_cyclomatic_complexity value="73" level="0" />
+<McCabes_cyclomatic_complexity_per_member_function value="******" level="2" />
+<lines_of_code value="24" level="0" />
+<lines_of_code_per_member_function value="********" level="2" />
+<lines_of_code_per_line_of_comment value="15.167" level="1" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="3.042" level="0" />
+<weighted_methods_per_class_unity value="30" level="0" />
+<weighted_methods_per_class_visibility value="0" level="0" />
+<depth_of_inheritance_tree value="0" level="0" />
+<number_of_children value="0" level="0" />
+<coupling_between_objects value="5" level="0" />
+<IF4 value="0" level="0" />
+<IF4_per_member_function value="********" level="0" />
+<IF4_visible value="0" level="0" />
+<IF4_visible_per_member_function value="********" level="0" />
+<IF4_concrete value="0" level="0" />
+<IF4_concrete_per_member_function value="********" level="0" />
+</module_summary>
+<module_detail>
+</module_detail>
+<procedural_detail>
+<member_function>
+<name>BuildNewUserQuery(string,string,UserType)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="90" />
+</extent>
+<lines_of_code value="7" level="0" />
+<McCabes_cyclomatic_complexity value="1" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>ChangePassword(string,string)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="465" />
+</extent>
+<lines_of_code value="5" level="0" />
+<McCabes_cyclomatic_complexity value="0" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>DBDelegate()</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="26" />
+</extent>
+<lines_of_code value="4" level="0" />
+<McCabes_cyclomatic_complexity value="0" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>DBDelegate(string)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="38" />
+</extent>
+<lines_of_code value="4" level="0" />
+<McCabes_cyclomatic_complexity value="0" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>FreezeCreditForUser(int)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="452" />
+</extent>
+<lines_of_code value="5" level="0" />
+<McCabes_cyclomatic_complexity value="0" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>GetAccountBalance(int,int)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="148" />
+</extent>
+<lines_of_code value="5" level="0" />
+<McCabes_cyclomatic_complexity value="1" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>GetAccountsInfoForUser(int)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="337" />
+</extent>
+<lines_of_code value="29" level="0" />
+<McCabes_cyclomatic_complexity value="4" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="******" level="2" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>GetCheckingRecordForUser(int)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="373" />
+</extent>
+<lines_of_code value="27" level="0" />
+<McCabes_cyclomatic_complexity value="6" level="0" />
+<lines_of_comment value="9" level="0" />
+<lines_of_code_per_line_of_comment value="3.000" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="0.667" level="0" />
+</member_function>
+<member_function>
+<name>GetCreditRecordForUser(int)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="411" />
+</extent>
+<lines_of_code value="27" level="0" />
+<McCabes_cyclomatic_complexity value="7" level="0" />
+<lines_of_comment value="8" level="0" />
+<lines_of_code_per_line_of_comment value="3.375" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="0.875" level="0" />
+</member_function>
+<member_function>
+<name>GetEnabledCreditCustomers()</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="308" />
+</extent>
+<lines_of_code value="25" level="0" />
+<McCabes_cyclomatic_complexity value="4" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="******" level="2" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>GetPasswordHash(string)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="188" />
+</extent>
+<lines_of_code value="5" level="0" />
+<McCabes_cyclomatic_complexity value="1" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>GetTransactionRecords(int)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="272" />
+</extent>
+<lines_of_code value="31" level="1" />
+<McCabes_cyclomatic_complexity value="4" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="******" level="2" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>GetUID(string)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="194" />
+</extent>
+<lines_of_code value="5" level="0" />
+<McCabes_cyclomatic_complexity value="1" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>GetUID(string,int **)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="137" />
+</extent>
+<lines_of_code value="10" level="0" />
+<McCabes_cyclomatic_complexity value="1" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>InitTables()</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="49" />
+</extent>
+<lines_of_code value="7" level="0" />
+<McCabes_cyclomatic_complexity value="0" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>IsUserCreditValid(string)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="238" />
+</extent>
+<lines_of_code value="5" level="0" />
+<McCabes_cyclomatic_complexity value="2" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>NewTransaction(int,string,double,string)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="244" />
+</extent>
+<lines_of_code value="24" level="0" />
+<McCabes_cyclomatic_complexity value="8" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="******" level="2" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="******" level="2" />
+</member_function>
+<member_function>
+<name>NewUser(string,string,UserType)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="99" />
+</extent>
+<lines_of_code value="24" level="0" />
+<McCabes_cyclomatic_complexity value="8" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="******" level="2" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="******" level="2" />
+</member_function>
+<member_function>
+<name>OpenAccount(int,int)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="154" />
+</extent>
+<lines_of_code value="23" level="0" />
+<McCabes_cyclomatic_complexity value="7" level="0" />
+<lines_of_comment value="4" level="0" />
+<lines_of_code_per_line_of_comment value="5.750" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="1.750" level="0" />
+</member_function>
+<member_function>
+<name>QueryIntFieldSingle(string)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="219" />
+</extent>
+<lines_of_code value="17" level="0" />
+<McCabes_cyclomatic_complexity value="4" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>QueryTextFieldSingle(string)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="200" />
+</extent>
+<lines_of_code value="18" level="0" />
+<McCabes_cyclomatic_complexity value="4" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>ResetTables()</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="57" />
+</extent>
+<lines_of_code value="5" level="0" />
+<McCabes_cyclomatic_complexity value="0" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>RunQuery(sqlite3_stmt *)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="83" />
+</extent>
+<lines_of_code value="6" level="0" />
+<McCabes_cyclomatic_complexity value="2" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>RunQuery(string)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="63" />
+</extent>
+<lines_of_code value="8" level="0" />
+<McCabes_cyclomatic_complexity value="1" level="0" />
+<lines_of_comment value="1" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>RunQuery(string,sqlite3_callback,void *)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="73" />
+</extent>
+<lines_of_code value="8" level="0" />
+<McCabes_cyclomatic_complexity value="1" level="0" />
+<lines_of_comment value="1" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>SetAccountActivated(int,bool)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="458" />
+</extent>
+<lines_of_code value="6" level="0" />
+<McCabes_cyclomatic_complexity value="1" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>UpdateAccountBalanceDel(int,int,double)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="181" />
+</extent>
+<lines_of_code value="5" level="0" />
+<McCabes_cyclomatic_complexity value="0" level="0" />
+<lines_of_comment value="1" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>getuid_cb(void *,int,char **,char **)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="128" />
+</extent>
+<lines_of_code value="8" level="0" />
+<McCabes_cyclomatic_complexity value="2" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>sqliteopen(string)</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="43" />
+</extent>
+<lines_of_code value="5" level="0" />
+<McCabes_cyclomatic_complexity value="2" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+<member_function>
+<name>~DBDelegate()</name>
+<extent>
+<description>definition</description>
+<source_reference file="DBDelegate.cpp" line="31" />
+</extent>
+<lines_of_code value="6" level="0" />
+<McCabes_cyclomatic_complexity value="1" level="0" />
+<lines_of_comment value="0" level="0" />
+<lines_of_code_per_line_of_comment value="------" level="0" />
+<McCabes_cyclomatic_complexity_per_line_of_comment value="------" level="0" />
+</member_function>
+</procedural_detail>
+<structural_detail>
+<module>
+<name>DBDelegate</name>
+<client_module>
+</client_module>
+<supplier_module>
+<name>UserType</name>
+<visible>true</visible>
+<concrete>true</concrete>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="90" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="99" />
+</extent>
+<name>bool</name>
+<visible>true</visible>
+<concrete>true</concrete>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="458" />
+</extent>
+<name>sqlite3_callback</name>
+<visible>true</visible>
+<concrete>true</concrete>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="73" />
+</extent>
+<name>sqlite3_stmt</name>
+<visible>true</visible>
+<concrete>false</concrete>
+<extent>
+<description>pass by reference</description>
+<source_reference file="DBDelegate.cpp" line="83" />
+</extent>
+<name>string</name>
+<visible>true</visible>
+<concrete>true</concrete>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="38" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="43" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="63" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="73" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="90" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="90" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="99" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="99" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="137" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="188" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="194" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="200" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="219" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="238" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="244" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="244" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="465" />
+</extent>
+<extent>
+<description>pass by value</description>
+<source_reference file="DBDelegate.cpp" line="465" />
+</extent>
+</supplier_module>
+</module>
+</structural_detail>
+</CCCC_Project>

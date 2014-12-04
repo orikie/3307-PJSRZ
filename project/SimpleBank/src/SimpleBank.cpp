@@ -15,15 +15,15 @@ SimpleBank::SimpleBank()
     dbdel_.InitTables();
     
     if (!userExist(DEFAULT_MANAGER)) {
-        clientdb_.addUser(DEFAULT_MANAGER, DEFAULT_PASSWORD, User::UserType::MGR);
+        clientdb_.addUser(DEFAULT_MANAGER, DEFAULT_PASSWORD, Client::MGR);
         save();
-        dbdel_.NewUser(DEFAULT_MANAGER, DEFAULT_PASSWORD, User::UserType::MGR);
+        dbdel_.NewUser(DEFAULT_MANAGER, DEFAULT_PASSWORD, Client::MGR);
     }
     
     if (!userExist(DEFAULT_MAINTENANCE)) {
-        clientdb_.addUser(DEFAULT_MAINTENANCE, DEFAULT_PASSWORD, Client::UserType::MNT);
+        clientdb_.addUser(DEFAULT_MAINTENANCE, DEFAULT_PASSWORD, Client::MNT);
         save();
-        dbdel_.NewUser(DEFAULT_MAINTENANCE, DEFAULT_PASSWORD, User::UserType::MNT);
+        dbdel_.NewUser(DEFAULT_MAINTENANCE, DEFAULT_PASSWORD, Client::MNT);
     }
 
     this->loggedOn_ = false;
@@ -87,7 +87,7 @@ void SimpleBank::logout()
 void SimpleBank::newUser(string id, Client::UserType type)
 {
     //log("Creating new user" + id);
-    if (isLoggedOn() && loggedOnUser_.getUserType() == User::UserType::MGR) {
+    if (isLoggedOn() && loggedOnUser_.getUserType() == Client::MGR) {
         User u = ClientDB::makeUser(id, type);
         
         this->clientdb_.addUser(u);
@@ -98,7 +98,7 @@ void SimpleBank::newUser(string id, Client::UserType type)
 void SimpleBank::openSavings(SB::Client & u)
 {
     //log("Opening Savings Account for " + u.getID());
-    if (loggedOnUser_.getUserType() == User::UserType::MGR) {
+    if (loggedOnUser_.getUserType() == Client::MGR) {
         u.openSavings();
     }
 }
@@ -106,7 +106,7 @@ void SimpleBank::openSavings(SB::Client & u)
 void SimpleBank::openChecking(SB::Client & u)
 {
     //log("Opening Checking Account for "+ u.getID());
-    if (loggedOnUser_.getUserType() == User::UserType::MGR) {
+    if (loggedOnUser_.getUserType() == Client::MGR) {
         u.openChecking();
     }
 }
@@ -114,7 +114,7 @@ void SimpleBank::openChecking(SB::Client & u)
 void SimpleBank::closeSavings(SB::Client & u)
 {
     //log("Closing Savings Account for " + u.getID());
-    if (loggedOnUser_.getUserType() == User::UserType::MGR) {
+    if (loggedOnUser_.getUserType() == Client::MGR) {
         u.closeSavings();
     }
 }
@@ -122,7 +122,7 @@ void SimpleBank::closeSavings(SB::Client & u)
 void SimpleBank::closeChecking(SB::Client & u)
 {
     //log("Closing Checking Account for " + u.getID());
-    if (loggedOnUser_.getUserType() == User::UserType::MGR) {
+    if (loggedOnUser_.getUserType() == Client::MGR) {
         u.closeChecking();
     }
 }
@@ -275,4 +275,14 @@ bool SimpleBank::payCreditOverDues(int uid)
 void SimpleBank::ChangePasswordDel(string uid, string pass_real)
 {
     dbdel_.ChangePassword(uid, pass_real);
+}
+
+int SimpleBank::GetCreditOption(string uid)
+{
+    return dbdel_.GetCreditOption(uid);
+}
+
+void SimpleBank::ChangeCreditOption(string uid, int val)
+{
+    dbdel_.ChangeCreditOption(uid, val);
 }

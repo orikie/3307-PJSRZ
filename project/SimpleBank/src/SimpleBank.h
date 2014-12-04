@@ -16,12 +16,12 @@
 using namespace std;
 
 namespace SB {
-    struct SBException : public exception
-    {
-        string s;
-        SBException(string msg):s(msg){}
-        const char * what(){return s.c_str();}
-    };
+//    struct SBException : public exception
+//    {
+//        string s;
+//        SBException(string msg):s(msg){}
+//        const char * what(){return s.c_str();}
+//    };
     
     class SimpleBank
     {
@@ -67,6 +67,8 @@ namespace SB {
         void TriggerEndOfMonth();
         bool payCreditOverDues(int uid);
         void ChangePasswordDel(string uid, string pass_real);
+        int GetCreditOption(string uid);
+        void ChangeCreditOption(string uid, int val);
     private:
         User loggedOnUser_;
         //UserIdentity * uids_;

@@ -29,15 +29,15 @@ SB::User:: User(const string & id):utype(User::CLIENT)
 
 string SB::User::usertypeToString(SB::User::UserType u)
 {
-    string utype {""};
+    string utype = "";
     switch (u) {
-        case User::UserType::CLIENT:
+        case Client::CLIENT:
             utype = "Client";
             break;
-        case User::UserType::MGR:
+        case Client::MGR:
             utype = "Manager";
             break;
-        case User::UserType::MNT:
+        case Client::MNT:
             utype = "Maintenance";
         default:
             break;

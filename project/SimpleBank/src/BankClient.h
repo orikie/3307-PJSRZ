@@ -44,6 +44,7 @@ namespace SB{
         void checkingToSavings();
         void viewCreditPurchases();
         void printClientAccountBalances();
+        void changeCreditOption();
         
         //Manager user menu
         void mgrMenu();

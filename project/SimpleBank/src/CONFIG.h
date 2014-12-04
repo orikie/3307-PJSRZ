@@ -5,6 +5,7 @@
 #define SimpleBank_CONFIG_h
 
 /*CONFIGURATIONS*/
+#define DB_NAME                 "bank_del.db"
 //Default logins for the bank system
 #define DEFAULT_MANAGER         "3307"
 #define DEFAULT_MAINTENANCE     "mnt"

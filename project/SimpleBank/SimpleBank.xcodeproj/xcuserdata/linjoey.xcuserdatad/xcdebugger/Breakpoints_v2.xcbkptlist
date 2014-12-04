@@ -9,12 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "src/DBDelegate.cpp"
-            timestampString = "439015027.252573"
+            filePath = "src/SimpleBank.cpp"
+            timestampString = "439023397.77033"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "462"
-            endingLineNumber = "462">
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "SimpleBank::TriggerEndOfMonth()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -23,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "src/SimpleBank.cpp"
-            timestampString = "439023397.77033"
+            filePath = "src/DBDelegate.cpp"
+            timestampString = "439348425.730439"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
-            landmarkName = "SimpleBank::TriggerEndOfMonth()"
+            startingLineNumber = "479"
+            endingLineNumber = "479"
+            landmarkName = "DBDelegate::ChangeCreditOption(string uid, int val)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
