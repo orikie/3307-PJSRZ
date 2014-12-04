@@ -81,7 +81,7 @@ void BankClient::clientMenu()
     cout << "6\tChange Credit Paying Option\n";
     cout << "7\tLogout\n>";
     
-    int res = Utils::getIntFromUser(6);
+    int res = Utils::getIntFromUser(7);
     switch (res) {
         case 1:
             accessSavings();
