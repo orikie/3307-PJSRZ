@@ -5,7 +5,7 @@
 # Zhao Lin, Ziqi Rui
 
 CC=g++ 
-OFLAGS=-c 
+OFLAGS=-std=c++11 -c 
 
 all: bank vendor
 
